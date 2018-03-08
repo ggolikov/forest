@@ -22,7 +22,7 @@ let osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{
 
 window.lmap = leafletMap;
 
-L.gmx.loadMap('4ZICS', {leafletMap})
+L.gmx.loadMap('C7764CA37ACF4137A9371717013A3353', {leafletMap})
     .then(gmxMap => {
         render(
             <Root lmap={leafletMap} gmxMap={gmxMap} />,
