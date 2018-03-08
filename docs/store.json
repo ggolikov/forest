@@ -1,0 +1,31 @@
+"reportType": {
+    "type": "string",
+    "values": ["об использовании лесов", "о восстановлении лесов"],
+    "component": {
+        "type": "select",
+        "className": ""
+    },
+    "action": "CHANGE_REPORT_TYPE",
+    "actionCreator": "changeReportType",
+    "reducer": "reportTypeReducer"
+},
+"organizationName": {
+    "type": "string",
+    "component": {
+        "type": "input",
+        "className": ""
+    },
+    "action": "CHANGE_ORGANIZATION_NAME",
+    "actionCreator": "changeOrganizationName",
+    "reducer": "ganizationNameReducer"
+},
+"inn": {
+    "type": "string",
+    "component": {
+        "type": "input",
+        "className": ""
+    },
+    "action": "CHANGE_INN",
+    "actionCreator": "changeInn",
+    "reducer": "innReducer"
+},
