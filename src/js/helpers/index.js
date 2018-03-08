@@ -1,12 +1,6 @@
 const nsGmx = window.nsGmx || {};
 window.serverBase = 'http://maps.kosmosnimki.ru/';
 
-export const encodeParams = (obj) => {
-    return Object.keys(obj).map(function(key) {
-        return key + '=' + encodeURIComponent(obj[key]);
-    }).join('&');
-}
-
 /**
  * Запрос за объектами слоя
  * VectorLayer/Search.ashx
@@ -16,6 +10,8 @@ export const loadFeatures = (layerId) => {
     const params = {
             layer: layerId,
             count: 'add',
+            page: 0,
+            pagesize: 500,
             geometry: true
         },
         url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
@@ -34,4 +30,10 @@ export const loadFeatures = (layerId) => {
             return Promise.resolve(features);
         })
         .catch(err => console.log(err));
+}
+
+export const encodeParams = (obj) => {
+    return Object.keys(obj).map(function(key) {
+        return key + '=' + encodeURIComponent(obj[key]);
+    }).join('&');
 }

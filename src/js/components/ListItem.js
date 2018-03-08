@@ -4,15 +4,15 @@ const ListItem = (props) => {
     const className = props.active ? "list-item active": "list-item";
 
     return (
-        <li className={className}
+        <div className={className}
             onClick={props.onClick}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >
             <span className="listSpan">
-                {props.item}
+                {props.txt}
             </span>
-        </li>
+        </div>
     )
 }
 

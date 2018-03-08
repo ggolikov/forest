@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import Input from './Input';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import ListItem from './ListItem';
 
 const FeaturesList = ({features, idFieid}) => {
     console.log(features);
     console.log(idFieid);
 
-    const list = features.values.map(feature => {
-        console.log(feature);
-        return (
-            <div key={features} />
-        )
+    const index = features.fields.indexOf(idFieid);
 
+    const list = features.values.map(value => {
         return (
-            <ListItem key={point.id} />
+            <ListGroupItem>
+                <ListItem key={value[index]} txt={value[index]} />
+            </ListGroupItem>
         )
     })
 
     return (
-        <div>
-            lalala
+        <div className="gmx-features-list">
+            <ListGroup>
+                {list}
+            </ListGroup>
         </div>
     )
 }

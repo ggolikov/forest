@@ -88,14 +88,11 @@ h2 {
 .iconSidebarControl-content .content {
       background-color: rgb(255, 255, 255);
 }
-/*
-.iconSidebarControl {
-    background-color: #4c5567 !important;
-    height: 100%;
+
+/**/
+
+
+.gmx-features-list {
+    max-height: 350px;
+    overflow-y: scroll;
 }
-.iconSidebarControl-pane{
-    padding: 0px !important;
-}
-.iconSidebarControl_opened {
-    width: 415px !important;
-}*/

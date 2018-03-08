@@ -29,7 +29,7 @@
     "react-addons-css-transition-group": "^15.6.0",
     "react-bootstrap-select": "^0.14.0",
     "react-sortable-tree": "^0.1.19",
-    "react-virtualized": "^9.9.0"
+    "react-virtualized": "^9.18.5"
   },
   "devDependencies": {
     "babel": "^6.23.0",

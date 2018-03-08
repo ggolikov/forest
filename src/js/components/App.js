@@ -10,7 +10,11 @@ class App extends Component {
         this.state = {
             layerID: '4BD64872924B48D9876EFB9E9A1B7C71',
             idFieid: 'ogc_fid',
-            features: []
+            features: {
+                fields: [],
+                types: [],
+                values: []
+            }
         };
     }
 
@@ -32,4 +36,5 @@ class App extends Component {
         );
     }
 }
+
 export default App;
