@@ -80,4 +80,5 @@ h2 {
 
 .gmx-list-item {
     height: 30px;
+    cursor: pointer;
 }

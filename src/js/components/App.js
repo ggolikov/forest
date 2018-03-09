@@ -7,7 +7,7 @@ class App extends Component {
         super(props);
         this.state = {
             layerID: '4BD64872924B48D9876EFB9E9A1B7C71',
-            idFieid: 'ogc_fid',
+            idField: 'ogc_fid',
             featuresCount: 0,
             features: {
                 fields: [],
@@ -25,14 +25,14 @@ class App extends Component {
     }
 
     render() {
-        let { layerID, idFieid, features, featuresCount } = this.state;
+        let { layerID, idField, features, featuresCount } = this.state;
 
         return (
             <div>
-                <h2>Введите координаты</h2>
+                <h2>Отчет об использовании лесов</h2>
                 <FeaturesList
                     layerID={layerID}
-                    idFieid={idFieid}
+                    idField={idField}
                     features={features}
                     featuresCount={featuresCount}/>
             </div>

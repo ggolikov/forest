@@ -4,7 +4,7 @@ import Root from './src/js/components/Root';
 //import './src/js/translations.js';
 //import './src/js/translationsHash.js';
 
-const nsGmx = window.nsGmx || {};
+window.nsGmx = window.nsGmx || {};
 
 window.serverBase = 'http://maps.kosmosnimki.ru/';
 // var m = document.querySelector('#map');
@@ -24,6 +24,9 @@ window.lmap = leafletMap;
 
 L.gmx.loadMap('C7764CA37ACF4137A9371717013A3353', {leafletMap})
     .then(gmxMap => {
+        window.nsGmx.gmxMap = gmxMap;
+        window.nsGmx.leafletMap = leafletMap;
+        
         render(
             <Root lmap={leafletMap} gmxMap={gmxMap} />,
             document.querySelector('.content')

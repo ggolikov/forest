@@ -1,4 +1,3 @@
-const nsGmx = window.nsGmx || {};
 window.serverBase = 'http://maps.kosmosnimki.ru/';
 
 /**
@@ -36,4 +35,62 @@ export const encodeParams = (obj) => {
     return Object.keys(obj).map(function(key) {
         return key + '=' + encodeURIComponent(obj[key]);
     }).join('&');
+}
+
+export const zoomToFeature = (layerId, id, idField) => {
+    const params = {
+            layer: layerId,
+            page: 0,
+            geometry: true,
+            query: `[${idField}]=${id}`
+        },
+        url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
+        options = {
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json'
+            }
+        };
+
+    const promise = fetch(url, options)
+        .then(res => res.text())
+        .then(str => {
+            let response = JSON.parse(str.substring(1, str.length-1)),
+                layer = nsGmx.gmxMap.layersByID[layerId],
+                props = layer.getGmxProperties(),
+                isTemporalLayer = (layer instanceof L.gmx.VectorLayer && props.Temporal) || (props.type === 'Virtual' && layer.getDateInterval),
+                columnNames = response.Result.fields,
+                row = response.Result.values[0];
+
+            for (var i = 0; i < row.length; ++i) {
+                if (columnNames[i] === 'geomixergeojson' && row[i]) {
+
+                    let fitBoundsOptions = layer ? {maxZoom: layer.options.maxZoom} : {},
+                        geom = L.gmxUtil.geometryToGeoJSON(row[i], true),
+                        bounds = L.gmxUtil.getGeometryBounds(geom);
+
+                    nsGmx.leafletMap.fitBounds([
+                        [bounds.min.y, bounds.min.x],
+                        [bounds.max.y, bounds.max.x]
+                    ], fitBoundsOptions);
+
+                    if (isTemporalLayer) {
+                        let tempColumn = props.TemporalColumnName,
+                            index = columnNames.indexOf(tempColumn),
+                            dayms = nsGmx.DateInterval.MS_IN_DAY,
+                            dateBegin, dateEnd,
+                            datems;
+
+                        if (index !== -1) {
+                            datems = row[index] * 1000;
+                            dateBegin = nsGmx.DateInterval.toMidnight(new Date(datems));
+                            dateEnd = nsGmx.DateInterval.toMidnight(new Date(datems + dayms));
+                            nsGmx.widgets.commonCalendar.setDateInterval(dateBegin, dateEnd, layer);
+                        }
+                    }
+                }
+            }
+        })
+        .catch(err => console.log(err));
 }

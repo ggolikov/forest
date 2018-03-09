@@ -7,36 +7,42 @@ import { loadFeatures } from '../helpers';
 class FeaturesList extends Component  {
     constructor(props) {
         super(props);
-        const index = props.features.fields.indexOf(props.idFieid);
+        const index = props.features.fields.indexOf(props.idField);
         this.state = {
             index: index,
-            list: props.features.values.map(value => value[index])
+            list: props.features.values.map(value => value[index]),
+            // special for ID's
+            id: index,
+            ids: props.features.values.map(value => value[index])
         };
 
         this.maxLoadingPage = 0;
     }
 
     componentWillReceiveProps(nextPtops) {
-        const { idFieid, features } = nextPtops;
-        const index = features.fields.indexOf(idFieid);
+        const { idField, features } = nextPtops;
+        const index = features.fields.indexOf(idField);
 
         this.setState({
             index: index,
-            list: features.values.map(value => value[index])
+            list: features.values.map(value => value[index]),
+            // special for ID's
+            idIndex: index,
+            ids: features.values.map(value => value[index])
         });
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // If props/state signals that the underlying collection has changed,
-        // Reload the most recently requested batch of rows:
-        console.log(prevProps, prevState);
-        if (false) {
-            // console.log(this._loadMoreRowsStartIndex, this._loadMoreRowsStopIndex);
-            this.loadMoreRows({
-                startIndex: this._loadMoreRowsStartIndex,
-                stopIndex: this._loadMoreRowsStopIndex
-            })
-        }
+        // // If props/state signals that the underlying collection has changed,
+        // // Reload the most recently requested batch of rows:
+        // console.log(prevProps, prevState);
+        // if (false) {
+        //     // console.log(this._loadMoreRowsStartIndex, this._loadMoreRowsStopIndex);
+        //     this.loadMoreRows({
+        //         startIndex: this._loadMoreRowsStartIndex,
+        //         stopIndex: this._loadMoreRowsStopIndex
+        //     })
+        // }
     }
 
     loadMoreRows = ({ startIndex, stopIndex }) => {
@@ -72,12 +78,11 @@ class FeaturesList extends Component  {
         }
     }
 
-    getPageNumber(featuresCount, startIndex, pagesize) {
-        return (startIndex / pagesize) + 1;
-    }
-
     render() {
-        const { layerID, idFieid, features, featuresCount } = this.props;
+        const { layerId, idField, features, featuresCount } = this.props;
+        const { idIndex, ids } = this.state;
+
+        const IdIndex = features.fields.indexOf(idField);
 
         const isRowLoaded = ({ index }) => {
             return !!this.state.list[index];
@@ -88,7 +93,11 @@ class FeaturesList extends Component  {
                 <div key={key} style={style}>
                     <ListGroupItem bsClass="gmx-list-item">
                         <ListItem
-                        txt={this.state.list[index]} />
+                            {...this.props}
+                            txt={this.state.list[index]}
+                            layerId={layerId}
+                            id={this.state.list[index]}
+                         />
                     </ListGroupItem>
                 </div>
             )
