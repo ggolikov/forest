@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Root from './src/js/components/Root';
+import { initTimeline } from './src/js/mapHooks';
 import './src/js/translations.js';
 import './src/js/translationsHash.js';
 
@@ -27,6 +28,8 @@ L.gmx.loadMap('C7764CA37ACF4137A9371717013A3353', {leafletMap})
         window.nsGmx.gmxMap = gmxMap;
         window.nsGmx.leafletMap = leafletMap;
 
+        initTimeline(gmxMap, leafletMap);
+        
         render(
             <Root lmap={leafletMap} gmxMap={gmxMap} />,
             document.querySelector('.content')

@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --inline --hot --content-base demo --history-api-fallback",
-    "build": "webpack -w",
+    "build": "webpack",
     "deploy": "gh-pages -d demo"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 import { CHANGE_INN } from '../constants';
 
-const innReducer = (inn = "", action) => {
+const innReducer = (inn = "3328455371", action) => {
     const {type, payload} = action;
 
     switch (action.type) {

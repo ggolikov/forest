@@ -1,6 +1,6 @@
 import { CHANGE_ORGANIZATION_NAME } from '../constants';
 
-const organizationNameReducer = (organizationName = "", action) => {
+const organizationNameReducer = (organizationName = "ООО \"Березниковское лесничество\"", action) => {
     const {type, payload} = action;
 
     switch (action.type) {

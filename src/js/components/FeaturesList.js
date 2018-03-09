@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, ControlLabel } from 'react-bootstrap';
 import { InfiniteLoader, List } from 'react-virtualized';
 import ListItem from './ListItem';
 import { loadFeatures } from '../helpers';
+import { FEATURES_CHUNK_SIZE } from '../constants';
 
 class FeaturesList extends Component  {
     constructor(props) {
@@ -49,7 +50,7 @@ class FeaturesList extends Component  {
         const { layerID, featuresCount } = this.props;
         const { index, list } = this.state;
 
-        const currentlyLoadedPage = Math.round(list.length / 500);
+        const currentlyLoadedPage = Math.round(list.length / FEATURES_CHUNK_SIZE);
         const pagesToLoad = Math.round(stopIndex / list.length);
         const maxLoadingPage = currentlyLoadedPage + pagesToLoad;
 
@@ -62,7 +63,7 @@ class FeaturesList extends Component  {
 
             for (let i = 0; i < pagesToLoad; i++) {
                 promiseArr.push(
-                    loadFeatures(layerID, currentlyLoadedPage + i, 500)
+                    loadFeatures(layerID, currentlyLoadedPage + i, FEATURES_CHUNK_SIZE)
                         .then(json => {
                             const updatedList = this.state.list.concat(json.Result.values.map(value => value[index]));
 
@@ -87,6 +88,8 @@ class FeaturesList extends Component  {
             return !!this.state.list[index];
         }
 
+        const label = window._gtxt('Список участков')
+
         const rowRenderer = ({ key, index, isScrolling, isVisible, style }) => {
             return (
                 <div key={key} style={style}>
@@ -103,24 +106,29 @@ class FeaturesList extends Component  {
         }
 
         return (
-            <div className="gmx-features-list">
-                <InfiniteLoader
-                    isRowLoaded={isRowLoaded}
-                    loadMoreRows={this.loadMoreRows}
-                    rowCount={featuresCount}
-                >
-                    {({ onRowsRendered, registerChild }) => (
-                        <List
-                            width={350}
-                            height={350}
-                            rowHeight={30}
-                            onRowsRendered={onRowsRendered}
-                            ref={registerChild}
-                            rowCount={featuresCount}
-                            rowRenderer={rowRenderer}
-                        />
-                    )}
-                </InfiniteLoader>
+            <div>
+                <ControlLabel>
+                    {label}
+                </ControlLabel>
+                <div className="gmx-features-list">
+                    <InfiniteLoader
+                        isRowLoaded={isRowLoaded}
+                        loadMoreRows={this.loadMoreRows}
+                        rowCount={featuresCount}
+                    >
+                        {({ onRowsRendered, registerChild }) => (
+                            <List
+                                width={360}
+                                height={350}
+                                rowHeight={30}
+                                onRowsRendered={onRowsRendered}
+                                ref={registerChild}
+                                rowCount={featuresCount}
+                                rowRenderer={rowRenderer}
+                            />
+                        )}
+                    </InfiniteLoader>
+                </div>
             </div>
         )
     }
