@@ -6,12 +6,12 @@ window.serverBase = 'http://maps.kosmosnimki.ru/';
  * VectorLayer/Search.ashx
  * https://docs.google.com/document/d/1Dky3Lg8WIiHREYln0zVgUqfpHFptlolCZ_i8aB0Iljw/edit#heading=h.t355wryw7p1x
  */
-export const loadFeatures = (layerId) => {
+export const loadFeatures = (layerId, page, pagesize, count) => {
     const params = {
             layer: layerId,
-            count: 'add',
-            page: 0,
-            pagesize: 500,
+            page: page,
+            pagesize: pagesize,
+            count: count,
             geometry: true
         },
         url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,

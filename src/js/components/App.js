@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import InputContainer from './InputContainer';
-import CheckboxContainer from './CheckboxContainer';
 import FeaturesList from './FeaturesList';
 import { loadFeatures } from '../helpers';
 
@@ -10,6 +8,7 @@ class App extends Component {
         this.state = {
             layerID: '4BD64872924B48D9876EFB9E9A1B7C71',
             idFieid: 'ogc_fid',
+            featuresCount: 0,
             features: {
                 fields: [],
                 types: [],
@@ -19,19 +18,23 @@ class App extends Component {
     }
 
     componentDidMount() {
-        loadFeatures(this.state.layerID)
+        loadFeatures(this.state.layerID, 0, 500, 'add')
             .then(json => {
-                this.setState({features: json.Result})
+                this.setState({features: json.Result, featuresCount: json.Result.Count})
             });
     }
 
     render() {
-        let { features, idFieid } = this.state;
-        console.log(features);
+        let { layerID, idFieid, features, featuresCount } = this.state;
+
         return (
             <div>
                 <h2>Введите координаты</h2>
-                <FeaturesList features={features} idFieid={idFieid}/>
+                <FeaturesList
+                    layerID={layerID}
+                    idFieid={idFieid}
+                    features={features}
+                    featuresCount={featuresCount}/>
             </div>
         );
     }
