@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
+import InputContainer from './InputContainer';
 import { loadFeatures } from '../helpers';
 
 class App extends Component {
@@ -25,11 +26,18 @@ class App extends Component {
     }
 
     render() {
-        let { layerID, idField, features, featuresCount } = this.state;
+        const { layerID, idField, features, featuresCount } = this.state;
+        const header = window._gtxt('Отчет об использовании лесов');
 
         return (
             <div>
-                <h2>Отчет об использовании лесов</h2>
+                <h2>{header}</h2>
+                <InputContainer
+                    param="organizationName"
+                />
+                <InputContainer
+                    param="inn"
+                />
                 <FeaturesList
                     layerID={layerID}
                     idField={idField}

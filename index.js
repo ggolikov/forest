@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Root from './src/js/components/Root';
-//import './src/js/translations.js';
-//import './src/js/translationsHash.js';
+import './src/js/translations.js';
+import './src/js/translationsHash.js';
 
 window.nsGmx = window.nsGmx || {};
 
@@ -26,7 +26,7 @@ L.gmx.loadMap('C7764CA37ACF4137A9371717013A3353', {leafletMap})
     .then(gmxMap => {
         window.nsGmx.gmxMap = gmxMap;
         window.nsGmx.leafletMap = leafletMap;
-        
+
         render(
             <Root lmap={leafletMap} gmxMap={gmxMap} />,
             document.querySelector('.content')

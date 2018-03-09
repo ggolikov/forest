@@ -58,11 +58,10 @@ class FeaturesList extends Component  {
         console.log(`maxLoadingPage: ${maxLoadingPage}`);
 
         if (maxLoadingPage > this.maxLoadingPage) {
-        // if (stopIndex >= list.length) {
-            let promisArr = [];
+            let promiseArr = [];
 
             for (let i = 0; i < pagesToLoad; i++) {
-                promisArr.push(
+                promiseArr.push(
                     loadFeatures(layerID, currentlyLoadedPage + i, 500)
                         .then(json => {
                             const updatedList = this.state.list.concat(json.Result.values.map(value => value[index]));
@@ -73,7 +72,7 @@ class FeaturesList extends Component  {
                 );
             }
 
-            Promise.all(promisArr);
+            Promise.all(promiseArr);
             this.maxLoadingPage = maxLoadingPage;
         }
     }
@@ -126,6 +125,5 @@ class FeaturesList extends Component  {
         )
     }
 }
-
 
 export default FeaturesList;

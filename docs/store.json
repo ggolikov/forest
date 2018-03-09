@@ -17,7 +17,7 @@
     },
     "action": "CHANGE_ORGANIZATION_NAME",
     "actionCreator": "changeOrganizationName",
-    "reducer": "ganizationNameReducer"
+    "reducer": "organizationNameReducer"
 },
 "inn": {
     "type": "string",

@@ -2,23 +2,42 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Input from './Input';
 import { withLabel } from '../HOC';
-import { changeHoursStep, changeName } from '../AC';
+import { changeOrganizationName, changeInn } from '../AC';
 
 const mapStateToProps = (state, ownProps) => {
-    const { step, name } = state;
+    const { organizationName, inn } = state;
     const { label, param } = ownProps;
-    const value = param === 'step' ? step : name;
+
+    let value = null;
+
+    switch (ownProps.param) {
+        case "organizationName":
+            value = organizationName;
+            break;
+        case "inn":
+            value = inn;
+            break;
+        default:
+    }
 
     return { label, value };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const dispatchFunc = ownProps.param === 'step' ? changeHoursStep : changeName;
+    let dispatchFunc = null;
+    switch (ownProps.param) {
+        case "organizationName":
+            dispatchFunc = changeOrganizationName;
+            break;
+        case "inn":
+            dispatchFunc = changeInn;
+            break;
+        default:
+    }
 
     return {
         onChange: e => {
-            const value = ownProps.param === 'step' ? Number(e.target.value) : e.target.value;
-            dispatch(dispatchFunc(value));
+            dispatch(dispatchFunc(e.target.value));
         }
     }
 }
