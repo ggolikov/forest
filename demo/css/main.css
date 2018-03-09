@@ -1,3 +1,4 @@
+@import "./L.Control.gmxTimeLine.css";
 html, body {
     width: 100%;
     margin: 0px;
@@ -70,32 +71,15 @@ h2 {
     text-align: left;
 }
 
-.iconSidebarControl_expanded {
-    height: 1000px;
+/**/
+
+
+.gmx-features-list {
+    max-height: 360px;
+    /* overflow-y: scroll; */
 }
 
-.iconSidebarControl-content {
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  background-color: rgb(255, 255, 255);
-  overflow-x: hidden;
-  overflow-y: auto;
+.gmx-list-item {
+    height: 30px;
+    cursor: pointer;
 }
-
-.iconSidebarControl-content .content {
-      background-color: rgb(255, 255, 255);
-}
-/*
-.iconSidebarControl {
-    background-color: #4c5567 !important;
-    height: 100%;
-}
-.iconSidebarControl-pane{
-    padding: 0px !important;
-}
-.iconSidebarControl_opened {
-    width: 415px !important;
-}*/

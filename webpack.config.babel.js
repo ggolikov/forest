@@ -31,6 +31,7 @@ export default {
     plugins: [
         HTMLWebpackPluginConfig,
         new CopyWebpackPlugin([
+            { from: path.join(paths.src, 'js/lib/GMXPluginTimeLine/L.Control.gmxTimeLine.css'), to: path.join(paths.public, 'css/L.Control.gmxTimeLine.css') },
             { from: path.join(paths.src, 'css/main.css'), to: path.join(paths.public, 'css/main.css') }
         ])
     ]
