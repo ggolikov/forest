@@ -37,16 +37,7 @@ class FeaturesList extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // // If props/state signals that the underlying collection has changed,
-        // // Reload the most recently requested batch of rows:
-        // console.log(prevProps, prevState);
-        // if (false) {
-        //     // console.log(this._loadMoreRowsStartIndex, this._loadMoreRowsStopIndex);
-        //     this.loadMoreRows({
-        //         startIndex: this._loadMoreRowsStartIndex,
-        //         stopIndex: this._loadMoreRowsStopIndex
-        //     })
-        // }
+
     }
 
     loadMoreRows = ({ startIndex, stopIndex }) => {
@@ -93,18 +84,14 @@ class FeaturesList extends Component {
     render() {
         const { layerId, idField, features, featuresCount } = this.props;
         const { idIndex, ids } = this.state;
-
         const IdIndex = features.fields.indexOf(idField);
-
         const isRowLoaded = ({ index }) => {
             return !!this.state.list[index];
         }
-
         const label = window._gtxt('Список участков')
-
         const rowRenderer = ({ key, index, isScrolling, isVisible, style }) => {
-            return (
-                <div key={key} style={style}>
+            const scrollHolder = '...';
+            const elem = (
                     <ListGroupItem bsClass="gmx-list-item">
                         <ListItem
                             {...this.props}
@@ -113,6 +100,12 @@ class FeaturesList extends Component {
                             id={this.state.list[index]}
                          />
                     </ListGroupItem>
+            );
+            const content = isScrolling ? scrollHolder : elem;
+
+            return (
+                <div key={key} style={style}>
+                    {content}
                 </div>
             )
         }
