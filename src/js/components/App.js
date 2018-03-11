@@ -41,6 +41,7 @@ class App extends Component {
         return (
             <div>
                 <h2>{header}</h2>
+                <div style={{display: 'none'}}>
                 <SelectContainer
                     label={reportTypeSelectLabel}
                     param="reportType"
@@ -54,6 +55,7 @@ class App extends Component {
                     label={innLabel}
                     param="inn"
                 />
+                </div>
                 <FeaturesList
                     layerID={layerID}
                     idField={idField}

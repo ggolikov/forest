@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PQueue from 'p-queue';
 import { ListGroup, ListGroupItem, ControlLabel } from 'react-bootstrap';
 import { InfiniteLoader, List } from 'react-virtualized';
 import ListItem from './ListItem';
@@ -9,28 +10,34 @@ class FeaturesList extends Component  {
     constructor(props) {
         super(props);
         const index = props.features.fields.indexOf(props.idField);
-        this.state = {
+        window.state = this.state = {
             index: index,
             list: props.features.values.map(value => value[index]),
+            currentlyLoadedPage: 0,
             // special for ID's
             id: index,
             ids: props.features.values.map(value => value[index])
         };
 
         this.maxLoadingPage = 0;
+
+        //DEBUG
     }
 
     componentWillReceiveProps(nextPtops) {
         const { idField, features } = nextPtops;
         const index = features.fields.indexOf(idField);
 
+        const list = features.values.map(value => value[index]);
+
         this.setState({
             index: index,
-            list: features.values.map(value => value[index]),
+            list: list,
             // special for ID's
             idIndex: index,
             ids: features.values.map(value => value[index])
         });
+        window.sarr = this.state.List;
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -48,33 +55,42 @@ class FeaturesList extends Component  {
 
     loadMoreRows = ({ startIndex, stopIndex }) => {
         const { layerID, featuresCount } = this.props;
-        const { index, list } = this.state;
+        const { index, currentlyLoadedPage } = this.state;
 
-        const currentlyLoadedPage = Math.round(list.length / FEATURES_CHUNK_SIZE);
-        const pagesToLoad = Math.round(stopIndex / list.length);
-        const maxLoadingPage = currentlyLoadedPage + pagesToLoad;
+        const maxLoadingPage = Math.round(stopIndex / FEATURES_CHUNK_SIZE);
+        const pagesToLoad = maxLoadingPage - currentlyLoadedPage;
+
+        const promiseArrResolver = function (arr) {
+            let { list } = this.state;
+            let updatedList = list.concat(...arr);
+            console.log(updatedList.length);
+
+            this.setState({list: updatedList});
+        }.bind(this);
 
         console.log(`currentlyLoadedPage: ${currentlyLoadedPage}`);
         console.log(`pagesToLoad: ${pagesToLoad}`);
         console.log(`maxLoadingPage: ${maxLoadingPage}`);
 
-        if (maxLoadingPage > this.maxLoadingPage) {
+        if (pagesToLoad) {
             let promiseArr = [];
 
-            for (let i = 0; i < pagesToLoad; i++) {
+            for (let i = 1; i < pagesToLoad + 1; i++) {
                 promiseArr.push(
                     loadFeatures(layerID, currentlyLoadedPage + i, FEATURES_CHUNK_SIZE)
                         .then(json => {
-                            const updatedList = this.state.list.concat(json.Result.values.map(value => value[index]));
-
-                            this.setState({list: updatedList})
-                            console.log(`values.length: ${json.Result.values.length}`);
+                            const fetchedList = json.Result.values.map(value => value[index]);
+                            return Promise.resolve(fetchedList);
                         })
                 );
             }
 
-            Promise.all(promiseArr);
-            this.maxLoadingPage = maxLoadingPage;
+            Promise.all(promiseArr)
+                .then(promiseArrResolver);
+
+            this.setState({
+                currentlyLoadedPage: maxLoadingPage
+            });
         }
     }
 

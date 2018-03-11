@@ -28,8 +28,8 @@ L.gmx.loadMap('C7764CA37ACF4137A9371717013A3353', {leafletMap})
         window.nsGmx.gmxMap = gmxMap;
         window.nsGmx.leafletMap = leafletMap;
 
-        initTimeline(gmxMap, leafletMap);
-        
+        // initTimeline(gmxMap, leafletMap);
+
         render(
             <Root lmap={leafletMap} gmxMap={gmxMap} />,
             document.querySelector('.content')
