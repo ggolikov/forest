@@ -79,7 +79,15 @@ h2 {
     /* overflow-y: scroll; */
 }
 
+.gmx-features-list:focus {
+    outline: none;
+}
+
 .gmx-list-item {
     height: 30px;
     cursor: pointer;
+}
+
+.gmx-list-item.active {
+    background-color: #eee;
 }

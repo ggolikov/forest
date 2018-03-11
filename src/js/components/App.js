@@ -41,7 +41,7 @@ class App extends Component {
         return (
             <div>
                 <h2>{header}</h2>
-                <div style={{display: 'none'}}>
+                <div style={{display: 'block'}}>
                 <SelectContainer
                     label={reportTypeSelectLabel}
                     param="reportType"

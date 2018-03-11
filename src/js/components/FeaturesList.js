@@ -6,11 +6,11 @@ import ListItem from './ListItem';
 import { loadFeatures } from '../helpers';
 import { FEATURES_CHUNK_SIZE } from '../constants';
 
-class FeaturesList extends Component  {
+class FeaturesList extends Component {
     constructor(props) {
         super(props);
         const index = props.features.fields.indexOf(props.idField);
-        window.state = this.state = {
+        this.state = {
             index: index,
             list: props.features.values.map(value => value[index]),
             currentlyLoadedPage: 0,
@@ -18,10 +18,6 @@ class FeaturesList extends Component  {
             id: index,
             ids: props.features.values.map(value => value[index])
         };
-
-        this.maxLoadingPage = 0;
-
-        //DEBUG
     }
 
     componentWillReceiveProps(nextPtops) {

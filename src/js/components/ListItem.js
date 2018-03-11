@@ -1,25 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { zoomToFeature } from '../helpers';
 
-const ListItem = (props) => {
-    const { layerID, id, idField, features, featuresCount } = props;
-    const className = props.active ? "list-item active": "list-item";
+class ListItem extends Component {
+    constructor(props) {
+        super(props);
 
-    const onFeatureClick = (e) => {
+        this.state = {
+            active: false
+        };
+    }
+
+    onItemClick = (e) => {
+        const { layerID, id, idField } = this.props;
+
         zoomToFeature(layerID, id, idField)
     }
 
-    return (
-        <div className={className}
-            onClick={onFeatureClick}
-            onMouseEnter={props.onMouseEnter}
-            onMouseLeave={props.onMouseLeave}
-        >
-            <span className="listSpan">
-                {props.txt}
-            </span>
-        </div>
-    )
+    onMouseEnter = (e) => {
+        this.setState({
+            active: true
+        });
+    }
+
+    onMouseLeave = (e) => {
+        this.setState({
+            active: false
+        });
+    }
+
+    render() {
+        const { active } = this.state;
+
+        const className = active ? "gmx-list-item active": "gmx-list-item";
+
+        return (
+            <div className={className}
+                onClick={this.onItemClick}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
+            >
+                <span className="listSpan">
+                    {this.props.txt}
+                </span>
+            </div>
+        )
+    }
 }
 
 export default ListItem;
