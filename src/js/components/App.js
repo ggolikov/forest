@@ -3,32 +3,29 @@ import FeaturesList from './FeaturesList';
 import InputContainer from './InputContainer';
 import SelectContainer from './SelectContainer';
 import { loadFeatures } from '../helpers';
-import { DEMO_LAYER_ID } from '../constants';
+import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            layerID: DEMO_LAYER_ID,
-            idField: 'ogc_fid',
-            featuresCount: 0,
-            features: {
-                fields: [],
-                types: [],
-                values: []
-            }
-        };
+    }
+
+    getFeaturesAndCount = json => {
+        this.props.getFeaturesAndCount(json);
     }
 
     componentDidMount() {
-        loadFeatures(this.state.layerID, 0, 500, 'add')
-            .then(json => {
-                this.setState({features: json.Result, featuresCount: json.Result.Count})
-            });
+        loadFeatures(this.props.layerId, 0, null, 'add')
+            .then(json => this.getFeaturesAndCount(json));
     }
 
     render() {
-        const { layerID, idField, features, featuresCount } = this.state;
+        const { layerId, idField, idFieldIndex, featuresIds, featuresCount } = this.props;
+
+        const firstChunkFeatures = featuresIds.filter((v, i, a) => {
+            return (i <= FEATURES_CHUNK_SIZE)
+        })
+
         const header = window._gtxt("Отчет об использовании лесов");
         const reportTypeSelectLabel = window._gtxt("Выберите тип отчета");
         const reportTypeSelectValues = [
@@ -57,9 +54,9 @@ class App extends Component {
                 />
                 </div>
                 <FeaturesList
-                    layerID={layerID}
-                    idField={idField}
-                    features={features}
+                    idFieldIndex={idFieldIndex}
+                    layerId={layerId}
+                    list={firstChunkFeatures}
                     featuresCount={featuresCount}/>
             </div>
         );

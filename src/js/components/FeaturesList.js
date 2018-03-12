@@ -9,40 +9,21 @@ import { FEATURES_CHUNK_SIZE } from '../constants';
 class FeaturesList extends Component {
     constructor(props) {
         super(props);
-        const index = props.features.fields.indexOf(props.idField);
         this.state = {
-            index: index,
-            list: props.features.values.map(value => value[index]),
-            currentlyLoadedPage: 0,
-            // special for ID's
-            id: index,
-            ids: props.features.values.map(value => value[index])
+            list: props.list,
+            currentlyLoadedPage: 0
         };
     }
 
     componentWillReceiveProps(nextPtops) {
-        const { idField, features } = nextPtops;
-        const index = features.fields.indexOf(idField);
+        const { list } = nextPtops;
 
-        const list = features.values.map(value => value[index]);
-
-        this.setState({
-            index: index,
-            list: list,
-            // special for ID's
-            idIndex: index,
-            ids: features.values.map(value => value[index])
-        });
-        window.sarr = this.state.List;
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-
+        this.setState({list});
     }
 
     loadMoreRows = ({ startIndex, stopIndex }) => {
-        const { layerID, featuresCount } = this.props;
-        const { index, currentlyLoadedPage } = this.state;
+        const { idFieldIndex, layerId, featuresCount } = this.props;
+        const { currentlyLoadedPage } = this.state;
 
         const maxLoadingPage = Math.round(stopIndex / FEATURES_CHUNK_SIZE);
         const pagesToLoad = maxLoadingPage - currentlyLoadedPage;
@@ -64,9 +45,10 @@ class FeaturesList extends Component {
 
             for (let i = 1; i < pagesToLoad + 1; i++) {
                 promiseArr.push(
-                    loadFeatures(layerID, currentlyLoadedPage + i, FEATURES_CHUNK_SIZE)
+                    loadFeatures(layerId, currentlyLoadedPage + i, FEATURES_CHUNK_SIZE)
                         .then(json => {
-                            const fetchedList = json.Result.values.map(value => value[index]);
+                            console.log(idFieldIndex);
+                            const fetchedList = json.Result.values.map(value => value[idFieldIndex]);
                             return Promise.resolve(fetchedList);
                         })
                 );
@@ -82,9 +64,8 @@ class FeaturesList extends Component {
     }
 
     render() {
-        const { layerId, idField, features, featuresCount } = this.props;
-        const { idIndex, ids } = this.state;
-        const IdIndex = features.fields.indexOf(idField);
+        const { layerId, idField, idFieldIndex, featuresCount } = this.props;
+        const { list } = this.state;
         const isRowLoaded = ({ index }) => {
             return !!this.state.list[index];
         }
