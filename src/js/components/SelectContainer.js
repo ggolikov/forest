@@ -6,7 +6,7 @@ import { changeReportType } from '../AC';
 
 const mapStateToProps = (state, ownProps) => {
     const { reportType } = state;
-    const { label, param, values } = ownProps;
+    const { label, param, values, loading } = ownProps;
 
     let value = null;
 
@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
         default:
     }
 
-    return { label, value, values };
+    return { label, value, values, loading };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

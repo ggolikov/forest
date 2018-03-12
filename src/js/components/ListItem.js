@@ -11,9 +11,9 @@ class ListItem extends Component {
     }
 
     onItemClick = (e) => {
-        const { layerID, id, idField } = this.props;
+        const { layerId, id, idField } = this.props;
 
-        zoomToFeature(layerID, id, idField)
+        zoomToFeature(layerId, id, idField)
     }
 
     onMouseEnter = (e) => {

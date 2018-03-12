@@ -8,6 +8,18 @@ import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
 class App extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            loading: props.featuresIds.length === 0
+        };
+    }
+
+    componentWillReceiveProps(nextPtops) {
+        const { featuresIds } = nextPtops;
+
+        this.setState({
+            loading: featuresIds.length === 0,
+        });
     }
 
     getFeaturesAndCount = json => {
@@ -20,10 +32,11 @@ class App extends Component {
     }
 
     render() {
-        const { layerId, idField, idFieldIndex, featuresIds, featuresCount } = this.props;
-
+        const { layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList } = this.props;
+        const { loading } = this.state;
+        // lazy load list
         const firstChunkFeatures = featuresIds.filter((v, i, a) => {
-            return (i <= FEATURES_CHUNK_SIZE)
+            return (i <= /*FEATURES_CHUNK_SIZE*/featuresCount)
         })
 
         const header = window._gtxt("Отчет об использовании лесов");
@@ -44,6 +57,10 @@ class App extends Component {
                     param="reportType"
                     values={reportTypeSelectValues}
                 />
+                <SelectContainer
+                    loading={loading}
+                    values={attributesList}
+                />
                 <InputContainer
                     label={organizationNameLabel}
                     param="organizationName"
@@ -54,7 +71,9 @@ class App extends Component {
                 />
                 </div>
                 <FeaturesList
+                    loading={loading}
                     idFieldIndex={idFieldIndex}
+                    idField={idField}
                     layerId={layerId}
                     list={firstChunkFeatures}
                     featuresCount={featuresCount}/>

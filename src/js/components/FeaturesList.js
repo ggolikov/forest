@@ -64,12 +64,12 @@ class FeaturesList extends Component {
     }
 
     render() {
-        const { layerId, idField, idFieldIndex, featuresCount } = this.props;
+        const { layerId, idField, idFieldIndex, featuresCount, loading } = this.props;
         const { list } = this.state;
         const isRowLoaded = ({ index }) => {
             return !!this.state.list[index];
         }
-        const label = window._gtxt('Список участков')
+        const label = window._gtxt('Список участков');
         const rowRenderer = ({ key, index, isScrolling, isVisible, style }) => {
             const scrollHolder = '...';
             const elem = (
@@ -79,6 +79,7 @@ class FeaturesList extends Component {
                             txt={this.state.list[index]}
                             layerId={layerId}
                             id={this.state.list[index]}
+                            idField={idField}
                          />
                     </ListGroupItem>
             );
@@ -91,11 +92,12 @@ class FeaturesList extends Component {
             )
         }
 
-        return (
-            <div>
-                <ControlLabel>
-                    {label}
-                </ControlLabel>
+        const loadMessage = window._gtxt("Загрузка...");
+
+        const loadedList = loading ?
+            <div className="gmx-features-list">
+                {loadMessage}
+            </div> : (
                 <div className="gmx-features-list">
                     <InfiniteLoader
                         isRowLoaded={isRowLoaded}
@@ -115,6 +117,15 @@ class FeaturesList extends Component {
                         )}
                     </InfiniteLoader>
                 </div>
+            )
+
+
+        return (
+            <div>
+                <ControlLabel>
+                    {label}
+                </ControlLabel>
+                {loadedList}
             </div>
         )
     }
