@@ -28,7 +28,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         ...ownProps,
         getFeaturesAndCount: json => {
             const index = json.Result.fields.indexOf(stateProps.idField);
-            const featuresIds = json.Result.values.map(value => value[index]);
+            const featuresIds = json.Result.values.map(value => {
+                return {id: value[index], selected: false};
+            });
             dispatch(setFeaturesIds(featuresIds));
             dispatch(setFeaturesCount(json.Result.Count));
             dispatch(setAttributesList(json.Result.fields));

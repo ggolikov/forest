@@ -2,11 +2,11 @@ import React from 'react';
 import { Checkbox } from 'react-bootstrap'
 
 const Cbox = (props) => {
-    const { label, onChange } = props;
+    const { label, checked, onChange } = props;
 
     return (
         <div>
-            <Checkbox onChange={onChange}>{label}</Checkbox>
+            <Checkbox checked={checked} onChange={onChange}>{label}</Checkbox>
         </div>
     );
 }

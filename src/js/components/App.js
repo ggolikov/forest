@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
 import InputContainer from './InputContainer';
 import SelectContainer from './SelectContainer';
+import CheckboxContainer from './CheckboxContainer';
 import { loadFeatures } from '../helpers';
 import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
 
@@ -47,6 +48,9 @@ class App extends Component {
         ];
         const organizationNameLabel = window._gtxt("Наименование организации");
         const innLabel = window._gtxt("ИНН");
+        const revertSelectionLabel = window._gtxt("Инвертировать выделение");
+        const selectAllFeaturesLabel = window._gtxt("Выделить все");
+        const allFeaturesChecked = featuresIds.every(item => item.selected);
 
         return (
             <div>
@@ -70,6 +74,16 @@ class App extends Component {
                     param="inn"
                 />
                 </div>
+                <CheckboxContainer
+                    param="selectAllFeatures"
+                    checked={allFeaturesChecked}
+                    label={selectAllFeaturesLabel}
+                />
+                <CheckboxContainer
+                    param="revertSelection"
+                    defaultChecked={false}
+                    label={revertSelectionLabel}
+                />
                 <FeaturesList
                     loading={loading}
                     idFieldIndex={idFieldIndex}

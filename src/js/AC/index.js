@@ -3,6 +3,9 @@ import {
     SET_ID_FIELD,
     SET_ID_FIELD_INDEX,
     SET_FEATURES_IDS,
+    CHANGE_FEATURE_SELETION,
+    REVERT_SELECTION,
+    SELECT_ALL_FEATURES,
     SET_FEATURES_COUNT,
     SET_ATTRIBUTES_LIST,
     CHANGE_REPORT_TYPE,
@@ -40,6 +43,26 @@ export function setFeaturesIds(ids) {
     return {
         type: SET_FEATURES_IDS,
         payload: { ids }
+    }
+}
+
+export function changeFeatureSelection(id, selected) {
+    return {
+        type: CHANGE_FEATURE_SELETION,
+        payload: { id, selected }
+    }
+}
+
+export function revertSelection() {
+    return {
+        type: REVERT_SELECTION
+    }
+}
+
+export function selectAllFeatures(selectAll) {
+    return {
+        type: SELECT_ALL_FEATURES,
+        payload: { selectAll }
     }
 }
 
