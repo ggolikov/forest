@@ -67,8 +67,8 @@
         "type": "input/select",
         "className": ""
     },
-    "action": "changeSectionForestry",
-    "actionCreator": "CHANGE_SECTION_FORESTRY",
+    "action": "CHANGE_SECTION_FORESTRY",
+    "actionCreator": "changeSectionForestry",
     "reducer": "sectionForestryReducer"
 },
 "quadrant": {
@@ -81,8 +81,8 @@
         "type": "input/select",
         "className": ""
     },
-    "action": "changeQuadrant",
-    "actionCreator": "CHANGE_QUADRANT",
+    "action": "CHANGE_QUADRANT",
+    "actionCreator": "changeQuadrant",
     "reducer": "quadrantReducer"
 },
 "stratum": {
@@ -95,8 +95,8 @@
         "type": "input/select",
         "className": ""
     },
-    "action": "",
-    "actionCreator": "CHANGE_STRATUM",
+    "action": "CHANGE_STRATUM",
+    "actionCreator": "changeStratum",
     "reducer": "stratumReducer"
 },
 "": {

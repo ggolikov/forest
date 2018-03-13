@@ -10,6 +10,11 @@ import featuresCountReducer from './featuresCountReducer';
 import attributesListReducer from './attributesListReducer';
 import organizationNameReducer from './organizationNameReducer';
 import innReducer from './innReducer';
+import regionReducer from './regionReducer';
+import forestryReducer from './forestryReducer';
+import sectionForestryReducer from './sectionForestryReducer';
+import quadrantReducer from './quadrantReducer';
+import stratumReducer from './stratumReducer';
 
 export default combineReducers({
     layerId: layerIdReducer,
@@ -20,5 +25,10 @@ export default combineReducers({
     attributesList: attributesListReducer,
     reportType: reportTypeReducer,
     organizationName: organizationNameReducer,
-    inn: innReducer
+    inn: innReducer,
+    region: regionReducer,
+    forestry: forestryReducer,
+    sectionForestry: sectionForestryReducer,
+    quadrant: quadrantReducer,
+    stratumReducer: stratumReducer
 });

@@ -7,7 +7,12 @@ import {
     SET_ATTRIBUTES_LIST,
     CHANGE_REPORT_TYPE,
     CHANGE_ORGANIZATION_NAME,
-    CHANGE_INN
+    CHANGE_INN,
+    CHANGE_REGION,
+    CHANGE_FORESTRY,
+    CHANGE_SECTION_FORESTRY,
+    CHANGE_QUADRANT,
+    CHANGE_STRATUM
 } from '../constants';
 
 export function setLayerId(layerId) {
@@ -70,5 +75,40 @@ export function changeInn(inn) {
     return {
         type: CHANGE_INN,
         payload: { inn }
+    }
+}
+
+export function changeRegion(region) {
+    return {
+        type: CHANGE_REGION,
+        payload: { region }
+    }
+}
+
+export function changeForestry(forestry) {
+    return {
+        type: CHANGE_FORESTRY,
+        payload: { forestry }
+    }
+}
+
+export function changeSectionForestry(sectionForestry) {
+    return {
+        type: CHANGE_SECTION_FORESTRY,
+        payload: { sectionForestry }
+    }
+}
+
+export function changeQuadrant(quadrant) {
+    return {
+        type: CHANGE_QUADRANT,
+        payload: { quadrant }
+    }
+}
+
+export function changeStratum(stratum) {
+    return {
+        type: CHANGE_STRATUM,
+        payload: { stratum }
     }
 }

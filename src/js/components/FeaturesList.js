@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PQueue from 'p-queue';
 import { ListGroup, ListGroupItem, ControlLabel } from 'react-bootstrap';
 import { InfiniteLoader, List } from 'react-virtualized';
 import ListItem from './ListItem';
