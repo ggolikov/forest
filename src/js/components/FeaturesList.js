@@ -74,10 +74,10 @@ class FeaturesList extends Component {
             const elem = (
                     <ListGroupItem bsClass="gmx-list-item">
                         <ListItem
-                            {...this.props}
-                            txt={this.state.list[index]}
+                            selected={this.state.list[index].selected}
+                            txt={this.state.list[index].id}
                             layerId={layerId}
-                            id={this.state.list[index]}
+                            id={this.state.list[index].id}
                             idField={idField}
                          />
                     </ListGroupItem>
