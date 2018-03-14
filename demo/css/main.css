@@ -15,12 +15,12 @@ h2 {
 }
 
 #map {
-    height: 600px;
+    height: 100%;
 }
 
 .wrap {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin: 0;
 }
 .left-panel {
@@ -28,6 +28,7 @@ h2 {
     height: 100%;
     float: left;
     text-align: center;
+    overflow-y: scroll;
 }
 
 .content {
@@ -79,7 +80,15 @@ h2 {
     /* overflow-y: scroll; */
 }
 
+.gmx-features-list:focus {
+    outline: none;
+}
+
 .gmx-list-item {
     height: 30px;
     cursor: pointer;
+}
+
+.gmx-list-item.active {
+    background-color: #eee;
 }

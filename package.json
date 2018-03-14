@@ -12,8 +12,9 @@
     ]
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --content-base demo --history-api-fallback",
-    "build": "webpack",
+    "start": "webpack-dev-server --env --inline --hot --content-base demo --history-api-fallback",
+    "build": "webpack --env",
+    "build-plugin": "webpack --env.plugin",
     "deploy": "gh-pages -d demo"
   },
   "dependencies": {
@@ -73,6 +74,7 @@
     "url-loader": "^0.5.7",
     "watchify": "^3.7.0",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "webpack-dev-server": "^2.3.0",
+    "webpack-merge": "^4.1.2"
   }
 }

@@ -6,6 +6,7 @@ import './src/js/translations.js';
 import './src/js/translationsHash.js';
 
 window.nsGmx = window.nsGmx || {};
+// window.
 
 window.serverBase = 'http://maps.kosmosnimki.ru/';
 // var m = document.querySelector('#map');
