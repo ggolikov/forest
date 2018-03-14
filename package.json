@@ -1,8 +1,8 @@
 {
-  "name": "Geomixer-React-Tree",
+  "name": "forest-project",
   "version": "0.1.0",
-  "description": "Geomixer-React-Tree",
-  "repository": "https://github.com/ggolikov/Geomixer-React-Tree",
+  "description": "Geomixer forest project",
+  "repository": "git@github.com:ScanEx/forest.git",
   "main": "index.js",
   "author": "Grigory Golikov gr.golikov@gmail.com",
   "license": "MIT",
@@ -15,6 +15,7 @@
     "start": "webpack-dev-server --env --inline --hot --content-base demo --history-api-fallback",
     "build": "webpack --env",
     "build-plugin": "webpack --env.plugin",
+    "build-plugin-copy": "webpack --env.plugin && plugin-copy.bat",
     "deploy": "gh-pages -d demo"
   },
   "dependencies": {
