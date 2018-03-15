@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
 import InputContainer from './InputContainer';
 import SelectContainer from './SelectContainer';
+import SelectInput from './SelectInput';
 import CheckboxContainer from './CheckboxContainer';
 import { loadFeatures } from '../helpers';
 import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
@@ -11,7 +12,8 @@ class App extends Component {
         super(props);
 
         this.state = {
-            loading: props.featuresIds.length === 0
+            loading: props.featuresIds.length === 0,
+            allFeaturesChecked: props.featuresIds.every(item => item.selected)
         };
     }
 
@@ -20,6 +22,7 @@ class App extends Component {
 
         this.setState({
             loading: featuresIds.length === 0,
+            allFeaturesChecked: featuresIds.every(item => item.selected)
         });
     }
 
@@ -34,7 +37,7 @@ class App extends Component {
 
     render() {
         const { layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList } = this.props;
-        const { loading } = this.state;
+        const { loading, allFeaturesChecked } = this.state;
         // lazy load list
         const firstChunkFeatures = featuresIds.filter((v, i, a) => {
             return (i <= /*FEATURES_CHUNK_SIZE*/featuresCount)
@@ -50,12 +53,11 @@ class App extends Component {
         const innLabel = window._gtxt("ИНН");
         const revertSelectionLabel = window._gtxt("Инвертировать выделение");
         const selectAllFeaturesLabel = window._gtxt("Выделить все");
-        const allFeaturesChecked = featuresIds.every(item => item.selected);
 
         return (
             <div>
                 <h2>{header}</h2>
-                <div style={{display: 'block'}}>
+                <div style={{display: 'none'}}>
                 <SelectContainer
                     label={reportTypeSelectLabel}
                     param="reportType"
@@ -74,6 +76,13 @@ class App extends Component {
                     param="inn"
                 />
                 </div>
+                <SelectInput
+                    inputLabel="input label"
+                    inputParam="organizationName"
+                    selectLabel="select label"
+                    selectParam="reportType"
+                    selectValues={reportTypeSelectValues}
+                />
                 <CheckboxContainer
                     param="selectAllFeatures"
                     checked={allFeaturesChecked}

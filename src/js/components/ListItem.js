@@ -96,8 +96,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     const { id } = ownProps;
 
-    // console.log(id);
-
     return {
         onItemSelect: (e) => {
             dispatch(changeFeatureSelection(id, e.target.checked));
