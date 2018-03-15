@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap'
+import { FormGroup, InputGroup, Button } from 'react-bootstrap'
 import InputContainer from './InputContainer';
 import SelectContainer from './SelectContainer';
+import { withLabel } from '../HOC';
 
 class SelectInput extends Component {
     constructor(props) {
@@ -28,14 +29,19 @@ class SelectInput extends Component {
         const buttonLabel = window._gtxt("использовать таблицу атрибутов");
 
         return (
-            <div>
-                { useSelect ? selectElement : inputElement}
-                <Button onClick={this.onButtonClick}>
-                    {buttonLabel}
-                </Button>
-            </div>
+            <FormGroup>
+                <InputGroup>
+                    { useSelect ? selectElement : inputElement}
+                    <Button
+                        componentClass={InputGroup.Button}
+                        onClick={this.onButtonClick}
+                    >
+                        {buttonLabel}
+                    </Button>
+                </InputGroup>
+            </FormGroup>
         );
     }
 }
 
-export default SelectInput;
+export default withLabel(SelectInput);

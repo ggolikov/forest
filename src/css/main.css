@@ -92,3 +92,7 @@ h2 {
 .gmx-list-item.active {
     background-color: #eee;
 }
+/*sidebar-icon*/
+#s-forest-plugin {
+  fill: #bfccd6;
+}

@@ -5,13 +5,15 @@ export const withLabel = InnerComponent => {
     return (props) => {
         const { label } = props;
 
-        return (
+        const elem = label ? (
             <div>
                 <ControlLabel>
                     {label}
                 </ControlLabel>
                 <InnerComponent {...props}/>
             </div>
-        );
+        ) : <InnerComponent {...props}/>;
+
+        return elem;
     }
 }

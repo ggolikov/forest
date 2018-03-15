@@ -1,16 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Root from './src/js/components/Root';
-import './src/js/translations.js';
-import './src/js/translationsHash.js';
 
 (function () {
     'use strict';
 
 	window.nsGmx = window.nsGmx || {};
 
-    var pluginName = 'forestproject',
-		homePath;
+    var pluginName = 'forestproject';
 
     var publicInterface = {
         pluginName: pluginName,
@@ -20,10 +17,10 @@ import './src/js/translationsHash.js';
                 var forestPluginContainer = window.iconSidebarWidget.setPane(
                     "forest-project", {
                         createTab: window.createTabFunction({
-                            icon: "s-tree.svg",
+                            icon: "s-forest-plugin",
                             active: "uploadfile-uploadfile-sidebar",
                             inactive: "uploadfile-uploadfile-sidebar",
-                            hint: "layers-tree"
+                            hint: "forest-plugin"
                         })
                     }
                 );
@@ -39,27 +36,7 @@ import './src/js/translationsHash.js';
     if (window.gmxCore) {
 		window.gmxCore.addModule(pluginName, publicInterface, {
 			css: './css/main.css',
-			init: function(module, path)
-			{
-				// homePath = path;	// Папка где расположен плагин
-                //
-				// var def = $.Deferred();
-				// gmxCore.loadScriptWithCheck([
-				// 	{
-				// 		check: function(){ return window.links; },
-				// 		script: path + '../timeline/vis.js',
-				// 		css: path + '../timeline/vis.css'
-				// 	},
-				// 	{
-				// 		check: function(){ return window.L.control.dialog; },
-				// 		css: 'http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'
-				// 	}
-				// ]).done(function() {
-				// 	def.resolve();
-				// });
-                //
-				// return def;
-			}
+			init: function(module, path) {}
 		});
 	} else {
 		window.nsGmx[pluginName] = publicInterface;

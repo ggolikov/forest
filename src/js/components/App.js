@@ -77,11 +77,10 @@ class App extends Component {
                 />
                 </div>
                 <SelectInput
-                    inputLabel="input label"
+                    label="dssdsd"
                     inputParam="organizationName"
-                    selectLabel="select label"
                     selectParam="reportType"
-                    selectValues={reportTypeSelectValues}
+                    selectValues={attributesList}
                 />
                 <CheckboxContainer
                     param="selectAllFeatures"
