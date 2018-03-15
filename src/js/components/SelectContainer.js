@@ -2,32 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Select from './Select';
 import { withLabel } from '../HOC';
-import { changeReportType } from '../AC';
+import * as actionCreators from '../AC';
+import storeMapping from '../storeMapping';
 
 const mapStateToProps = (state, ownProps) => {
-    const { reportType } = state;
     const { label, param, values, loading } = ownProps;
-
-    let value = null;
-
-    switch (ownProps.param) {
-        case "reportType":
-            value = reportType;
-            break;
-        default:
-    }
+    const value = state[param];
 
     return { label, value, values, loading };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    let dispatchFunc = null;
-    switch (ownProps.param) {
-        case "reportType":
-            dispatchFunc = changeReportType;
-            break;
-        default:
-    }
+    const { param } = ownProps;
+    const dispatchFuncName = storeMapping[param];
+    const dispatchFunc = actionCreators[dispatchFuncName];
 
     return {
         onChange: e => {

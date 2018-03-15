@@ -2,10 +2,11 @@ import React from 'react';
 import { FormControl } from 'react-bootstrap'
 
 const Select = (props) => {
+    const { loading, values, placeholder, onChange } = props;
     const loadMessage = window._gtxt("Загрузка...");
-    const children = props.loading ?
+    const children = loading ?
         <option value={loadMessage}>{loadMessage}</option> :
-        props.values.map(value => {
+        values.map(value => {
             return (
                 <option key={value} value={value}>{value}</option>
             )
@@ -14,8 +15,9 @@ const Select = (props) => {
     return (
         <FormControl
             componentClass="select"
-            placeholder={props.placeholder}
-            onChange={props.onChange}
+            placeholder={placeholder}
+            onChange={onChange}
+            disabled={loading}
         >
             {children}
         </FormControl>

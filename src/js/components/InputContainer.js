@@ -2,38 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Input from './Input';
 import { withLabel } from '../HOC';
-import { changeOrganizationName, changeInn } from '../AC';
+import * as actionCreators from '../AC';
+import storeMapping from '../storeMapping';
 
 const mapStateToProps = (state, ownProps) => {
-    const { organizationName, inn } = state;
     const { label, param } = ownProps;
-
-    let value = null;
-
-    switch (ownProps.param) {
-        case "organizationName":
-            value = organizationName;
-            break;
-        case "inn":
-            value = inn;
-            break;
-        default:
-    }
+    const value = state[param];
 
     return { label, value };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    let dispatchFunc = null;
-    switch (ownProps.param) {
-        case "organizationName":
-            dispatchFunc = changeOrganizationName;
-            break;
-        case "inn":
-            dispatchFunc = changeInn;
-            break;
-        default:
-    }
+    const { param } = ownProps;
+    const dispatchFuncName = storeMapping[param];
+    const dispatchFunc = actionCreators[dispatchFuncName];
 
     return {
         onChange: e => {

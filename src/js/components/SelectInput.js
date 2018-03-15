@@ -7,7 +7,6 @@ import { withLabel } from '../HOC';
 class SelectInput extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
 
         this.state = {
             useSelect: false
@@ -22,10 +21,10 @@ class SelectInput extends Component {
     }
 
     render() {
-        const { inputLabel, inputParam, selectLabel, selectParam, selectValues } = this.props;
+        const { param, selectValues, loading } = this.props;
         const { useSelect } = this.state;
-        const inputElement = <InputContainer label={inputLabel} param={inputParam} />
-        const selectElement = <SelectContainer label={selectLabel} param={selectParam} values={selectValues} />
+        const inputElement = <InputContainer param={param} />
+        const selectElement = <SelectContainer param={param} values={selectValues} loading={loading} />
         const buttonLabel = window._gtxt("использовать таблицу атрибутов");
 
         return (
@@ -33,6 +32,7 @@ class SelectInput extends Component {
                 <InputGroup>
                     { useSelect ? selectElement : inputElement}
                     <Button
+                        active={useSelect}
                         componentClass={InputGroup.Button}
                         onClick={this.onButtonClick}
                     >
