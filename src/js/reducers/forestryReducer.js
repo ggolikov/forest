@@ -1,6 +1,6 @@
 import { CHANGE_FORESTRY } from '../constants';
 
-const forestryReducer = (forestry = "", action) => {
+const forestryReducer = (forestry = "Березниковское", action) => {
     const {type, payload} = action;
 
     switch (action.type) {

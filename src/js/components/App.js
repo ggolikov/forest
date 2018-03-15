@@ -51,21 +51,26 @@ class App extends Component {
         ];
         const organizationNameLabel = window._gtxt("Наименование организации");
         const innLabel = window._gtxt("ИНН");
+        const regionLabel = window._gtxt("Субъект Российской Федерации");
+        const forestryLabel = window._gtxt("Лесничество");
+        const sectionForestryLabel = window._gtxt("Участковое лесничество");
+        const quadrantLabel = window._gtxt("Квартал");
+        const stratumLabel = window._gtxt("Выдел");
         const revertSelectionLabel = window._gtxt("Инвертировать выделение");
         const selectAllFeaturesLabel = window._gtxt("Выделить все");
 
         return (
             <div>
                 <h2>{header}</h2>
-                <div style={{display: 'none'}}>
+                <div style={{display: 'block'}}>
                 <SelectContainer
                     label={reportTypeSelectLabel}
                     param="reportType"
                     values={reportTypeSelectValues}
                 />
                 <SelectContainer
-                    loading={loading}
                     values={attributesList}
+                    loading={loading}
                 />
                 <InputContainer
                     label={organizationNameLabel}
@@ -77,10 +82,34 @@ class App extends Component {
                 />
                 </div>
                 <SelectInput
-                    label="dssdsd"
-                    inputParam="organizationName"
-                    selectParam="reportType"
+                    label={regionLabel}
+                    param="region"
                     selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={forestryLabel}
+                    param="forestry"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={sectionForestryLabel}
+                    param="sectionForestry"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={quadrantLabel}
+                    param="quadrant"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={stratumLabel}
+                    param="stratum"
+                    selectValues={attributesList}
+                    loading={loading}
                 />
                 <CheckboxContainer
                     param="selectAllFeatures"

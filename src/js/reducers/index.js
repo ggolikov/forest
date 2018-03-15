@@ -30,5 +30,5 @@ export default combineReducers({
     forestry: forestryReducer,
     sectionForestry: sectionForestryReducer,
     quadrant: quadrantReducer,
-    stratumReducer: stratumReducer
+    stratum: stratumReducer
 });
