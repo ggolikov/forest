@@ -18,8 +18,8 @@ import Root from './src/js/components/Root';
                     "forest-project", {
                         createTab: window.createTabFunction({
                             icon: "s-forest-plugin",
-                            active: "uploadfile-uploadfile-sidebar",
-                            inactive: "uploadfile-uploadfile-sidebar",
+                            active: "sidebar-icon-active",
+                            inactive: "sidebar-icon-inactive",
                             hint: "forest-plugin"
                         })
                     }
