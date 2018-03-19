@@ -1,4 +1,5 @@
 import {
+    CHANGE_LOADER_STATUS,
     SET_LAYER_ID,
     SET_ID_FIELD,
     SET_ID_FIELD_INDEX,
@@ -17,6 +18,13 @@ import {
     CHANGE_QUADRANT,
     CHANGE_STRATUM
 } from '../constants';
+
+export function changeLoaderStatus(loader) {
+    return {
+        type: CHANGE_LOADER_STATUS,
+        payload: { loader }
+    }
+}
 
 export function setLayerId(layerId) {
     return {

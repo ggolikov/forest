@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import App from './App';
-import { setFeaturesIds, setFeaturesCount, setAttributesList, setIdFieldIndex } from '../AC';
 
 const mapStateToProps = (state, ownProps) => {
-    const { layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList } = state;
+    const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList } = state;
     const { lmap, gmxMap } = ownProps;
 
     return {
+        loader,
         layerId,
         idFieldIndex,
         idField,
@@ -26,16 +26,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         ...stateProps,
         ...ownProps,
-        getFeaturesAndCount: json => {
-            const index = json.Result.fields.indexOf(stateProps.idField);
-            const featuresIds = json.Result.values.map(value => {
-                return {id: value[index], selected: false};
-            });
-            dispatch(setFeaturesIds(featuresIds));
-            dispatch(setFeaturesCount(json.Result.Count));
-            dispatch(setAttributesList(json.Result.fields));
-            dispatch(setIdFieldIndex(index));
-        }
     }
 }
 

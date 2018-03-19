@@ -12,8 +12,6 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        console.log(getLayersList(props.gmxMap));
-
         this.state = {
             loading: props.featuresIds.length === 0,
             allFeaturesChecked: props.featuresIds.every(item => item.selected)
@@ -29,17 +27,8 @@ class App extends Component {
         });
     }
 
-    getFeaturesAndCount = json => {
-        this.props.getFeaturesAndCount(json);
-    }
-
-    componentDidMount() {
-        loadFeatures(this.props.layerId, 0, null, 'add')
-            .then(json => this.getFeaturesAndCount(json));
-    }
-
     render() {
-        const { layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap } = this.props;
+        const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap } = this.props;
         const { loading, allFeaturesChecked } = this.state;
         // lazy load list
         const firstChunkFeatures = featuresIds.filter((v, i, a) => {
@@ -47,6 +36,7 @@ class App extends Component {
         })
 
         const layersValues = getLayersList(gmxMap);
+        const loaderHolder = window._gtxt("Загрузка данных...");
 
         const header = window._gtxt("Отчет об использовании лесов");
         const reportTypeSelectLabel = window._gtxt("Выберите тип отчета");
@@ -64,6 +54,75 @@ class App extends Component {
         const revertSelectionLabel = window._gtxt("Инвертировать выделение");
         const selectAllFeaturesLabel = window._gtxt("Выделить все");
 
+        const inputs = layerId ? (
+            <div style={{display: 'block'}}>
+                <SelectContainer
+                    label={reportTypeSelectLabel}
+                    param="reportType"
+                    values={reportTypeSelectValues}
+                />
+                <InputContainer
+                    label={organizationNameLabel}
+                    param="organizationName"
+                />
+                <InputContainer
+                    label={innLabel}
+                    param="inn"
+                />
+                <SelectInput
+                    label={regionLabel}
+                    param="region"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={forestryLabel}
+                    param="forestry"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={sectionForestryLabel}
+                    param="sectionForestry"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={quadrantLabel}
+                    param="quadrant"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={stratumLabel}
+                    param="stratum"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <CheckboxContainer
+                    param="selectAllFeatures"
+                    checked={allFeaturesChecked}
+                    label={selectAllFeaturesLabel}
+                />
+                <CheckboxContainer
+                    param="revertSelection"
+                    defaultChecked={false}
+                    label={revertSelectionLabel}
+                />
+                <FeaturesList
+                    loading={loading}
+                    idFieldIndex={idFieldIndex}
+                    idField={idField}
+                    layerId={layerId}
+                    list={firstChunkFeatures}
+                    featuresCount={featuresCount}/>
+            </div>
+        ) : loader ? (
+            <div>
+                {loaderHolder}
+            </div>
+        ) : null;
+
         return (
             <div>
                 <h2>{header}</h2>
@@ -71,70 +130,7 @@ class App extends Component {
                     values={layersValues}
                     mapValues={true}
                 />
-                <div style={{display: 'none'}}>
-                    <SelectContainer
-                        label={reportTypeSelectLabel}
-                        param="reportType"
-                        values={reportTypeSelectValues}
-                    />
-                    <InputContainer
-                        label={organizationNameLabel}
-                        param="organizationName"
-                    />
-                    <InputContainer
-                        label={innLabel}
-                        param="inn"
-                    />
-                </div>
-                <div style={{display: 'none'}}>
-                    <SelectInput
-                        label={regionLabel}
-                        param="region"
-                        selectValues={attributesList}
-                        loading={loading}
-                    />
-                    <SelectInput
-                        label={forestryLabel}
-                        param="forestry"
-                        selectValues={attributesList}
-                        loading={loading}
-                    />
-                    <SelectInput
-                        label={sectionForestryLabel}
-                        param="sectionForestry"
-                        selectValues={attributesList}
-                        loading={loading}
-                    />
-                    <SelectInput
-                        label={quadrantLabel}
-                        param="quadrant"
-                        selectValues={attributesList}
-                        loading={loading}
-                    />
-                    <SelectInput
-                        label={stratumLabel}
-                        param="stratum"
-                        selectValues={attributesList}
-                        loading={loading}
-                    />
-                    <CheckboxContainer
-                        param="selectAllFeatures"
-                        checked={allFeaturesChecked}
-                        label={selectAllFeaturesLabel}
-                    />
-                    <CheckboxContainer
-                        param="revertSelection"
-                        defaultChecked={false}
-                        label={revertSelectionLabel}
-                    />
-                    <FeaturesList
-                        loading={loading}
-                        idFieldIndex={idFieldIndex}
-                        idField={idField}
-                        layerId={layerId}
-                        list={firstChunkFeatures}
-                        featuresCount={featuresCount}/>
-                </div>
+                {inputs}
             </div>
         );
     }
