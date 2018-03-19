@@ -50,26 +50,6 @@ class ListItem extends Component {
                 </div>
             </div>
         )
-
-        // return (
-        //     <div className={className}
-        //         onMouseEnter={this.onMouseEnter}
-        //         onMouseLeave={this.onMouseLeave}
-        //     >
-        //         <Grid>
-        //             <Row className="show-grid">
-        //                 <Col xs={6} md={6}>
-        //                     <Checkbox checked={selected} onChange={onItemSelect}></Checkbox>
-        //                 </Col>
-        //                 <Col xs={6} md={6} onClick={this.onItemClick}>
-        //                 {/*<div className="listSpan">*/}
-        //                     {txt}
-        //                 {/*</span>*/}
-        //                 </Col>
-        //             </Row>
-        //         </Grid>
-        //     </div>
-        // )
     }
 }
 
@@ -78,7 +58,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     return {
         onItemSelect: (e) => {
-            debugger;
             dispatch(changeFeatureSelection(id, e.target.checked));
         }
     }
