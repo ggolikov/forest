@@ -1,4 +1,5 @@
 const storeMapping = {
+    layerId: "setLayerId",
     reportType: "changeReportType",
     organizationName: "changeOrganizationName",
     inn: "changeInn",

@@ -1,11 +1,11 @@
-import { SET_LAYER_ID, DEMO_LAYER_ID } from '../constants';
+import { SET_LAYER_ID } from '../constants';
 
-const layerIdReducer = (layerId = DEMO_LAYER_ID, action) => {
+const layerIdReducer = (layerId = "", action) => {
     const {type, payload} = action;
 
     switch (action.type) {
         case SET_LAYER_ID:
-            layerId = payload.inn;
+            layerId = payload.layerId;
             break;
         default:
     }

@@ -4,6 +4,7 @@ import Select from './Select';
 import { withLabel } from '../HOC';
 import * as actionCreators from '../AC';
 import storeMapping from '../storeMapping';
+import { BLANK_SELECT_OPTION } from '../constants';
 
 const mapStateToProps = (state, ownProps) => {
     const { label, param, values, loading } = ownProps;
@@ -13,13 +14,22 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const { param } = ownProps;
+    const { param, values, mapValues } = ownProps;
     const dispatchFuncName = storeMapping[param];
     const dispatchFunc = actionCreators[dispatchFuncName];
 
     return {
         onChange: e => {
-            dispatch(dispatchFunc(e.target.value));
+            let { value } = e.target;
+
+            if (mapValues) {
+                value = values.reduce((previousValue, currentValue, index, array) => {
+                            if (currentValue.title === value) {
+                                return currentValue.layerId;
+                            }
+                        });
+            }
+            dispatch(dispatchFunc(value || BLANK_SELECT_OPTION));
         }
     }
 }

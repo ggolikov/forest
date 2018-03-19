@@ -1,3 +1,4 @@
+import { BLANK_SELECT_OPTION } from '../constants';
 window.serverBase = 'http://maps.kosmosnimki.ru/';
 
 /**
@@ -93,4 +94,23 @@ export const zoomToFeature = (layerId, id, idField) => {
             }
         })
         .catch(err => console.log(err));
+}
+
+export const getLayersList = (gmxMap) => {
+    let arr = gmxMap.layers.map(layer => {
+                if (layer.getGmxProperties) {
+                    let props = layer.getGmxProperties();
+                        if (props.type === 'Vector' && !props.IsRasterCatalog) {
+                            return ({
+                                title: props.title,
+                                layerId: props.name,
+                            });
+                        }
+                }
+            }).filter(item => {
+                // return !(item typeof 'undefined');
+                return item;
+            });
+
+    return [BLANK_SELECT_OPTION].concat(arr);
 }
