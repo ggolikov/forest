@@ -1,1 +1,0 @@
-# Geomixer forest project
