@@ -42,55 +42,35 @@ class ListItem extends Component {
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}
             >
-                <Grid>
-                    <Row className="show-grid">
-                        <Col xs={6} md={6}>
-                            <Checkbox checked={selected} onChange={onItemSelect}></Checkbox>
-                        </Col>
-                        <Col xs={6} md={6} onClick={this.onItemClick}>
-                        {/*<div className="listSpan">*/}
-                            {txt}
-                        {/*</span>*/}
-                        </Col>
-                    </Row>
-                </Grid>
+                <div className={"feature-list-item-part feature-list-item-part-left"}>
+                    <Checkbox checked={selected} onChange={onItemSelect}></Checkbox>
+                </div>
+                <div className={"feature-list-item-part feature-list-item-part-right"} onClick={this.onItemClick}>
+                    {txt}
+                </div>
             </div>
         )
-    }
-}
 
-const mapStateToProps = (state, ownProps) => {
-    return ownProps;
-    // const { featuresIds } = state;
-    // const { id } = ownProps;
-    //
-    // let value = null;
-    //
-    // switch (ownProps.param) {
-    //     case "organizationName":
-    //         value = organizationName;
-    //         break;
-    //     case "inn":
-    //         value = inn;
-    //         break;
-    //     default:
-    // }
-    //
-    // return { label, value };
-    //
-    // const { id, selected } = payload,
-    //     index = featuresIds.findIndex(item => item.id === id),
-    //     feature = featuresIds[index];
-    //
-    // const updatedIds = [
-    //     ...featuresIds.slice(0, index),
-    //     {
-    //         id: feature.id,
-    //         selected: selected
-    //     },
-    //     ...featuresIds.slice(index + 1)
-    // ]
-    // featuresIds = updatedIds;
+        // return (
+        //     <div className={className}
+        //         onMouseEnter={this.onMouseEnter}
+        //         onMouseLeave={this.onMouseLeave}
+        //     >
+        //         <Grid>
+        //             <Row className="show-grid">
+        //                 <Col xs={6} md={6}>
+        //                     <Checkbox checked={selected} onChange={onItemSelect}></Checkbox>
+        //                 </Col>
+        //                 <Col xs={6} md={6} onClick={this.onItemClick}>
+        //                 {/*<div className="listSpan">*/}
+        //                     {txt}
+        //                 {/*</span>*/}
+        //                 </Col>
+        //             </Row>
+        //         </Grid>
+        //     </div>
+        // )
+    }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -98,9 +78,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     return {
         onItemSelect: (e) => {
+            debugger;
             dispatch(changeFeatureSelection(id, e.target.checked));
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListItem);
+export default connect(null, mapDispatchToProps)(ListItem);

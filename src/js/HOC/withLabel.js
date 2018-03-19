@@ -6,7 +6,7 @@ export const withLabel = InnerComponent => {
         const { label } = props;
 
         const elem = label ? (
-            <div>
+            <div className={"forest-select-block"}>
                 <ControlLabel>
                     {label}
                 </ControlLabel>

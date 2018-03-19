@@ -32,7 +32,8 @@ export default store => next => action => {
         }
         else {
             next(actionCreators.changeLoaderStatus(false));
-            next({type, payload});
         }
+    } else {
+        next({type, payload});
     }
 }

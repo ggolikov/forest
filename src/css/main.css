@@ -92,3 +92,20 @@ h2 {
 .gmx-list-item.active {
     background-color: #eee;
 }
+
+.forest-select-block {
+    padding: 10px;
+    width: auto;
+}
+
+.feature-list-item-part {
+    width: 50%;
+}
+
+.feature-list-item-part-left {
+    float: left;
+}
+
+.feature-list-item-part-right {
+    float: right;
+}
