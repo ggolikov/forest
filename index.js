@@ -8,7 +8,7 @@ import './src/js/translationsHash.js';
 window.nsGmx = window.nsGmx || {};
 // window.
 
-window.serverBase = 'http://maps.kosmosnimki.ru/';
+window.serverBase = '//maps.kosmosnimki.ru/';
 // var m = document.querySelector('#map');
 // m.style.height = document.documentElement.clientHeight + 'px';
 // var lp = document.querySelector('.left-panel');

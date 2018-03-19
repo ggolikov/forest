@@ -1,5 +1,5 @@
 import { BLANK_SELECT_OPTION } from '../constants';
-window.serverBase = 'http://maps.kosmosnimki.ru/';
+window.serverBase = '//maps.kosmosnimki.ru/';
 
 /**
  * Запрос за объектами слоя
