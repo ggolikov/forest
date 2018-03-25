@@ -1,4 +1,6 @@
 @import "./L.Control.gmxTimeLine.css";
+@import "./fontello/css/fontello.css";
+
 html, body {
     width: 100%;
     margin: 0px;
@@ -87,6 +89,7 @@ h2 {
 .gmx-list-item {
     height: 30px;
     cursor: pointer;
+    display: inline-b
 }
 
 .gmx-list-item.active {
@@ -99,13 +102,14 @@ h2 {
 }
 
 .feature-list-item-part {
-    width: 50%;
+    /* width: 50%; */
+    display: inline-block;
 }
-
+/*
 .feature-list-item-part-left {
     float: left;
 }
 
 .feature-list-item-part-right {
     float: right;
-}
+} */

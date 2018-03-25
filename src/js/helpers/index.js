@@ -114,3 +114,10 @@ export const getLayersList = (gmxMap) => {
 
     return [BLANK_SELECT_OPTION].concat(arr);
 }
+
+
+export const preview = () => {
+    const url = '/preview.html';
+
+    window.open(url,'_blank');
+}

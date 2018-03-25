@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col, Checkbox } from 'react-bootstrap';
-import { zoomToFeature } from '../helpers';
+import { zoomToFeature, preview } from '../helpers';
 import { changeFeatureSelection } from '../AC';
 
 class ListItem extends Component {
@@ -17,6 +17,12 @@ class ListItem extends Component {
         const { layerId, id, idField } = this.props;
 
         zoomToFeature(layerId, id, idField)
+    }
+
+    showPreview = (e) => {
+        const { layerId, id, idField, state } = this.props;
+
+        preview();
     }
 
     onMouseEnter = (e) => {
@@ -35,7 +41,7 @@ class ListItem extends Component {
         const { selected, txt, onItemSelect } = this.props;
         const { active } = this.state;
 
-        const className = active ? "gmx-list-item active": "gmx-list-item";
+        const className = active ? "gmx-list-item gmx-list-item active": "gmx-list-item";
 
         return (
             <div className={className}
@@ -48,8 +54,18 @@ class ListItem extends Component {
                 <div className={"feature-list-item-part feature-list-item-part-right"} onClick={this.onItemClick}>
                     {txt}
                 </div>
+                <div className={"feature-list-item-part feature-list-item-part-left"} onClick={this.showPreview}>
+                    <i className={`icon-forward`}></i>;
+                </div>
             </div>
         )
+    }
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        ...ownProps,
+        state
     }
 }
 
@@ -63,4 +79,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(ListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ListItem);
