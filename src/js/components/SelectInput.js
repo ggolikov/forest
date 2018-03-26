@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, InputGroup, Button } from 'react-bootstrap'
+import { FormGroup, InputGroup, Button, Glyphicon } from 'react-bootstrap'
 import InputContainer from './InputContainer';
 import SelectContainer from './SelectContainer';
 import { withLabel } from '../HOC';
@@ -35,7 +35,7 @@ class SelectInput extends Component {
                         componentClass={InputGroup.Button}
                         onClick={this.onButtonClick}
                     >
-                        <i className={`icon-forward`}></i>
+                        <Glyphicon glyph="list-alt" />
                     </Button>
                 </InputGroup>
             </FormGroup>

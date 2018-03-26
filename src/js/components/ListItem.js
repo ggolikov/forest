@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col, Checkbox } from 'react-bootstrap';
-import { zoomToFeature, preview } from '../helpers';
+import { zoomToFeature, selectRasters, preview } from '../helpers';
 import { changeFeatureSelection } from '../AC';
 
 class ListItem extends Component {
@@ -14,15 +14,25 @@ class ListItem extends Component {
     }
 
     onZoomIconClick = (e) => {
-        const { layerId, id, idField } = this.props;
+        const { layerId, geometry } = this.props;
 
-        zoomToFeature(layerId, id, idField)
+        zoomToFeature(layerId, geometry)
     }
 
     showPreview = (e) => {
-        const { layerId, id, idField, state } = this.props;
+        const { layerId, id, idField, state, geometry } = this.props;
+        const geom = L.gmxUtil.geometryToGeoJSON(geometry, true);
+        const bounds = L.gmxUtil.getGeometryBounds(geom);
 
-        preview(state);
+        selectRasters(nsGmx.gmxMap, bounds)
+            .then(res => {
+                console.log(res);
+                debugger;
+
+                preview(state);
+            })
+
+
     }
 
     onMouseEnter = (e) => {

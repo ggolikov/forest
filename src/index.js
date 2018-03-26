@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import Root from './js/components/Root';
 import { initTimeline } from './js/mapHooks';
+import { addScreenObserver } from './js/helpers';
 import './js/translations.js';
 import './js/translationsHash.js';
 
@@ -23,6 +24,9 @@ L.gmx.loadMap('C7764CA37ACF4137A9371717013A3353', {leafletMap})
     .then(gmxMap => {
         window.nsGmx.gmxMap = gmxMap;
         window.nsGmx.leafletMap = leafletMap;
+
+        // temporary here
+        addScreenObserver(leafletMap, gmxMap);
 
         initTimeline(gmxMap, leafletMap);
 

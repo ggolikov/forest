@@ -5,6 +5,7 @@ import SelectContainer from './SelectContainer';
 import SelectInput from './SelectInput';
 import LayerSelect from './LayerSelect';
 import CheckboxContainer from './CheckboxContainer';
+import { Panel, Collapse, Button } from 'react-bootstrap';
 import { loadFeatures, getLayersList } from '../helpers';
 import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
 
@@ -14,7 +15,9 @@ class App extends Component {
 
         this.state = {
             loading: props.featuresIds.length === 0,
-            allFeaturesChecked: props.featuresIds.every(item => item.selected)
+            allFeaturesChecked: props.featuresIds.every(item => item.selected),
+            inputsCollapsed: false,
+            listCollapsed: false
         };
     }
 
@@ -27,6 +30,18 @@ class App extends Component {
         });
     }
 
+    openInputsPanel = (e) => {
+        this.setState({
+            inputsCollapsed: !this.state.inputsCollapsed
+        });
+    }
+
+    openListPanel = (e) => {
+        this.setState({
+            listCollapsed: !this.state.listCollapsed
+        });
+    }
+
     render() {
         const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap } = this.props;
         const { loading, allFeaturesChecked } = this.state;
@@ -35,11 +50,14 @@ class App extends Component {
             return (i <= /*FEATURES_CHUNK_SIZE*/featuresCount)
         })
 
+        const inputsPanelLabel = window._gtxt("Ввод информации");
+        const listPanelLabel = window._gtxt("Список объектов");
+
         const layersValues = getLayersList(gmxMap);
         const loaderHolder = window._gtxt("Загрузка данных...");
 
         const header = window._gtxt("Отчет об использовании лесов");
-        const reportTypeSelectLabel = window._gtxt("Выберите тип отчета");
+        const reportTypeSelectLabel = window._gtxt("Тип отчета");
         const reportTypeSelectValues = [
             window._gtxt("об использовании лесов"),
             window._gtxt("о восстановлении лесов")
@@ -53,69 +71,86 @@ class App extends Component {
         const stratumLabel = window._gtxt("Выдел");
         const revertSelectionLabel = window._gtxt("Инвертировать выделение");
         const selectAllFeaturesLabel = window._gtxt("Выделить все");
+        const createButtonLabel = window._gtxt("Создать отчеты");
 
         const inputs = layerId ? (
-            <div style={{display: 'block'}}>
-                <SelectContainer
-                    label={reportTypeSelectLabel}
-                    param="reportType"
-                    values={reportTypeSelectValues}
-                />
-                <InputContainer
-                    label={organizationNameLabel}
-                    param="organizationName"
-                />
-                <InputContainer
-                    label={innLabel}
-                    param="inn"
-                />
-                <SelectInput
-                    label={regionLabel}
-                    param="region"
-                    selectValues={attributesList}
-                    loading={loading}
-                />
-                <SelectInput
-                    label={forestryLabel}
-                    param="forestry"
-                    selectValues={attributesList}
-                    loading={loading}
-                />
-                <SelectInput
-                    label={sectionForestryLabel}
-                    param="sectionForestry"
-                    selectValues={attributesList}
-                    loading={loading}
-                />
-                <SelectInput
-                    label={quadrantLabel}
-                    param="quadrant"
-                    selectValues={attributesList}
-                    loading={loading}
-                />
-                <SelectInput
-                    label={stratumLabel}
-                    param="stratum"
-                    selectValues={attributesList}
-                    loading={loading}
-                />
-                <CheckboxContainer
-                    param="selectAllFeatures"
-                    checked={allFeaturesChecked}
-                    label={selectAllFeaturesLabel}
-                />
-                <CheckboxContainer
-                    param="revertSelection"
-                    defaultChecked={false}
-                    label={revertSelectionLabel}
-                />
-                <FeaturesList
-                    loading={loading}
-                    idFieldIndex={idFieldIndex}
-                    idField={idField}
-                    layerId={layerId}
-                    list={firstChunkFeatures}
-                    featuresCount={featuresCount}/>
+            <div className="collapser-block">
+                <Panel className="opening-panel" onClick={this.openInputsPanel}>
+                    {inputsPanelLabel}
+                </Panel>
+                <Collapse in={this.state.inputsCollapsed}>
+                    <div>
+                        <SelectContainer
+                            label={reportTypeSelectLabel}
+                            param="reportType"
+                            values={reportTypeSelectValues}
+                        />
+                        <InputContainer
+                            label={organizationNameLabel}
+                            param="organizationName"
+                        />
+                        <InputContainer
+                            label={innLabel}
+                            param="inn"
+                        />
+                        <SelectInput
+                            label={regionLabel}
+                            param="region"
+                            selectValues={attributesList}
+                            loading={loading}
+                        />
+                        <SelectInput
+                            label={forestryLabel}
+                            param="forestry"
+                            selectValues={attributesList}
+                            loading={loading}
+                        />
+                        <SelectInput
+                            label={sectionForestryLabel}
+                            param="sectionForestry"
+                            selectValues={attributesList}
+                            loading={loading}
+                        />
+                        <SelectInput
+                            label={quadrantLabel}
+                            param="quadrant"
+                            selectValues={attributesList}
+                            loading={loading}
+                        />
+                        <SelectInput
+                            label={stratumLabel}
+                            param="stratum"
+                            selectValues={attributesList}
+                            loading={loading}
+                        />
+                    </div>
+                </Collapse>
+                <Panel className="opening-panel" onClick={this.openListPanel}>
+                    {listPanelLabel}
+                </Panel>
+                <Collapse in={this.state.listCollapsed}>
+                    <div>
+                        <CheckboxContainer
+                            param="selectAllFeatures"
+                            checked={allFeaturesChecked}
+                            label={selectAllFeaturesLabel}
+                        />
+                        <CheckboxContainer
+                            param="revertSelection"
+                            defaultChecked={false}
+                            label={revertSelectionLabel}
+                        />
+                        <FeaturesList
+                            loading={loading}
+                            idFieldIndex={idFieldIndex}
+                            idField={idField}
+                            layerId={layerId}
+                            list={firstChunkFeatures}
+                            featuresCount={featuresCount}
+                        />
+                    </div>
+                </Collapse>
+                <Button disabled>{createButtonLabel}</Button>
             </div>
         ) : loader ? (
             <div>

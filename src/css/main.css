@@ -80,19 +80,15 @@ i {
 
 /**/
 
-
 .gmx-features-list {
     max-height: 360px;
+    margin-bottom: 10px;
+    background-color: #fff;
     /* overflow-y: scroll; */
 }
 
 .gmx-features-list:focus {
     outline: none;
-}
-
-.forest-select-block {
-    padding: 10px;
-    width: auto;
 }
 
 .gmx-list-item {
@@ -272,4 +268,16 @@ option {
 .btn.btn-default.input-group-btn:hover {
     /* background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.5) !important; */
     /* background-position-x: 58% !important; */
+}
+
+.collapser-block {
+    padding: 10px;
+}
+
+.opening-panel {
+    cursor: pointer;
+}
+
+.opening-panel:hover {
+    background-color: #efefef;
 }

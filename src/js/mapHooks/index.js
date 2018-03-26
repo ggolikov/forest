@@ -9,4 +9,10 @@ export const initTimeline = (gmxMap, leafletMap) => {
     nsGmx.timeLineControl.addLayer(sentinelLayer);
 
     leafletMap.addControl(nsGmx.timeLineControl);
+    // 
+    // layer.on('dateIntervalChanged', function(e){
+    //     const { beginDate, endDate } = e.target.getDateInterval();
+    //
+    //     window.currentSatObserver.setDateInterval(beginDate, endDate);
+    // });
 }

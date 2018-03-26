@@ -2,6 +2,7 @@ export const BLANK_SELECT_OPTION = '';
 export const DEMO_LAYER_ID = '4BD64872924B48D9876EFB9E9A1B7C71';
 export const SENTINEL_LAYER_ID = '636CBFF5155F4F299254EAF54079040C';
 export const DEMO_ID_FIELD = 'ogc_fid';
+export const DEMO_GEOMETRY_FIELD = 'geomixergeojson';
 export const FEATURES_CHUNK_SIZE = 500;
 export const CHANGE_LOADER_STATUS = 'CHANGE_LOADER_STATUS';
 export const SET_LAYER_ID = 'SET_LAYER_ID';

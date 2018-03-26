@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Preview from "../components/Preview";
-import { BLANK_SELECT_OPTION } from '../constants';
+import { SENTINEL_LAYER_ID, BLANK_SELECT_OPTION } from '../constants';
 
 window.serverBase = '//maps.kosmosnimki.ru/';
 
@@ -12,20 +12,20 @@ window.serverBase = '//maps.kosmosnimki.ru/';
  */
 export const loadFeatures = (layerId, page, pagesize, count) => {
     const params = {
-            layer: layerId,
-            page: page,
-            pagesize: pagesize,
-            count: count,
-            geometry: true
-        },
-        url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
-        options = {
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Accept': 'application/json'
-            }
+        layer: layerId,
+        page: page,
+        pagesize: pagesize,
+        count: count,
+        geometry: true
+    },
+    url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
+    options = {
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            'Accept': 'application/json'
         }
+    };
 
     return fetch(url, options)
         .then(res => res.text())
@@ -42,62 +42,16 @@ export const encodeParams = (obj) => {
     }).join('&');
 }
 
-export const zoomToFeature = (layerId, id, idField) => {
-    const params = {
-            layer: layerId,
-            page: 0,
-            geometry: true,
-            query: `[${idField}]=${id}`
-        },
-        url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
-        options = {
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Accept': 'application/json'
-            }
-        };
+export const zoomToFeature = (layerId, geometry) => {
+    let layer = nsGmx.gmxMap.layersByID[layerId],
+        fitBoundsOptions = layer ? {maxZoom: layer.options.maxZoom} : {},
+        geom = L.gmxUtil.geometryToGeoJSON(geometry, true),
+        bounds = L.gmxUtil.getGeometryBounds(geom);
 
-    const promise = fetch(url, options)
-        .then(res => res.text())
-        .then(str => {
-            let response = JSON.parse(str.substring(1, str.length-1)),
-                layer = nsGmx.gmxMap.layersByID[layerId],
-                props = layer.getGmxProperties(),
-                isTemporalLayer = (layer instanceof L.gmx.VectorLayer && props.Temporal) || (props.type === 'Virtual' && layer.getDateInterval),
-                columnNames = response.Result.fields,
-                row = response.Result.values[0];
-
-            for (var i = 0; i < row.length; ++i) {
-                if (columnNames[i] === 'geomixergeojson' && row[i]) {
-
-                    let fitBoundsOptions = layer ? {maxZoom: layer.options.maxZoom} : {},
-                        geom = L.gmxUtil.geometryToGeoJSON(row[i], true),
-                        bounds = L.gmxUtil.getGeometryBounds(geom);
-
-                    nsGmx.leafletMap.fitBounds([
-                        [bounds.min.y, bounds.min.x],
-                        [bounds.max.y, bounds.max.x]
-                    ], fitBoundsOptions);
-
-                    if (isTemporalLayer) {
-                        let tempColumn = props.TemporalColumnName,
-                            index = columnNames.indexOf(tempColumn),
-                            dayms = nsGmx.DateInterval.MS_IN_DAY,
-                            dateBegin, dateEnd,
-                            datems;
-
-                        if (index !== -1) {
-                            datems = row[index] * 1000;
-                            dateBegin = nsGmx.DateInterval.toMidnight(new Date(datems));
-                            dateEnd = nsGmx.DateInterval.toMidnight(new Date(datems + dayms));
-                            nsGmx.widgets.commonCalendar.setDateInterval(dateBegin, dateEnd, layer);
-                        }
-                    }
-                }
-            }
-        })
-        .catch(err => console.log(err));
+    nsGmx.leafletMap.fitBounds([
+        [bounds.min.y, bounds.min.x],
+        [bounds.max.y, bounds.max.x]
+    ], fitBoundsOptions);
 }
 
 export const getLayersList = (gmxMap) => {
@@ -118,24 +72,79 @@ export const getLayersList = (gmxMap) => {
     return [BLANK_SELECT_OPTION].concat(arr);
 }
 
-export const addScreenObserver = (gmxMap, leafletMap) => {
+export const addScreenObserver = (leafletMap, gmxMap) => {
     // TODO: implement logic of searching for layers
     // currently using default sentinel layer
+
+    const layer = gmxMap.layersByID[SENTINEL_LAYER_ID];
+
+    window.layer = layer;
+    const gmx = layer._gmx;
+    const observerCallback = (data) => {};
+
+
     const filters = gmx.dataManager.getViewFilters('screen', gmx.layerID);
     const observerOptions = {
         type: 'resend',
         layerID: gmx.layerID,
         needBbox: gmx.needBbox,
-        bbox: leafletMap.getBounds(),
+        bounds: leafletMap.getBounds(),
         dateInterval: gmx.layerType === 'VectorTemporal' ? [gmx.beginDate, gmx.endDate] : null,
-    filters: ['clipFilter', 'userFilter_' + gmx.layerID, 'styleFilter', 'userFilter'].concat(filters),
-    active: false //делаем его неактивным, так как потом будем явно выбирать данные
-};
-if (this.options.isGeneralized) {
-    observerOptions.targetZoom = zoom;
-};
-gmx.dataManager.addObserver(observerOptions, 'hover');
+        filters: ['clipFilter', 'userFilter_' + gmx.layerID, 'styleFilter', 'userFilter'].concat(filters),
+        active: true,
+        callback: observerCallback
+    };
 
+    const currentSatObserver = gmx.dataManager.addObserver(observerOptions, 'currentSat');
+    window.currentSatObserver = currentSatObserver;
+}
+
+export const selectRasters = (gmxMap, bounds) => {
+    // TODO: implement logic of searching for layers
+    // currently using default sentinel layer
+
+    const layerIds = [SENTINEL_LAYER_ID];
+    let promiseArr = [];
+
+
+    layerIds.forEach((layerId) => {
+        const l = gmxMap.layersByID[layerId];
+        const { beginDate, endDate } = l.getDateInterval && l.getDateInterval();
+
+        const params = {
+            layer: layerId,
+            bbox: bounds,
+            dateBegion: beginDate,
+            dateEnd: endDate,
+            format: 'gmx'
+        },
+        url = `${window.serverBase}VectorLayer/QuerySpatial`,
+        options = {
+            method: 'post',
+            body: params,
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json'
+            }
+        };
+        console.log(url);
+        promiseArr.push(
+            fetch(url, options)
+            .then(res => {
+                console.log(res);
+                return res.text();
+            })
+            .then(str => {
+                console.log(str);
+                let features = JSON.parse(str.substring(1, str.length-1));
+                return Promise.resolve(features);
+            })
+            .catch(err => console.log(err))
+        );
+    });
+
+        return Promise.all(promiseArr);
 }
 
 const initMap = (mapRoot) => {
@@ -146,10 +155,6 @@ const initMap = (mapRoot) => {
     leafletMap = new L.Map(mapRoot, {layers: [osm], center: point, zoom: 7, maxZoom: 22});
 
     console.log(leafletMap.getBounds());
-
-
-
-
 }
 
 export const preview = (state, map) => {
@@ -171,7 +176,6 @@ export const preview = (state, map) => {
         );
     }
 }
-
 
 export const mapStateToRows = (labels, state) => {
     let res  = [];

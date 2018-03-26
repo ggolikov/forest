@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Root from './js/components/Root';
+import { addScreenObserver } from './js/helpers';
 
 (function () {
     'use strict';
@@ -24,6 +25,9 @@ import Root from './js/components/Root';
                         })
                     }
                 );
+
+                // temporary here
+                addScreenObserver(map, window.nsGmx.gmxMap);
 
                 render(
                     <Root lmap={window.nsGmx.leafletMap} gmxMap={window.nsGmx.gmxMap} />,

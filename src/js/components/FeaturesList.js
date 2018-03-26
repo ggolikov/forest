@@ -72,13 +72,14 @@ class FeaturesList extends Component {
         const rowRenderer = ({ key, index, isScrolling, isVisible, style }) => {
             const scrollHolder = '...';
             const elem = (
-                        <ListItem
-                            selected={this.state.list[index].selected}
-                            txt={this.state.list[index].id}
-                            layerId={layerId}
-                            id={this.state.list[index].id}
-                            idField={idField}
-                         />
+                <ListItem
+                    selected={list[index].selected}
+                    txt={list[index].id}
+                    layerId={layerId}
+                    id={list[index].id}
+                    geometry={list[index].geometry}
+                    idField={idField}
+                />
             );
             const content = isScrolling ? scrollHolder : elem;
 
@@ -103,9 +104,9 @@ class FeaturesList extends Component {
                     >
                         {({ onRowsRendered, registerChild }) => (
                             <List
-                                width={360}
-                                height={350}
-                                rowHeight={30}
+                                width={275}
+                                height={200}
+                                rowHeight={20}
                                 onRowsRendered={onRowsRendered}
                                 ref={registerChild}
                                 rowCount={featuresCount}
@@ -116,10 +117,9 @@ class FeaturesList extends Component {
                 </div>
             )
 
-
         return (
             <div>
-                <ControlLabel>
+                <ControlLabel className="gmx-features-list-label">
                     {label}
                 </ControlLabel>
                 {loadedList}
