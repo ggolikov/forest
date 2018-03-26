@@ -1,3 +1,6 @@
+import React from 'react';
+import { render } from 'react-dom';
+import Preview from "../components/Preview";
 import { BLANK_SELECT_OPTION } from '../constants';
 window.serverBase = '//maps.kosmosnimki.ru/';
 
@@ -115,9 +118,17 @@ export const getLayersList = (gmxMap) => {
     return [BLANK_SELECT_OPTION].concat(arr);
 }
 
-
-export const preview = () => {
+export const preview = (state) => {
     const url = '/preview.html';
+    const newWindow = window.open(url,'_blank');
 
-    window.open(url,'_blank');
+    newWindow.onload = () => {
+        const rootNode = newWindow.document.querySelector('section');
+        console.log(rootNode);
+
+        render(
+            <Preview state={state} />,
+            rootNode
+        );
+    }
 }

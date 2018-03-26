@@ -22,7 +22,7 @@ class ListItem extends Component {
     showPreview = (e) => {
         const { layerId, id, idField, state } = this.props;
 
-        preview();
+        preview(state);
     }
 
     onMouseEnter = (e) => {
