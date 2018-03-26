@@ -13,7 +13,7 @@ module.exports = (env) => {
     if (env.plugin) {
         return {
             entry: [
-                __dirname + '/plugin.js'
+                `${paths.src}/plugin.js`
             ],
             devtool: "cheap-inline-module-source-map",
             module: {
@@ -36,9 +36,10 @@ module.exports = (env) => {
         }
     } else {
         return {
-            entry: [
-                __dirname + '/index.js'
-            ],
+            entry: {
+                'index': `${paths.src}/index.js`,
+                'preview': `${paths.src}/preview.js`
+            },
             devtool: "cheap-inline-module-source-map",
             devServer: {
                 historyApiFallback: true,
@@ -52,15 +53,26 @@ module.exports = (env) => {
             },
             output: {
                 path: paths.public,
-                filename: 'bundle.js'
+                filename: '[name].js'
             },
             plugins: [
-                HTMLWebpackPluginConfig,
+                new HtmlWebpackPlugin({
+                    template: path.join(paths.src, 'index.html'),
+                    name: 'index.html',
+                    chunks: ['index'],
+                    inject: 'body'
+                }),
+                new HtmlWebpackPlugin({
+                    template: path.join(paths.src, 'preview.html'),
+                    filename: 'preview.html',
+                    chunks: ['preview'],
+                    inject: 'body'
+                }),
                 new CopyWebpackPlugin([
                     { from: path.join(paths.src, 'js/lib/GMXPluginTimeLine/L.Control.gmxTimeLine.css'), to: path.join(paths.public, 'css/L.Control.gmxTimeLine.css') },
                     { from: path.join(paths.src, 'css/main.css'), to: path.join(paths.public, 'css/main.css') },
                     { from: path.join(paths.src, 'css/preview.css'), to: path.join(paths.public, 'css/preview.css') },
-                    { from: path.join(paths.src, 'preview.html'), to: path.join(paths.public, 'preview.html') }
+                    { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.public, 'css/fontello') }
                 ])
             ]
         }
