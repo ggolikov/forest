@@ -9,6 +9,12 @@ export const userLabels = {
     [window._gtxt("Участковое лесничество")]: "sectionForestry",
     [window._gtxt("Квартал")]: "quadrant",
     [window._gtxt("Выдел")]: "stratum"
-}
+};
 
-export const sateliteLabels = {};
+export const satelliteLabels = {
+    [window._gtxt("Тип съемки")]: "",
+    [window._gtxt("Съемочная система")]: "",
+    [window._gtxt("ID снимка")]: "",
+    [window._gtxt("Разрешение снимка")]: "",
+    [window._gtxt("Дата съемки")]: ""
+};

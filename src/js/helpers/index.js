@@ -118,15 +118,41 @@ export const getLayersList = (gmxMap) => {
     return [BLANK_SELECT_OPTION].concat(arr);
 }
 
+export const addScreenObserver = (gmxMap, leafletMap) => {
+    // TODO: implement logic of searching for layers
+    // currently using default sentinel layer
+    const filters = gmx.dataManager.getViewFilters('screen', gmx.layerID);
+    const observerOptions = {
+        type: 'resend',
+        layerID: gmx.layerID,
+        needBbox: gmx.needBbox,
+        bbox: leafletMap.getBounds(),
+        dateInterval: gmx.layerType === 'VectorTemporal' ? [gmx.beginDate, gmx.endDate] : null,
+    filters: ['clipFilter', 'userFilter_' + gmx.layerID, 'styleFilter', 'userFilter'].concat(filters),
+    active: false //делаем его неактивным, так как потом будем явно выбирать данные
+};
+if (this.options.isGeneralized) {
+    observerOptions.targetZoom = zoom;
+};
+gmx.dataManager.addObserver(observerOptions, 'hover');
+
+}
+
 const initMap = (mapRoot) => {
     let osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         maxZoom: 18
     }),
-    point = L.latLng([55.828673, 40.070571]),
-    leafletMap = new L.Map(mapRoot, {layers: [osm], center: point, zoom: 11, maxZoom: 22});
+    point = L.latLng([52.828673, 13.070571]),
+    leafletMap = new L.Map(mapRoot, {layers: [osm], center: point, zoom: 7, maxZoom: 22});
+
+    console.log(leafletMap.getBounds());
+
+
+
+
 }
 
-export const preview = (state) => {
+export const preview = (state, map) => {
     const url = '/preview.html';
     const newWindow = window.open(url,'_blank');
 
