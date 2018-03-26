@@ -1,0 +1,16 @@
+import React, { Component } from 'react';
+
+const Row = ({ label, value }) => {
+    return (
+        <div>
+            <div className={"preview-row-part preview-row-label"}>
+                {label}
+            </div>
+            <div className={"preview-row-part preview-row-value"}>
+                {value}
+            </div>
+        </div>
+    )
+}
+
+export default Row;

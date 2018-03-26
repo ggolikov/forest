@@ -72,7 +72,6 @@ class FeaturesList extends Component {
         const rowRenderer = ({ key, index, isScrolling, isVisible, style }) => {
             const scrollHolder = '...';
             const elem = (
-                    <ListGroupItem bsClass="gmx-list-item">
                         <ListItem
                             selected={this.state.list[index].selected}
                             txt={this.state.list[index].id}
@@ -80,7 +79,6 @@ class FeaturesList extends Component {
                             id={this.state.list[index].id}
                             idField={idField}
                          />
-                    </ListGroupItem>
             );
             const content = isScrolling ? scrollHolder : elem;
 

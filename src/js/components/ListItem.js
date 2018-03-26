@@ -13,7 +13,7 @@ class ListItem extends Component {
         };
     }
 
-    onItemClick = (e) => {
+    onZoomIconClick = (e) => {
         const { layerId, id, idField } = this.props;
 
         zoomToFeature(layerId, id, idField)
@@ -51,11 +51,14 @@ class ListItem extends Component {
                 <div className={"feature-list-item-part feature-list-item-part-left"}>
                     <Checkbox checked={selected} onChange={onItemSelect}></Checkbox>
                 </div>
-                <div className={"feature-list-item-part feature-list-item-part-right"} onClick={this.onItemClick}>
+                <div className={"feature-list-item-part"}>
                     {txt}
                 </div>
-                <div className={"feature-list-item-part feature-list-item-part-left"} onClick={this.showPreview}>
-                    <i className={`icon-forward`}></i>;
+                <div className={"feature-list-item-part feature-list-item-part"} onClick={this.onZoomIconClick}>
+                    <i className={`icon-eye`}></i>
+                </div>
+                <div className={"feature-list-item-part feature-list-item-part-right"} onClick={this.showPreview}>
+                    <i className={`icon-forward`}></i>
                 </div>
             </div>
         )

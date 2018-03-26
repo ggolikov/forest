@@ -25,7 +25,6 @@ class SelectInput extends Component {
         const { useSelect } = this.state;
         const inputElement = <InputContainer param={param} />
         const selectElement = <SelectContainer param={param} values={selectValues} loading={loading} />
-        const buttonLabel = window._gtxt("использовать таблицу атрибутов");
 
         return (
             <FormGroup>
@@ -36,7 +35,7 @@ class SelectInput extends Component {
                         componentClass={InputGroup.Button}
                         onClick={this.onButtonClick}
                     >
-                        {buttonLabel}
+                        <i className={`icon-forward`}></i>
                     </Button>
                 </InputGroup>
             </FormGroup>

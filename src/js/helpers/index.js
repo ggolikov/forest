@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import Preview from "../components/Preview";
 import { BLANK_SELECT_OPTION } from '../constants';
+
 window.serverBase = '//maps.kosmosnimki.ru/';
 
 /**
@@ -111,11 +112,18 @@ export const getLayersList = (gmxMap) => {
                         }
                 }
             }).filter(item => {
-                // return !(item typeof 'undefined');
                 return item;
             });
 
     return [BLANK_SELECT_OPTION].concat(arr);
+}
+
+const initMap = (mapRoot) => {
+    let osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+        maxZoom: 18
+    }),
+    point = L.latLng([55.828673, 40.070571]),
+    leafletMap = new L.Map(mapRoot, {layers: [osm], center: point, zoom: 11, maxZoom: 22});
 }
 
 export const preview = (state) => {
@@ -123,12 +131,30 @@ export const preview = (state) => {
     const newWindow = window.open(url,'_blank');
 
     newWindow.onload = () => {
-        const rootNode = newWindow.document.querySelector('section');
-        console.log(rootNode);
+        const headerRoot = newWindow.document.querySelector('.preview-header');
+        const paramsRoot = newWindow.document.querySelector('#preview-params-container');
+        const mapRoot = newWindow.document.querySelector('#preview-map-container');
+
+        headerRoot.innerText = `Отчет ${state.reportType}`;
+
+        initMap(mapRoot);
 
         render(
             <Preview state={state} />,
-            rootNode
+            paramsRoot
         );
     }
 }
+
+
+export const mapStateToRows = (labels, state) => {
+    let res  = [];
+    for (let key in labels) {
+        res.push({
+            label: key,
+            value: state[labels[key]]
+        });
+    }
+
+    return res;
+};

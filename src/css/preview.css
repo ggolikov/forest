@@ -23,3 +23,34 @@ section[size="A4"][layout="portrait"] {
     box-shadow: 0;
   }
 }
+
+.preview-header {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+}
+
+#preview-map-container {
+    float: left;
+    width: 50%;
+    height: 50%;
+    border: solid 2px red;
+}
+
+#preview-params-container {
+    float: right;
+    width: 50%;
+}
+
+.preview-row-part {
+    width: 50%;
+    display: inline-block;
+}
+
+.preview-row-label {
+    font-weight: bold;
+}
+
+.preview-row-value {
+
+}
