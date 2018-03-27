@@ -157,7 +157,7 @@ const initMap = (mapRoot) => {
 }
 
 export const preview = (state, satelliteParams) => {
-    const url = '/preview.html';
+    const url = './preview.html';
     const newWindow = window.open(url,'_blank');
 
     newWindow.onload = () => {
