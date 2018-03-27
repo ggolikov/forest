@@ -260,14 +260,14 @@ option {
     border: 1px solid rgba(73, 103, 125, 0.2);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    /* background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.7) !important; */
-    /* background-position-x: 58% !important; */
+    background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.7) !important;
+    background-position-x: 58% !important;
     transition: all 0.23s ease;
 }
 
 .btn.btn-default.input-group-btn:hover {
-    /* background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.5) !important; */
-    /* background-position-x: 58% !important; */
+    background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.5) !important;
+    background-position-x: 58% !important;
 }
 
 .collapser-block {

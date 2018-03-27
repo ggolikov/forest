@@ -1,9 +1,12 @@
 import '../../translations.js';
 import '../../translationsHash.js';
 
-export const userLabels = {
+export const organisationLabels = {
     [window._gtxt("Наименование организации")]: "organizationName",
-    [window._gtxt("ИНН")]: "inn",
+    [window._gtxt("ИНН")]: "inn"
+};
+
+export const areaLabels = {
     [window._gtxt("Субъект Российской Федерации")]: "region",
     [window._gtxt("Лесничество")]: "forestry",
     [window._gtxt("Участковое лесничество")]: "sectionForestry",
@@ -12,9 +15,9 @@ export const userLabels = {
 };
 
 export const satelliteLabels = {
-    [window._gtxt("Тип съемки")]: "",
-    [window._gtxt("Съемочная система")]: "",
-    [window._gtxt("ID снимка")]: "",
-    [window._gtxt("Разрешение снимка")]: "",
-    [window._gtxt("Дата съемки")]: ""
+    [window._gtxt("Тип съемки")]: "type",
+    [window._gtxt("Съемочная система")]: "system",
+    [window._gtxt("ID снимка")]: "imageId",
+    [window._gtxt("Разрешение снимка")]: "resolution",
+    [window._gtxt("Дата съемки")]: "imageDate"
 };

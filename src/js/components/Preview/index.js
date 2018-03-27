@@ -1,21 +1,28 @@
 import React from 'react';
 import Block from './Block';
 import RowHeader from './RowHeader';
-import { userLabels, satelliteLabels } from './labels';
+import { organisationLabels, areaLabels, satelliteLabels } from './labels';
 import { mapStateToRows } from '../../helpers';
 
-const Preview = ({ state }) => {
-    const userRows = mapStateToRows(userLabels, state);
+const Preview = ({ state, satelliteParams }) => {
+    const oganisationHeaderLabel = window._gtxt("Организация");
+    const oganisationRows = mapStateToRows(organisationLabels, state);
 
-    const txt = JSON.stringify(state);
-    const userHeaderLabel = window._gtxt("Лесной участок");
+    const areaHeaderLabel = window._gtxt("Лесной участок");
+    const areaRows = mapStateToRows(areaLabels, state);
+
     const satelliteHeaderLabel = window._gtxt("Космический снимок");
-    console.log(state);
-    // {txt}
+    const satelliteRows = mapStateToRows(satelliteLabels, satelliteParams);
+
+
     return (
         <div>
-            <RowHeader label={userHeaderLabel} />
-            <Block rows={userRows}/>
+            <RowHeader label={oganisationHeaderLabel} />
+            <Block rows={oganisationRows} />
+            <RowHeader label={areaHeaderLabel} />
+            <Block rows={areaRows} />
+            <RowHeader label={satelliteHeaderLabel} />
+            <Block rows={satelliteRows} />
         </div>
     )
 }

@@ -21,18 +21,25 @@ class ListItem extends Component {
 
     showPreview = (e) => {
         const { layerId, id, idField, state, geometry } = this.props;
-        const geom = L.gmxUtil.geometryToGeoJSON(geometry, true);
-        const bounds = L.gmxUtil.getGeometryBounds(geom);
 
-        selectRasters(nsGmx.gmxMap, bounds)
+        selectRasters(nsGmx.gmxMap, geometry)
             .then(res => {
                 console.log(res);
-                debugger;
+                res.forEach(r => {
+                    const sceneIdField = "sceneid";
+                    const dateIdField = "acqdate";
+                    const { fields, values } = r.Result;
+                    const satelliteParams = {
+                        type: "оптическая",
+                        system: "Sentinel-2",
+                        resolution: "",
+                        imageId: values[0][fields.indexOf(sceneIdField)],
+                        imageDate: new Date(values[0][fields.indexOf(dateIdField)]*1000).toLocaleDateString()
+                    };
 
-                preview(state);
-            })
-
-
+                    preview(state, satelliteParams);
+                });
+            });
     }
 
     onMouseEnter = (e) => {

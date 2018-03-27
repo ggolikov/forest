@@ -2,7 +2,7 @@ import React from 'react';
 
 const Row = ({ label, value }) => {
     return (
-        <div>
+        <div className={"preview-row"}>
             <div className={"preview-row-part preview-row-label"}>
                 {label}
             </div>

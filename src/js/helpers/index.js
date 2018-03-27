@@ -30,8 +30,8 @@ export const loadFeatures = (layerId, page, pagesize, count) => {
     return fetch(url, options)
         .then(res => res.text())
         .then(str => {
-            let features = JSON.parse(str.substring(1, str.length-1));
-            return Promise.resolve(features);
+            let res = JSON.parse(str.substring(1, str.length-1));
+            return Promise.resolve(res);
         })
         .catch(err => console.log(err));
 }
@@ -99,13 +99,12 @@ export const addScreenObserver = (leafletMap, gmxMap) => {
     window.currentSatObserver = currentSatObserver;
 }
 
-export const selectRasters = (gmxMap, bounds) => {
+export const selectRasters = (gmxMap, geometry) => {
     // TODO: implement logic of searching for layers
     // currently using default sentinel layer
 
     const layerIds = [SENTINEL_LAYER_ID];
     let promiseArr = [];
-
 
     layerIds.forEach((layerId) => {
         const l = gmxMap.layersByID[layerId];
@@ -113,30 +112,25 @@ export const selectRasters = (gmxMap, bounds) => {
 
         const params = {
             layer: layerId,
-            bbox: bounds,
-            dateBegion: beginDate,
-            dateEnd: endDate,
-            format: 'gmx'
+            page: 0,
+            pagesize: 500,
+            query: `STIntersects([gmx_geometry], GeometryFromGeoJson('${JSON.stringify(geometry)}', 3857)) AND ([acqdate] > '${beginDate.toLocaleDateString()}' OR [acqdate] < '${beginDate.toLocaleDateString()}')`
         },
-        url = `${window.serverBase}VectorLayer/QuerySpatial`,
+        url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
         options = {
-            method: 'post',
-            body: params,
             mode: 'cors',
             credentials: 'include',
             headers: {
                 'Accept': 'application/json'
             }
         };
-        console.log(url);
+
         promiseArr.push(
             fetch(url, options)
             .then(res => {
-                console.log(res);
                 return res.text();
             })
             .then(str => {
-                console.log(str);
                 let features = JSON.parse(str.substring(1, str.length-1));
                 return Promise.resolve(features);
             })
@@ -144,7 +138,7 @@ export const selectRasters = (gmxMap, bounds) => {
         );
     });
 
-        return Promise.all(promiseArr);
+    return Promise.all(promiseArr);
 }
 
 const initMap = (mapRoot) => {
@@ -152,12 +146,17 @@ const initMap = (mapRoot) => {
         maxZoom: 18
     }),
     point = L.latLng([52.828673, 13.070571]),
-    leafletMap = new L.Map(mapRoot, {layers: [osm], center: point, zoom: 7, maxZoom: 22});
-
-    console.log(leafletMap.getBounds());
+    leafletMap = new L.Map(mapRoot, {
+        layers: [osm],
+        center: point,
+        attributionControl: false,
+        zoomControl: false,
+        zoom: 7,
+        maxZoom: 22
+    });
 }
 
-export const preview = (state, map) => {
+export const preview = (state, satelliteParams) => {
     const url = '/preview.html';
     const newWindow = window.open(url,'_blank');
 
@@ -171,7 +170,7 @@ export const preview = (state, map) => {
         initMap(mapRoot);
 
         render(
-            <Preview state={state} />,
+            <Preview state={state} satelliteParams={satelliteParams} />,
             paramsRoot
         );
     }
@@ -182,7 +181,7 @@ export const mapStateToRows = (labels, state) => {
     for (let key in labels) {
         res.push({
             label: key,
-            value: state[labels[key]]
+            value: state[labels[key]] || ""
         });
     }
 
