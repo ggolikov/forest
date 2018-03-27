@@ -16,6 +16,10 @@ h2 {
     text-align: center;
 }
 
+i {
+    cursor: pointer;
+}
+
 #map {
     height: 100%;
 }
@@ -76,9 +80,10 @@ h2 {
 
 /**/
 
-
 .gmx-features-list {
     max-height: 360px;
+    margin-bottom: 10px;
+    background-color: #fff;
     /* overflow-y: scroll; */
 }
 
@@ -87,29 +92,192 @@ h2 {
 }
 
 .gmx-list-item {
+    line-height: 30px;
     height: 30px;
-    cursor: pointer;
-    display: inline-b
 }
 
 .gmx-list-item.active {
     background-color: #eee;
 }
 
-.forest-select-block {
-    padding: 10px;
-    width: auto;
+.feature-list-item-part {
+    width: 33%;
 }
 
-.feature-list-item-part {
-    /* width: 50%; */
-    display: inline-block;
-}
-/*
 .feature-list-item-part-left {
     float: left;
 }
 
 .feature-list-item-part-right {
     float: right;
-} */
+}
+
+.container {
+    width: 360px;
+    padding: 27px 27px 23px 15px;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: 27px;
+}
+
+.content {
+    width: 100%;
+    padding: 0 7% 0 7%;
+}
+
+a {
+    font-weight: 700;
+    color: rgba(27, 68, 97, 0.5);
+}
+
+a:hover {
+    font-weight: 700;
+    color: rgba(27, 68, 97, 0.7);
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #49677d;
+}
+
+.h2,
+h2 {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 23px;
+}
+
+.left-panel {
+    width: 360px;
+    height: 100%;
+    float: left;
+    text-align: center;
+    background: rgba(116, 194, 189, 0.2);
+    overflow-y: normal;
+    border-right: 1px dotted;
+}
+
+.highlight.bottom-selection {
+    border-right: 5px dotted;
+}
+
+label {
+    font-weight: 400;
+    color: rgba(27, 68, 97, 0.7);
+    font-size: 17px;
+    float: left;
+    left: 3px;
+    position: relative;
+}
+
+select {
+    border: 1px solid rgba(27, 68, 97, 0.3)!important;
+    outline: 0px;
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    appearance: none;
+    background: url(https://png.icons8.com/material/34/57798c/sort-down.png) no-repeat right #FFF!important;
+    background-position-x: 98% !important;
+}
+
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+option:not(:checked) {
+    color: #49677d;
+    /* prevent <option>s from becoming transparent as well */
+}
+
+.form-control {
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #49677d;
+    font-weight: 500;
+    border: 1px solid rgba(27, 68, 97, 0.3)!important;
+}
+
+option {
+    color: #49677d!important;
+}
+
+.forest-select-block {
+    padding: 10px;
+    width: auto;
+    display: grid;
+    text-align: left;
+}
+
+.checkbox label,
+.radio label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.checkbox,
+.radio {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.feature-list-item-part-left {
+    float: left;
+    bottom: 15px;
+    position: relative;
+}
+
+.gmx-list-item.active {
+    background-color: #eee;
+}
+
+.feature-list-item-part {
+    width: 25%;
+    display: inline-block;
+}
+
+.btn.btn-default.input-group-btn {
+    margin-left: 5px;
+    left: 1px;
+    border: 1px solid rgba(73, 103, 125, 0.2);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.7) !important;
+    background-position-x: 58% !important;
+    transition: all 0.23s ease;
+}
+
+.btn.btn-default.input-group-btn:hover {
+    background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.5) !important;
+    background-position-x: 58% !important;
+}
+
+.collapser-block {
+    padding: 10px;
+}
+
+.opening-panel {
+    cursor: pointer;
+}
+
+.opening-panel:hover {
+    background-color: #efefef;
+}
