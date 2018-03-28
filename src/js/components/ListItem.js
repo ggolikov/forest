@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col, Checkbox } from 'react-bootstrap';
-import { zoomToFeature, getFeatureProps, preview } from '../helpers';
+import { zoomToFeature, getFeatureProps, getFeatureProps2, preview } from '../helpers';
 import { changeFeatureSelection } from '../AC';
 
 class ListItem extends Component {
@@ -23,8 +23,15 @@ class ListItem extends Component {
         const { id, geometry } = this.props;
         const state = window.store.getState();
 
-        getFeatureProps({ id, geometry }, state)
+        // getFeatureProps({ id, geometry }, state)
+        //     .then(res => {
+        //         console.log(res);
+        //         preview(res);
+        //     });
+
+        getFeatureProps2({ id, geometry }, state)
             .then(res => {
+                console.log(res);
                 preview(res);
             });
     }

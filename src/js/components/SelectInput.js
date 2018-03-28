@@ -20,11 +20,33 @@ class SelectInput extends Component {
         });
     }
 
+    onInputChosen: () => {
+        // return this.input.value;
+    }
+
+    onSelectChosen: () => {
+        // return this.select.value;
+    }
+
     render() {
         const { param, selectValues, loading } = this.props;
         const { useSelect } = this.state;
-        const inputElement = <InputContainer param={param} />
-        const selectElement = <SelectContainer param={param} values={selectValues} loading={loading} loadAttributes={true} />
+        const inputElement =
+            <InputContainer
+                // ref={(input) => {this.input = input}}
+                onInputChosen={this.onInputChosen}
+                param={param}
+
+            />
+        const selectElement =
+            <SelectContainer
+                // ref={(input) => {this.select = select}}
+                onSelectChosen={this.onSelectChosen}
+                param={param}
+                values={selectValues}
+                loading={loading}
+                loadAttributes={true}
+            />
 
         return (
             <FormGroup>

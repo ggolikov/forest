@@ -12,9 +12,14 @@ export default store => next => action => {
             const index = json.Result.fields.indexOf(idField);
             const geometryIndex = json.Result.fields.indexOf(DEMO_GEOMETRY_FIELD);
             const featuresIds = json.Result.values.map(value => {
+                let attrs = value.reduce((obj, currentItem, index, arr) => {
+                    obj[json.Result.fields[index]] = currentItem;
+                    return obj;
+                }, {});
                 return {
                     id: value[index],
                     selected: false,
+                    attrs: attrs,
                     geometry: value[geometryIndex]
                 };
             });

@@ -46,7 +46,6 @@ class FeaturesList extends Component {
                 promiseArr.push(
                     loadFeatures(layerId, currentlyLoadedPage + i, FEATURES_CHUNK_SIZE)
                         .then(json => {
-                            console.log(idFieldIndex);
                             const fetchedList = json.Result.values.map(value => value[idFieldIndex]);
                             return Promise.resolve(fetchedList);
                         })
