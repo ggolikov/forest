@@ -24,7 +24,7 @@ class SelectInput extends Component {
         const { param, selectValues, loading } = this.props;
         const { useSelect } = this.state;
         const inputElement = <InputContainer param={param} />
-        const selectElement = <SelectContainer param={param} values={selectValues} loading={loading} />
+        const selectElement = <SelectContainer param={param} values={selectValues} loading={loading} loadAttributes={true} />
 
         return (
             <FormGroup>

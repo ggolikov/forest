@@ -4,16 +4,15 @@ import RowHeader from './RowHeader';
 import { organisationLabels, areaLabels, satelliteLabels } from './labels';
 import { mapStateToRows } from '../../helpers';
 
-const Preview = ({ state, satelliteParams }) => {
+const Preview = ({ params }) => {
     const oganisationHeaderLabel = window._gtxt("Организация");
-    const oganisationRows = mapStateToRows(organisationLabels, state);
+    const oganisationRows = mapStateToRows(organisationLabels, params);
 
     const areaHeaderLabel = window._gtxt("Лесной участок");
-    const areaRows = mapStateToRows(areaLabels, state);
+    const areaRows = mapStateToRows(areaLabels, params);
 
     const satelliteHeaderLabel = window._gtxt("Космический снимок");
-    const satelliteRows = mapStateToRows(satelliteLabels, satelliteParams);
-
+    const satelliteRows = mapStateToRows(satelliteLabels, params);
 
     return (
         <div>

@@ -22,3 +22,13 @@ export const CHANGE_FORESTRY = 'CHANGE_FORESTRY';
 export const CHANGE_SECTION_FORESTRY = 'CHANGE_SECTION_FORESTRY';
 export const CHANGE_QUADRANT = 'CHANGE_QUADRANT';
 export const CHANGE_STRATUM = 'CHANGE_STRATUM';
+export const EXPORT_PARAMS = [
+    'reportType',
+    'organizationName',
+    'inn',
+    'region',
+    'forestry',
+    'sectionForestry',
+    'quadrant',
+    'stratum'
+];

@@ -7,7 +7,11 @@ import storeMapping from '../storeMapping';
 
 const mapStateToProps = (state, ownProps) => {
     const { label, param } = ownProps;
-    const value = state[param];
+    let value = state[param];
+
+    if (typeof value === 'object') {
+        value = value.value;
+    }
 
     return { label, value };
 }

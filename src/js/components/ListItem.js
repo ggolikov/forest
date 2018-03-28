@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col, Checkbox } from 'react-bootstrap';
-import { zoomToFeature, selectRasters, preview } from '../helpers';
+import { zoomToFeature, getFeatureProps, preview } from '../helpers';
 import { changeFeatureSelection } from '../AC';
 
 class ListItem extends Component {
@@ -16,29 +16,16 @@ class ListItem extends Component {
     onZoomIconClick = (e) => {
         const { layerId, geometry } = this.props;
 
-        zoomToFeature(layerId, geometry)
+        zoomToFeature(layerId, geometry);
     }
 
     showPreview = (e) => {
-        const { layerId, id, idField, state, geometry } = this.props;
+        const { id, geometry } = this.props;
+        const state = window.store.getState();
 
-        selectRasters(nsGmx.gmxMap, geometry)
+        getFeatureProps({ id, geometry }, state)
             .then(res => {
-                console.log(res);
-                res.forEach(r => {
-                    const sceneIdField = "sceneid";
-                    const dateIdField = "acqdate";
-                    const { fields, values } = r.Result;
-                    const satelliteParams = {
-                        type: "оптическая",
-                        system: "Sentinel-2",
-                        resolution: "",
-                        imageId: values[0][fields.indexOf(sceneIdField)],
-                        imageDate: new Date(values[0][fields.indexOf(dateIdField)]*1000).toLocaleDateString()
-                    };
-
-                    preview(state, satelliteParams);
-                });
+                preview(res);
             });
     }
 

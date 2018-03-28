@@ -7,14 +7,14 @@ import storeMapping from '../storeMapping';
 import { BLANK_SELECT_OPTION } from '../constants';
 
 const mapStateToProps = (state, ownProps) => {
-    const { label, param, values, loading } = ownProps;
+    const { label, param, values, loading, loadAttributes } = ownProps;
     const value = state[param];
 
-    return { label, value, values, loading };
+    return { label, value, values, loading, loadAttributes };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const { param, values, mapValues } = ownProps;
+    const { param, values, mapValues, loadAttributes } = ownProps;
     const dispatchFuncName = storeMapping[param];
     const dispatchFunc = actionCreators[dispatchFuncName];
 
@@ -29,6 +29,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                             }
                         });
             }
+
+            if (loadAttributes) {
+                value = { value, loadAttributes }
+            }
+            
             dispatch(dispatchFunc(value || BLANK_SELECT_OPTION));
         }
     }

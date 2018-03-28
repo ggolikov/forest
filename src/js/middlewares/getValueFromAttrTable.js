@@ -1,11 +1,20 @@
-import { SET_LAYER_ID, DEMO_GEOMETRY_FIELD } from '../constants';
+import {
+    CHANGE_REGION,
+    CHANGE_FORESTRY,
+    CHANGE_SECTION_FORESTRY,
+    CHANGE_QUADRANT,
+    CHANGE_STRATUM
+} from '../constants';
 import { loadFeatures } from '../helpers';
 import * as actionCreators from '../AC';
 
 export default store => next => action => {
     const state = store.getState();
-    const { idField } = state;
+    const { layerId, idField } = state;
     const { type, payload } = action;
+
+
+
 
     const getFeaturesAndCount = json => {
         if (json.Status !== 'error') {
@@ -28,17 +37,24 @@ export default store => next => action => {
         next({type, payload});
     };
 
-    if (type === SET_LAYER_ID) {
+    if (
+        type === CHANGE_REGION ||
+        type === CHANGE_FORESTRY ||
+        type === CHANGE_SECTION_FORESTRY ||
+        type === CHANGE_QUADRANT ||
+        type === CHANGE_STRATUM
+    ) {
+
+        if (typeof payload === 'object') {
+
+        } else {
+            next({type, payload});
+        }
+
         if (payload.layerId) {
             loadFeatures(payload.layerId, 0, null, 'add')
                 .then(json => getFeaturesAndCount(json));
             next(actionCreators.changeLoaderStatus(true));
         }
-        else {
-            next(actionCreators.changeLoaderStatus(false));
-            next({type, payload});
-        }
-    } else {
-        next({type, payload});
     }
 }
