@@ -61,6 +61,13 @@ export function changeFeatureSelection(id, selected) {
     }
 }
 
+export function changeFeaturesSelection(features) {
+    return {
+        type: CHANGE_FEATURES_SELETION,
+        payload: features
+    }
+}
+
 export function revertSelection() {
     return {
         type: REVERT_SELECTION

@@ -5,6 +5,7 @@ import SelectContainer from './SelectContainer';
 import SelectInput from './SelectInput';
 import LayerSelect from './LayerSelect';
 import CheckboxContainer from './CheckboxContainer';
+import DrawingButton from './DrawingButton';
 import { Panel, Collapse, Button } from 'react-bootstrap';
 import { loadFeatures, getLayersList } from '../helpers';
 import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
@@ -43,7 +44,7 @@ class App extends Component {
     }
 
     render() {
-        const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap } = this.props;
+        const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap } = this.props;
         const { loading, allFeaturesChecked } = this.state;
         // lazy load list
         const firstChunkFeatures = featuresIds.filter((v, i, a) => {
@@ -130,6 +131,7 @@ class App extends Component {
                 </Panel>
                 <Collapse in={this.state.listCollapsed}>
                     <div>
+                        <DrawingButton layerId={layerId} lmap={lmap} idField={idField} />
                         <CheckboxContainer
                             param="selectAllFeatures"
                             checked={allFeaturesChecked}

@@ -2,6 +2,7 @@ import { SENTINEL_LAYER_ID, BLANK_SELECT_OPTION } from '../constants';
 import getFeatureProps from './getFeatureProps';
 import getFeatureProps2 from './getFeatureProps2';
 import mapStateToRows from './mapStateToRows';
+import selectFeaturesWithDrawing from './selectFeaturesWithDrawing';
 import preview from './preview';
 import getAttribute from './getAttribute';
 import encodeParams from './encodeParams';
@@ -96,4 +97,11 @@ export const addScreenObserver = (leafletMap, gmxMap) => {
     window.currentSatObserver = currentSatObserver;
 }
 
-export { getFeatureProps, getFeatureProps2, mapStateToRows, preview, getAttribute };
+export {
+        getFeatureProps,
+        getFeatureProps2,
+        mapStateToRows,
+        preview,
+        getAttribute,
+        selectFeaturesWithDrawing
+    };
