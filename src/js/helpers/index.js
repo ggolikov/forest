@@ -6,6 +6,8 @@ import selectFeaturesWithDrawing from './selectFeaturesWithDrawing';
 import preview from './preview';
 import getAttribute from './getAttribute';
 import encodeParams from './encodeParams';
+import mergeArrays from './mergeArrays';
+import mapFeaturesToStore from './mapFeaturesToStore';
 
 window.serverBase = '//maps.kosmosnimki.ru/';
 
@@ -103,5 +105,7 @@ export {
         mapStateToRows,
         preview,
         getAttribute,
-        selectFeaturesWithDrawing
+        selectFeaturesWithDrawing,
+        mergeArrays,
+        mapFeaturesToStore
     };

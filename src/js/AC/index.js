@@ -5,6 +5,7 @@ import {
     SET_ID_FIELD_INDEX,
     SET_FEATURES_IDS,
     CHANGE_FEATURE_SELETION,
+    CHANGE_FEATURES_SELETION,
     REVERT_SELECTION,
     SELECT_ALL_FEATURES,
     SET_FEATURES_COUNT,
@@ -64,7 +65,7 @@ export function changeFeatureSelection(id, selected) {
 export function changeFeaturesSelection(features) {
     return {
         type: CHANGE_FEATURES_SELETION,
-        payload: features
+        payload: { features }
     }
 }
 

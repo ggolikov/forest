@@ -1,5 +1,5 @@
 import { SET_LAYER_ID, DEMO_GEOMETRY_FIELD } from '../constants';
-import { loadFeatures } from '../helpers';
+import { loadFeatures, mapFeaturesToStore } from '../helpers';
 import * as actionCreators from '../AC';
 
 export default store => next => action => {
@@ -11,18 +11,7 @@ export default store => next => action => {
         if (json.Status !== 'error') {
             const index = json.Result.fields.indexOf(idField);
             const geometryIndex = json.Result.fields.indexOf(DEMO_GEOMETRY_FIELD);
-            const featuresIds = json.Result.values.map(value => {
-                let attrs = value.reduce((obj, currentItem, index, arr) => {
-                    obj[json.Result.fields[index]] = currentItem;
-                    return obj;
-                }, {});
-                return {
-                    id: value[index],
-                    selected: false,
-                    attrs: attrs,
-                    geometry: value[geometryIndex]
-                };
-            });
+            const featuresIds = mapFeaturesToStore(json.Result, index, geometryIndex, false);
 
             next(actionCreators.setFeaturesIds(featuresIds));
             next(actionCreators.setFeaturesCount(json.Result.Count));

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { changeFeatureSelection } from '../AC';
-import { selectFeaturesWithDrawing } from '../helpers';
+import { DEMO_GEOMETRY_FIELD } from '../constants';
+import { changeFeaturesSelection } from '../AC';
+import { selectFeaturesWithDrawing, mapFeaturesToStore } from '../helpers';
 
 class DrawingButton extends Component {
     constructor(props) {
@@ -61,11 +62,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 geometry = feature.toGeoJSON().geometry;
 
             selectFeaturesWithDrawing(layerId, geometry)
-                .then(res => {
-                    const index = res.Result.fields.indexOf(idField);
-                    const featuresIds = res.Result.values.map(value => value[index]);
-
-                    featuresIds.forEach(id => dispatch(changeFeatureSelection(id, true)));
+                .then(json => {
+                    // const index = json.Result.fields.indexOf(idField);
+                    // const featuresIds = json.Result.values.map(value => value[index]);
+                    const index = json.Result.fields.indexOf(idField);
+                    const geometryIndex = json.Result.fields.indexOf(DEMO_GEOMETRY_FIELD);
+                    const featuresIds = mapFeaturesToStore(json.Result, index, geometryIndex, true);
+                    dispatch(changeFeaturesSelection(featuresIds));
+                    // featuresIds.forEach(id => dispatch(changeFeaturesSelection(id, true)));
 
                     console.log(featuresIds.length);
                 });

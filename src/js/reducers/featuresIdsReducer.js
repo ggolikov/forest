@@ -6,6 +6,8 @@ import {
     SELECT_ALL_FEATURES
  } from '../constants';
 
+ import { mergeArrays } from '../helpers';
+
 const featuresIdsReducer = (featuresIds = [], action) => {
     const {type, payload} = action;
 
@@ -27,6 +29,12 @@ const featuresIdsReducer = (featuresIds = [], action) => {
                 ...featuresIds.slice(index + 1)
             ]
             return updatedIds;
+            break;
+        case CHANGE_FEATURES_SELETION:
+            const { features } = payload;
+            const updated = mergeArrays(featuresIds, features);
+
+            return updated;
             break;
         case REVERT_SELECTION:
             return featuresIds.map(item => {
