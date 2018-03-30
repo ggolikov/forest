@@ -1,1 +1,1 @@
-robocopy dist ../sidebar2/plugins/forestproject /S
+robocopy dist ../Geomixer-client-test/plugins/forestproject /S

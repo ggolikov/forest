@@ -5,6 +5,7 @@ const selectFeaturesWithDrawing = (layerId, geometry) => {
         layer: layerId,
         page: 0,
         pagesize: null,
+        geometry: true,
         query: `STIntersects([gmx_geometry], GeometryFromGeoJson('${JSON.stringify(geometry)}', 4326))`
     },
     url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,

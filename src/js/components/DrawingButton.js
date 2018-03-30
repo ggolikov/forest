@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { DEMO_GEOMETRY_FIELD } from '../constants';
 import { changeFeaturesSelection } from '../AC';
 import { selectFeaturesWithDrawing, mapFeaturesToStore } from '../helpers';
 
@@ -67,12 +66,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             const features = e.target.getFeatures(),
                 feature = features.length ? features[features.length - 1] : null,
                 geometry = feature.toGeoJSON().geometry;
-
             selectFeaturesWithDrawing(layerId, geometry)
                 .then(json => {
                     const index = json.Result.fields.indexOf(idField);
-                    const geometryIndex = json.Result.fields.indexOf(DEMO_GEOMETRY_FIELD);
-                    const featuresIds = mapFeaturesToStore(json.Result, index, geometryIndex, true);
+                    const featuresIds = mapFeaturesToStore(json.Result, index, true);
                     dispatch(changeFeaturesSelection(featuresIds));
                 });
         }

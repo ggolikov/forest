@@ -10,8 +10,7 @@ export default store => next => action => {
     const getFeaturesAndCount = json => {
         if (json.Status !== 'error') {
             const index = json.Result.fields.indexOf(idField);
-            const geometryIndex = json.Result.fields.indexOf(DEMO_GEOMETRY_FIELD);
-            const featuresIds = mapFeaturesToStore(json.Result, index, geometryIndex, false);
+            const featuresIds = mapFeaturesToStore(json.Result, index, false);
 
             next(actionCreators.setFeaturesIds(featuresIds));
             next(actionCreators.setFeaturesCount(json.Result.Count));
