@@ -1,13 +1,16 @@
 const mergeArrays = (source, dest) => {
-    let sourceIds = source.map(feature => feature.id);
-    let copySource = source.map(feature => feature);
+    let hash = source.reduce((obj, currentItem, index, arr) => {
+        obj[currentItem.id] = currentItem;
+            return obj;
+    }, {});
 
     dest.forEach(feature => {
-        const indexInSource = sourceIds.indexOf(feature.id);
-        copySource.splice(indexInSource, 1, feature)
+        if (feature.id in hash) {
+            hash[feature.id] = feature;
+        };
     });
 
-    return copySource;
+    return Object.values(hash);
 }
 
 export default mergeArrays;

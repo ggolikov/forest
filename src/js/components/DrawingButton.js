@@ -14,7 +14,11 @@ class DrawingButton extends Component {
         };
 
         this.props.lmap.gmxDrawing.on('drawstop', (e) => {
+            console.log(e);
             props.ondrawstop(e);
+            this.setState({
+                drawing: e.object
+            });
             this.clearActive();
         });
     }
@@ -26,11 +30,14 @@ class DrawingButton extends Component {
     }
 
     onclick = e => {
-        const {lmap} = this.props,
-            {active} = this.state;
+        const { lmap } = this.props,
+            { active, drawing } = this.state;
+
+        lmap.gmxDrawing.remove(drawing);
 
         this.setState({
-            active: !active
+            active: !active,
+            drawing: null
         });
 
         if (!active) {
@@ -40,7 +47,7 @@ class DrawingButton extends Component {
 
     render() {
         const {active} = this.state,
-            txt = active ? "Полигон рисуется" : "Нарисуйте полигон";
+            txt = active ? "Полигон рисуется" : "Выделите участки полигоном";
 
         return (
             <Button
@@ -63,15 +70,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
             selectFeaturesWithDrawing(layerId, geometry)
                 .then(json => {
-                    // const index = json.Result.fields.indexOf(idField);
-                    // const featuresIds = json.Result.values.map(value => value[index]);
                     const index = json.Result.fields.indexOf(idField);
                     const geometryIndex = json.Result.fields.indexOf(DEMO_GEOMETRY_FIELD);
                     const featuresIds = mapFeaturesToStore(json.Result, index, geometryIndex, true);
                     dispatch(changeFeaturesSelection(featuresIds));
-                    // featuresIds.forEach(id => dispatch(changeFeaturesSelection(id, true)));
-
-                    console.log(featuresIds.length);
                 });
         }
     }

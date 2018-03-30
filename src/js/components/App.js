@@ -46,6 +46,8 @@ class App extends Component {
     render() {
         const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap } = this.props;
         const { loading, allFeaturesChecked } = this.state;
+
+        const selectedFeaturesCount = featuresIds.filter(item => item.selected).length;
         // lazy load list
         const firstChunkFeatures = featuresIds.filter((v, i, a) => {
             return (i <= /*FEATURES_CHUNK_SIZE*/featuresCount)
@@ -132,6 +134,7 @@ class App extends Component {
                 <Collapse in={this.state.listCollapsed}>
                     <div>
                         <DrawingButton layerId={layerId} lmap={lmap} idField={idField} />
+                        <div>{`Выделено: ${selectedFeaturesCount}`}</div>
                         <CheckboxContainer
                             param="selectAllFeatures"
                             checked={allFeaturesChecked}
