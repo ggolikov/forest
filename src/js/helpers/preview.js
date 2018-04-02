@@ -18,22 +18,37 @@ const initMap = (mapRoot) => {
 }
 
 const preview = (params, type) => {
-    const url = type === 'plugin' ? './plugins/forestproject/preview.html' : './preview.html';
-    const newWindow = window.open(url,'_blank');
+    const state = window.store.getState();
+    const { layerId } = state;
 
-    newWindow.onload = () => {
-        const headerRoot = newWindow.document.querySelector('.preview-header');
-        const paramsRoot = newWindow.document.querySelector('#preview-params-container');
-        const mapRoot = newWindow.document.querySelector('#preview-map-container');
+    if (window._mapHelper) {
+        window._mapHelper.createPermalink(function(id){
+            var url = `http://${window.location.host}${window.location.pathname}?permalink=${id}&${layerId}`;
+            console.log(url);
+            openWindow();
+        });
+    } else {
+        openWindow();
+    }
 
-        headerRoot.innerText = `Отчет ${params.reportType}`;
+    function openWindow() {
+        const url = type === 'plugin' ? './plugins/forestproject/preview.html' : './preview.html';
+        const newWindow = window.open(url,'_blank');
 
-        initMap(mapRoot);
+        newWindow.onload = () => {
+            const headerRoot = newWindow.document.querySelector('.preview-header');
+            const paramsRoot = newWindow.document.querySelector('#preview-params-container');
+            const mapRoot = newWindow.document.querySelector('#preview-map-container');
 
-        render(
-            <Preview params={params} />,
-            paramsRoot
-        );
+            headerRoot.innerText = `Отчет ${params.reportType}`;
+
+            initMap(mapRoot);
+
+            render(
+                <Preview params={params} />,
+                paramsRoot
+            );
+        }
     }
 }
 

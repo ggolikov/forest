@@ -4,8 +4,8 @@ import InputContainer from './InputContainer';
 import SelectContainer from './SelectContainer';
 import SelectInput from './SelectInput';
 import LayerSelect from './LayerSelect';
-import CheckboxContainer from './CheckboxContainer';
 import DrawingButton from './DrawingButton';
+import SelectionBlock from './SelectionBlock';
 import { Panel, Collapse, Button } from 'react-bootstrap';
 import { loadFeatures, getLayersList } from '../helpers';
 import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
@@ -134,17 +134,6 @@ class App extends Component {
                 <Collapse in={this.state.listCollapsed}>
                     <div>
                         <DrawingButton layerId={layerId} lmap={lmap} idField={idField} />
-                        <div>{`Выделено: ${selectedFeaturesCount}`}</div>
-                        <CheckboxContainer
-                            param="selectAllFeatures"
-                            checked={allFeaturesChecked}
-                            label={selectAllFeaturesLabel}
-                        />
-                        <CheckboxContainer
-                            param="revertSelection"
-                            defaultChecked={false}
-                            label={revertSelectionLabel}
-                        />
                         <FeaturesList
                             loading={loading}
                             idFieldIndex={idFieldIndex}
@@ -153,6 +142,12 @@ class App extends Component {
                             list={firstChunkFeatures}
                             featuresCount={featuresCount}
                             type={type}
+                        />
+                        <SelectionBlock
+                            full={allFeaturesChecked}
+                            totalCount={selectedFeaturesCount}
+                            selectLabel={selectAllFeaturesLabel}
+                            revertLabel={revertSelectionLabel}
                         />
                     </div>
                 </Collapse>
