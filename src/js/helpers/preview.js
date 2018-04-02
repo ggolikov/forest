@@ -17,8 +17,8 @@ const initMap = (mapRoot) => {
     });
 }
 
-const preview = (params) => {
-    const url = './preview.html';
+const preview = (params, type) => {
+    const url = type === 'plugin' ? './plugins/forestproject/preview.html' : './preview.html';
     const newWindow = window.open(url,'_blank');
 
     newWindow.onload = () => {

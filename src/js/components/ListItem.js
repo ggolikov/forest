@@ -20,19 +20,13 @@ class ListItem extends Component {
     }
 
     showPreview = (e) => {
-        const { id, geometry } = this.props;
+        const { id, geometry, type } = this.props;
         const state = window.store.getState();
-
-        // getFeatureProps({ id, geometry }, state)
-        //     .then(res => {
-        //         console.log(res);
-        //         preview(res);
-        //     });
 
         getFeatureProps2({ id, geometry }, state)
             .then(res => {
                 console.log(res);
-                preview(res);
+                preview(res, type);
             });
     }
 
@@ -52,7 +46,7 @@ class ListItem extends Component {
         const { selected, txt, onItemSelect } = this.props;
         const { active } = this.state;
 
-        const className = active ? "gmx-list-item gmx-list-item active": "gmx-list-item";
+        const className = active ? "feature-list-item active": "feature-list-item";
 
         return (
             <div className={className}

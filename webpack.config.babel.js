@@ -37,8 +37,8 @@ module.exports = (env) => {
                 }),
                 new CopyWebpackPlugin([
                     { from: path.join(paths.src, 'css/forestProjectPlugin.css'), to: path.join(paths.dist, 'css/forestProjectPlugin.css') },
-                    { from: path.join(paths.src, 'css/preview.css'), to: path.join(paths.public, 'css/preview.css') },
-                    { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.public, 'css/fontello') }
+                    { from: path.join(paths.src, 'css/preview.css'), to: path.join(paths.dist, 'css/preview.css') },
+                    { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.dist, 'css/fontello') }
                 ])
             ]
         }

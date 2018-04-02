@@ -4,7 +4,7 @@ import App from './App';
 
 const mapStateToProps = (state, ownProps) => {
     const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList } = state;
-    const { lmap, gmxMap } = ownProps;
+    const { lmap, gmxMap, type } = ownProps;
 
     return {
         loader,
@@ -15,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
         featuresCount,
         attributesList,
         lmap,
-        gmxMap
+        gmxMap,
+        type
     };
 }
 

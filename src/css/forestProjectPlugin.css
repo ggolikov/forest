@@ -16,6 +16,11 @@
     overflow-y: auto;
 }
 
+.forest-loader-holder {
+    padding: 10px;
+    text-align: center;
+}
+
 .width-setting {
     vertical-align: middle;
 }
@@ -56,9 +61,11 @@
 /**/
 
 .gmx-features-list {
-    max-height: 360px;
+    max-height: 400px;
     margin-bottom: 10px;
     background-color: #fff;
+    text-align: center;
+    width: 332px;
     /* overflow-y: scroll; */
 }
 
@@ -66,25 +73,26 @@
     outline: none;
 }
 
-.gmx-list-item {
-    line-height: 30px;
-    height: 30px;
+.feature-list-item {
+    line-height: 20px;
+    height: 20px;
 }
 
-.gmx-list-item.active {
+.feature-list-item.active {
     background-color: #eee;
+    padding: 0;
 }
 
 .feature-list-item-part {
     width: 33%;
+    text-align: center;
 }
 
-.feature-list-item-part-left {
-    float: left;
-}
-
-.feature-list-item-part-right {
-    float: right;
+.feature-list-item-part i {
+    cursor: pointer;
+    width: 20px;
+    display: block;
+    margin: auto;
 }
 
 .container {
@@ -128,18 +136,13 @@
     padding: 20px 0;
 }
 
-.left-panel {
-    width: 360px;
-    height: 100%;
-    float: left;
-    text-align: center;
-    background: rgba(116, 194, 189, 0.2);
-    overflow-y: normal;
-    border-right: 1px dotted;
-}
-
 .forest-plugin-container .highlight.bottom-selection {
     border-right: 5px dotted;
+}
+
+.forest-plugin-container .control-label {
+    font-size: 16px;
+    padding: 4px;
 }
 
 .forest-plugin-container select {
@@ -164,14 +167,12 @@
 }
 
 .forest-plugin-container .form-control {
+    padding: 0 10px;
     line-height: 1.42857143;
     color: #49677d;
     font-weight: 500;
     border: 1px solid rgba(27, 68, 97, 0.3)!important;
-    display: block;
-    width: 100%;
     height: 34px;
-    padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
     background-color: #fff;
@@ -188,6 +189,56 @@
 .forest-plugin-container .input-group,
 .forest-plugin-container .form-control {
     display: table-cell;
+}
+.forest-plugin-container .input-group {
+    display: block;
+    width: 100%;
+}
+
+.forest-plugin-container .btn {
+    margin: auto;
+    display: block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.forest-plugin-container .input-group .form-control {
+    display: inline-block;
+    width: 90%;
+    box-sizing: border-box;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.forest-plugin-container .input-group .btn {
+    padding: 0;
+    display: inline-block;
+    line-height: 34px;
+    margin: 0;
+    width: 10%;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.forest-plugin-container .btn.active {
+    box-shadow: inset 0 1px 4px rgba(27,31,35,0.55);
 }
 
 .input-group-addon {
@@ -218,41 +269,9 @@
     color: #49677d!important;
 }
 
-.forest-plugin-container .btn {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
-
-.btn.btn-default.input-group-btn {
-    margin-left: 5px;
-    left: 1px;
-    border: 1px solid rgba(73, 103, 125, 0.2);
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.7) !important;
-    background-position-x: 58% !important;
-    transition: all 0.23s ease;
-}
-
 .forest-select-block {
-    padding: 10px;
+    padding: 0 10px;
+    margin: 10px 0;
     width: auto;
     display: grid;
     text-align: left;
@@ -269,17 +288,9 @@
 .forest-plugin-container .radio {
     position: relative;
     display: block;
-    margin-top: 15px;
-    margin-bottom: 10px;
 }
 
-.feature-list-item-part-left {
-    float: left;
-    bottom: 15px;
-    position: relative;
-}
-
-.gmx-list-item.active {
+.feature-list-item.active {
     background-color: #eee;
 }
 
@@ -289,11 +300,12 @@
 }
 
 .forest-plugin-container .btn.btn-default.input-group-btn {
-    margin-left: 5px;
-    left: 1px;
+    cursor: pointer;
     border: 1px solid rgba(73, 103, 125, 0.2);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.7) !important;
     background-position-x: 58% !important;
     transition: all 0.23s ease;
@@ -331,4 +343,14 @@
 
 .forest-plugin-container .panel-body {
     padding: 15px;
+}
+
+.ReactVirtualized__Grid.ReactVirtualized__List {
+    padding: 10px;
+    width: 100%;
+}
+
+.ReactVirtualized__Grid__innerScrollContainer {
+    width: 100%;
+    max-width: 100%;
 }

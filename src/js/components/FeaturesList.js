@@ -62,7 +62,7 @@ class FeaturesList extends Component {
     }
 
     render() {
-        const { layerId, idField, idFieldIndex, featuresCount, loading } = this.props;
+        const { layerId, idField, idFieldIndex, featuresCount, loading, type } = this.props;
         const { list } = this.state;
         const isRowLoaded = ({ index }) => {
             return !!this.state.list[index];
@@ -78,6 +78,7 @@ class FeaturesList extends Component {
                     id={list[index].id}
                     geometry={list[index].geometry}
                     idField={idField}
+                    type={type}
                 />
             );
             const content = isScrolling ? scrollHolder : elem;
@@ -103,8 +104,8 @@ class FeaturesList extends Component {
                     >
                         {({ onRowsRendered, registerChild }) => (
                             <List
-                                width={275}
-                                height={200}
+                                width={332}
+                                height={400}
                                 rowHeight={20}
                                 onRowsRendered={onRowsRendered}
                                 ref={registerChild}

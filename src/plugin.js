@@ -30,7 +30,7 @@ import { addScreenObserver } from './js/helpers';
                 addScreenObserver(map, window.nsGmx.gmxMap);
 
                 render(
-                    <Root lmap={window.nsGmx.leafletMap} gmxMap={window.nsGmx.gmxMap} />,
+                    <Root lmap={window.nsGmx.leafletMap} gmxMap={window.nsGmx.gmxMap} type="plugin" />,
                     forestPluginContainer
                 );
             }

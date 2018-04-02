@@ -44,7 +44,7 @@ class App extends Component {
     }
 
     render() {
-        const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap } = this.props;
+        const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap, type } = this.props;
         const { loading, allFeaturesChecked } = this.state;
 
         const selectedFeaturesCount = featuresIds.filter(item => item.selected).length;
@@ -152,13 +152,14 @@ class App extends Component {
                             layerId={layerId}
                             list={firstChunkFeatures}
                             featuresCount={featuresCount}
+                            type={type}
                         />
                     </div>
                 </Collapse>
                 <Button disabled>{createButtonLabel}</Button>
             </div>
         ) : loader ? (
-            <div>
+            <div className="forest-loader-holder">
                 {loaderHolder}
             </div>
         ) : null;

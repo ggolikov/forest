@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 function Root(props) {
     return (
         <Provider store={store}>
-            <AppContainer lmap={props.lmap} gmxMap={props.gmxMap} />
+            <AppContainer lmap={props.lmap} gmxMap={props.gmxMap} type={props.type} />
         </Provider>
     )
 }
