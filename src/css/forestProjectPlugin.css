@@ -1,0 +1,334 @@
+@import "./L.Control.gmxTimeLine.css";
+@import "./fontello/css/fontello.css";
+
+.forest-plugin-container {
+    font-family: Arial;
+}
+
+.forest-plugin-header {
+    height: 10%;
+    background-color: #e1e8ed;
+}
+
+.forest-plugin-content {
+    height: 90%;
+    background-color: #f5f8fa;
+    overflow-y: auto;
+}
+
+.width-setting {
+    vertical-align: middle;
+}
+
+.reset {
+    width: 120px;
+    margin: auto;
+}
+
+.div-table {
+    margin: 8 0;
+    display: table;
+    width: auto;
+}
+
+.div-table-row {
+    display: table-row;
+    width: auto;
+    clear: both;
+}
+
+.div-table-col {
+    float: left; /* fix for  buggy browsers */
+    display: table-column;
+    width: 120px;
+    max-width: 120px;
+}
+
+.div-table-col input {
+    width: 120px;
+    margin: 0;
+}
+
+.div-table-col .width-type {
+    text-align: left;
+}
+
+/**/
+
+.gmx-features-list {
+    max-height: 360px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    /* overflow-y: scroll; */
+}
+
+.gmx-features-list:focus {
+    outline: none;
+}
+
+.gmx-list-item {
+    line-height: 30px;
+    height: 30px;
+}
+
+.gmx-list-item.active {
+    background-color: #eee;
+}
+
+.feature-list-item-part {
+    width: 33%;
+}
+
+.feature-list-item-part-left {
+    float: left;
+}
+
+.feature-list-item-part-right {
+    float: right;
+}
+
+.container {
+    width: 360px;
+    padding: 27px 27px 23px 15px;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: 27px;
+}
+
+.content {
+    width: 100%;
+    padding: 0 7% 0 7%;
+}
+
+.forest-plugin-container a {
+    font-weight: 700;
+    color: rgba(27, 68, 97, 0.5);
+}
+
+.forest-plugin-container a:hover {
+    font-weight: 700;
+    color: rgba(27, 68, 97, 0.7);
+}
+
+.forest-plugin-container h1,
+.forest-plugin-container h2,
+.forest-plugin-container h3,
+.forest-plugin-container h4,
+.forest-plugin-container h5,
+.forest-plugin-container h6 {
+    color: #49677d;
+}
+
+.forest-plugin-container h2 {
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 0;
+}
+
+.left-panel {
+    width: 360px;
+    height: 100%;
+    float: left;
+    text-align: center;
+    background: rgba(116, 194, 189, 0.2);
+    overflow-y: normal;
+    border-right: 1px dotted;
+}
+
+.forest-plugin-container .highlight.bottom-selection {
+    border-right: 5px dotted;
+}
+
+.forest-plugin-container select {
+    border: 1px solid rgba(27, 68, 97, 0.3)!important;
+    outline: 0px;
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    appearance: none;
+    background: url(https://png.icons8.com/material/34/57798c/sort-down.png) no-repeat right #FFF!important;
+    background-position-x: 98% !important;
+}
+
+.forest-plugin-container select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+.forest-plugin-container option:not(:checked) {
+    color: #49677d;
+}
+
+.forest-plugin-container .form-control {
+    line-height: 1.42857143;
+    color: #49677d;
+    font-weight: 500;
+    border: 1px solid rgba(27, 68, 97, 0.3)!important;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.forest-plugin-container .input-group,
+.forest-plugin-container .form-control {
+    display: table-cell;
+}
+
+.input-group-addon {
+  padding: @padding-base-vertical @padding-base-horizontal;
+  font-size: @font-size-base;
+  font-weight: normal;
+  line-height: 1;
+  color: @input-color;
+  text-align: center;
+  background-color: @input-group-addon-bg;
+  border: 1px solid @input-group-addon-border-color;
+  border-radius: @input-border-radius;
+}
+
+.forest-plugin-container .glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.forest-plugin-containeroption {
+    color: #49677d!important;
+}
+
+.forest-plugin-container .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn.btn-default.input-group-btn {
+    margin-left: 5px;
+    left: 1px;
+    border: 1px solid rgba(73, 103, 125, 0.2);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.7) !important;
+    background-position-x: 58% !important;
+    transition: all 0.23s ease;
+}
+
+.forest-select-block {
+    padding: 10px;
+    width: auto;
+    display: grid;
+    text-align: left;
+}
+
+.forest-plugin-container .checkbox label,
+.forest-plugin-container .radio label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.forest-plugin-container .checkbox,
+.forest-plugin-container .radio {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.feature-list-item-part-left {
+    float: left;
+    bottom: 15px;
+    position: relative;
+}
+
+.gmx-list-item.active {
+    background-color: #eee;
+}
+
+.feature-list-item-part {
+    width: 25%;
+    display: inline-block;
+}
+
+.forest-plugin-container .btn.btn-default.input-group-btn {
+    margin-left: 5px;
+    left: 1px;
+    border: 1px solid rgba(73, 103, 125, 0.2);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.7) !important;
+    background-position-x: 58% !important;
+    transition: all 0.23s ease;
+}
+
+.forest-plugin-container .btn.btn-default.input-group-btn:hover {
+    background: url(https://png.icons8.com/material/16/ffffff/outline.png) no-repeat right rgba(73, 103, 125, 0.5) !important;
+    background-position-x: 58% !important;
+}
+
+.forest-plugin-container .collapser-block {
+    padding: 10px;
+}
+
+.forest-plugin-container .opening-panel {
+    cursor: pointer;
+}
+
+.forest-plugin-container .opening-panel:hover {
+    background-color: #efefef;
+}
+
+.forest-plugin-container .panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.forest-plugin-container .panel-default {
+    border-color: #ddd;
+}
+
+.forest-plugin-container .panel-body {
+    padding: 15px;
+}

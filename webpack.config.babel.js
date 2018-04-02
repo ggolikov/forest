@@ -12,9 +12,10 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = (env) => {
     if (env.plugin) {
         return {
-            entry: [
-                `${paths.src}/plugin.js`
-            ],
+            entry: {
+                'forestProjectPlugin': `${paths.src}/plugin.js`,
+                'preview': `${paths.src}/preview.js`
+            },
             devtool: "cheap-inline-module-source-map",
             module: {
                 loaders: [
@@ -25,12 +26,19 @@ module.exports = (env) => {
             },
             output: {
                 path: paths.dist,
-                filename: 'forestProjectPlugin.js'
+                filename: '[name].js'
             },
             plugins: [
+                new HtmlWebpackPlugin({
+                    template: path.join(paths.src, 'preview.html'),
+                    filename: 'preview.html',
+                    chunks: ['preview'],
+                    inject: 'body'
+                }),
                 new CopyWebpackPlugin([
-                    { from: path.join(paths.src, 'js/lib/GMXPluginTimeLine/L.Control.gmxTimeLine.css'), to: path.join(paths.dist, 'css/L.Control.gmxTimeLine.css') },
-                    { from: path.join(paths.src, 'css/main.css'), to: path.join(paths.dist, 'css/main.css') }
+                    { from: path.join(paths.src, 'css/forestProjectPlugin.css'), to: path.join(paths.dist, 'css/forestProjectPlugin.css') },
+                    { from: path.join(paths.src, 'css/preview.css'), to: path.join(paths.public, 'css/preview.css') },
+                    { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.public, 'css/fontello') }
                 ])
             ]
         }

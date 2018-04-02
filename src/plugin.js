@@ -39,7 +39,7 @@ import { addScreenObserver } from './js/helpers';
 
     if (window.gmxCore) {
 		window.gmxCore.addModule(pluginName, publicInterface, {
-			css: './css/main.css',
+			css: './css/forestProjectPlugin.css',
 			init: function(module, path) {}
 		});
 	} else {

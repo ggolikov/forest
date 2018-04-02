@@ -164,13 +164,17 @@ class App extends Component {
         ) : null;
 
         return (
-            <div>
-                <h2>{header}</h2>
-                <LayerSelect
-                    values={layersValues}
-                    mapValues={true}
-                />
-                {inputs}
+            <div className="forest-plugin-container">
+                <div className="forest-plugin-header">
+                    <h2>{header}</h2>
+                </div>
+                <div className="leftContent forest-plugin-content">
+                    <LayerSelect
+                        values={layersValues}
+                        mapValues={true}
+                    />
+                    {inputs}
+                </div>
             </div>
         );
     }
