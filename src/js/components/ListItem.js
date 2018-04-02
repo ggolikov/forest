@@ -25,8 +25,7 @@ class ListItem extends Component {
 
         getFeatureProps2({ id, geometry }, state)
             .then(res => {
-                console.log(res);
-                preview(res, type);
+                preview(res, id, type);
             });
     }
 

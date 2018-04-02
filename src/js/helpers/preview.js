@@ -17,12 +17,20 @@ const initMap = (mapRoot) => {
     });
 }
 
-const preview = (params, type) => {
+const preview = (params, id, type) => {
     const state = window.store.getState();
     const { layerId } = state;
 
     if (window._mapHelper) {
-        window._mapHelper.createPermalink(function(id){
+        let permalinkPrams = {
+            filters: {
+                [layerId]: function(it) {
+                                return it.id === id;
+                            }
+            }
+        }
+
+        window._mapHelper.createExportPermalink(permalinkPrams, function (id) {
             var url = `http://${window.location.host}${window.location.pathname}?permalink=${id}&${layerId}`;
             console.log(url);
             openWindow();
