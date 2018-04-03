@@ -38,6 +38,7 @@ module.exports = (env) => {
                 new CopyWebpackPlugin([
                     { from: path.join(paths.src, 'css/forestProjectPlugin.css'), to: path.join(paths.dist, 'css/forestProjectPlugin.css') },
                     { from: path.join(paths.src, 'css/preview.css'), to: path.join(paths.dist, 'css/preview.css') },
+                    { from: path.join(paths.src, 'css/scanex_logo.jpg'), to: path.join(paths.dist, 'css/scanex_logo.jpg') },
                     { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.dist, 'css/fontello') }
                 ])
             ]
@@ -80,6 +81,7 @@ module.exports = (env) => {
                     { from: path.join(paths.src, 'js/lib/GMXPluginTimeLine/L.Control.gmxTimeLine.css'), to: path.join(paths.public, 'css/L.Control.gmxTimeLine.css') },
                     { from: path.join(paths.src, 'css/main.css'), to: path.join(paths.public, 'css/main.css') },
                     { from: path.join(paths.src, 'css/preview.css'), to: path.join(paths.public, 'css/preview.css') },
+                    { from: path.join(paths.src, 'css/scanex_logo.jpg'), to: path.join(paths.public, 'css/scanex_logo.jpg') },
                     { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.public, 'css/fontello') }
                 ])
             ]

@@ -71,3 +71,19 @@ iframe {
 .preview-row-value {
 
 }
+
+#preview-footer {
+    position: absolute;
+    bottom: 300px;
+    width: 100%;
+}
+
+.scanex-logo {
+    width: 200px;
+    float: left;
+    margin-right: 10px;
+}
+
+.scanex-description {
+    font-size: 13px;
+}

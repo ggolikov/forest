@@ -14,9 +14,9 @@ class ListItem extends Component {
     }
 
     onZoomIconClick = (e) => {
-        const { layerId, geometry } = this.props;
+        const { layerId, id, geometry } = this.props;
 
-        zoomToFeature(layerId, geometry);
+        zoomToFeature(layerId, id, geometry);
     }
 
     showPreview = (e) => {

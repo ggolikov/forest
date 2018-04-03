@@ -40,11 +40,28 @@ export const loadFeatures = (layerId, page, pagesize, count) => {
         .catch(err => console.log(err));
 }
 
-export const zoomToFeature = (layerId, geometry) => {
+export const zoomToFeature = (layerId, id, geometry) => {
     let layer = nsGmx.gmxMap.layersByID[layerId],
         fitBoundsOptions = layer ? {maxZoom: layer.options.maxZoom} : {},
         geom = L.gmxUtil.geometryToGeoJSON(geometry, true),
         bounds = L.gmxUtil.getGeometryBounds(geom);
+
+    layer.setStyleHook((it) => {
+        if (it.id === id) {
+            return {
+                strokeStyle: 'rgba(0, 255, 255)',
+                lineWidth: 2
+            };
+        } else {
+            return {
+                strokeStyle: 'rgba(255, 255, 0)'
+            };
+        }
+    });
+
+    setTimeout(() => {
+        layer.removeStyleHook();
+    }, 2000);
 
     nsGmx.leafletMap.fitBounds([
         [bounds.min.y, bounds.min.x],
