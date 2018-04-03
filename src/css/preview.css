@@ -18,6 +18,10 @@ section[size="A4"][layout="portrait"] {
   height: 21cm;
 }
 
+iframe {
+    border: none;
+}
+
 @media print {
   body, section {
     margin: 0;

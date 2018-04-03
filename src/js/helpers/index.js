@@ -9,8 +9,6 @@ import encodeParams from './encodeParams';
 import mergeArrays from './mergeArrays';
 import mapFeaturesToStore from './mapFeaturesToStore';
 
-window.serverBase = '//maps.kosmosnimki.ru/';
-
 /**
  * Запрос за объектами слоя
  * VectorLayer/Search.ashx

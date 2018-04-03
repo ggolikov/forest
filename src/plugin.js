@@ -26,9 +26,6 @@ import { addScreenObserver } from './js/helpers';
                     }
                 );
 
-                // temporary here
-                addScreenObserver(map, window.nsGmx.gmxMap);
-
                 render(
                     <Root lmap={window.nsGmx.leafletMap} gmxMap={window.nsGmx.gmxMap} type="plugin" />,
                     forestPluginContainer
