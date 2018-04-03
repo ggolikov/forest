@@ -24,9 +24,7 @@ const preview = (params, id, type) => {
     if (window._mapHelper) {
         let permalinkPrams = {
             filters: {
-                [layerId]: function(it) {
-                                return it.id === id;
-                            }
+                [layerId]: [{'filterById': id}]
             }
         }
 
