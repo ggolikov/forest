@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
-import InputContainer from './InputContainer';
-import SelectContainer from './SelectContainer';
-import SelectInput from './SelectInput';
+import Button from './Button';
+import { InputContainer } from './containers';
+import { SelectContainer } from './containers';
+import SelectInput from './SelectInput/index';
 import LayerSelect from './LayerSelect';
 import DrawingButton from './DrawingButton';
 import SelectionBlock from './SelectionBlock';
-import { Panel, Collapse, Button } from 'react-bootstrap';
 import { loadFeatures, getLayersList } from '../helpers';
 import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
 
@@ -78,10 +78,10 @@ class App extends Component {
 
         const inputs = layerId ? (
             <div className="collapser-block">
-                <Panel className="opening-panel" onClick={this.openInputsPanel}>
+                <div className="opening-panel" onClick={this.openInputsPanel}>
                     {inputsPanelLabel}
-                </Panel>
-                <Collapse in={this.state.inputsCollapsed}>
+                </div>
+                <div /*in={this.state.inputsCollapsed}*/>
                     <div>
                         <SelectContainer
                             label={reportTypeSelectLabel}
@@ -127,11 +127,11 @@ class App extends Component {
                             loading={loading}
                         />
                     </div>
-                </Collapse>
-                <Panel className="opening-panel" onClick={this.openListPanel}>
+                </div>
+                <div className="opening-panel" onClick={this.openListPanel}>
                     {listPanelLabel}
-                </Panel>
-                <Collapse in={this.state.listCollapsed}>
+                </div>
+                <div /*in={this.state.listCollapsed}*/>
                     <div>
                         <DrawingButton layerId={layerId} lmap={lmap} idField={idField} />
                         <FeaturesList
@@ -150,7 +150,7 @@ class App extends Component {
                             revertLabel={revertSelectionLabel}
                         />
                     </div>
-                </Collapse>
+                </div>
                 <Button disabled>{createButtonLabel}</Button>
             </div>
         ) : loader ? (

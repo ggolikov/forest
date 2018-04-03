@@ -7,6 +7,7 @@ import './js/translations.js';
 import './js/translationsHash.js';
 
 window.nsGmx = window.nsGmx || {};
+window.serverBase = window.serverBase || '//maps.kosmosnimki.ru/';
 
 let osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         maxZoom: 18,

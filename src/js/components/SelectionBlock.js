@@ -1,6 +1,5 @@
 import React from 'react';
-import { FormControl } from 'react-bootstrap';
-import CheckboxContainer from './CheckboxContainer';
+import { CheckboxContainer } from './containers';
 
 const SelectionBlock = (props) => {
     return (

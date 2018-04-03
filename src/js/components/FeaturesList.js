@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, ControlLabel } from 'react-bootstrap';
 import { InfiniteLoader, List } from 'react-virtualized';
 import ListItem from './ListItem';
 import { loadFeatures } from '../helpers';
@@ -119,9 +118,9 @@ class FeaturesList extends Component {
 
         return (
             <div>
-                <ControlLabel className="gmx-features-list-label">
+                <div className="gmx-features-list-label">
                     {label}
-                </ControlLabel>
+                </div>
                 {loadedList}
             </div>
         )

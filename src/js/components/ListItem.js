@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col, Checkbox } from 'react-bootstrap';
+import Checkbox from './Checkbox';
 import { zoomToFeature, getFeatureProps, getFeatureProps2, preview } from '../helpers';
 import { changeFeatureSelection } from '../AC';
 

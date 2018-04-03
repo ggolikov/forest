@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectContainer from './SelectContainer';
+import SelectContainer from './Select';
 
 const LayerSelect = (props) => {
     const { values } = props;
