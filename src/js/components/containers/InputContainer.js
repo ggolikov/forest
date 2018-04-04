@@ -6,14 +6,17 @@ import * as actionCreators from '../../AC';
 import storeMapping from '../../storeMapping';
 
 const mapStateToProps = (state, ownProps) => {
-    const { label, param } = ownProps;
+    let { param, size, label, labelSize } = ownProps;
     let value = state[param];
+
+    size = size || 'large';
+    labelSize = labelSize || "small";
 
     if (typeof value === 'object') {
         value = value.value;
     }
 
-    return { label, value };
+    return { label, value, size, labelSize };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -33,6 +33,7 @@ class SelectInput extends Component {
         const { useSelect } = this.state;
         const inputElement =
             <InputContainer
+                size='with-addon'
                 // ref={(input) => {this.input = input}}
                 onInputChosen={this.onInputChosen}
                 param={param}
@@ -41,6 +42,7 @@ class SelectInput extends Component {
         const selectElement =
             <SelectContainer
                 // ref={(input) => {this.select = select}}
+                size='with-addon'
                 onSelectChosen={this.onSelectChosen}
                 param={param}
                 values={selectValues}
@@ -53,7 +55,7 @@ class SelectInput extends Component {
                 <div>
                     { useSelect ? selectElement : inputElement}
                     <Button
-                        active={useSelect}
+                        className= { useSelect ? "gmx-addon-button-toggled" : "gmx-addon-button"}
                         onClick={this.onButtonClick}
                     >
                     </Button>

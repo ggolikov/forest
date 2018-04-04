@@ -7,10 +7,12 @@ import storeMapping from '../../storeMapping';
 import { BLANK_SELECT_OPTION } from '../../constants';
 
 const mapStateToProps = (state, ownProps) => {
-    const { label, param, values, loading, loadAttributes } = ownProps;
-    const value = state[param];
+    let { label, param, values, loading, loadAttributes, size } = ownProps;
+    let value = state[param];
 
-    return { label, value, values, loading, loadAttributes };
+    size = size || 'large';
+    
+    return { label, value, values, loading, loadAttributes, size };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

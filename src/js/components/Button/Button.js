@@ -1,12 +1,14 @@
 import React from 'react';
+import './index.sass';
 
 const Button = (props) => {
+    const { className, onClick, children } = props;
     return (
         <button
-            active={props.active}
-            onClick={props.onClick}
+            className={className}
+            onClick={onClick}
         >
-            {props.children}
+            {children}
         </button>
     );
 }

@@ -1,14 +1,13 @@
 import React from 'react';
+import Label from '../components/Label';
 
 export const withLabel = InnerComponent => {
     return (props) => {
-        const { label } = props;
+        const { label, labelSize } = props;
 
         const elem = label ? (
-            <div className={"forest-select-block"}>
-                <div>
-                    {label}
-                </div>
+            <div className={"gmx-sidebar-labeled-block"}>
+                <Label txt={label} size={labelSize} />
                 <InnerComponent {...props}/>
             </div>
         ) : <InnerComponent {...props}/>;

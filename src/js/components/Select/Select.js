@@ -1,10 +1,11 @@
 import React from 'react';
-import './select.sass';
 import { BLANK_SELECT_OPTION } from '../../constants';
+import './index.sass';
 
 const Select = (props) => {
-    const { loading, values, placeholder, onChange } = props;
+    const { loading, values, placeholder, onChange, size } = props;
     const loadMessage = window._gtxt("Загрузка...");
+    const prefix = size ? `-${size}` : '';
     const children = loading ?
         <option value={loadMessage}>{loadMessage}</option> :
         values.map(value => {
@@ -25,6 +26,7 @@ const Select = (props) => {
 
     return (
         <select
+            className={`gmx-sidebar-select${prefix}`}
             placeholder={placeholder}
             onChange={onChange}
             disabled={loading}

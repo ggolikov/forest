@@ -1,12 +1,18 @@
 import React from 'react';
+import './index.sass';
 
 const Input = (props) => {
+    const { size, placeholder, value, onChange } = props;
+    const prefix = size ? `-${size}` : '';
+
     return (
         <input
+            className={`gmx-sidebar-select${prefix}`}
             type="text"
-            placeholder={props.placeholder}
-            onChange={props.onChange}
-            value={props.value}
+            size={size}
+            placeholder={placeholder}
+            onChange={onChange}
+            value={value}
         />
     );
 }

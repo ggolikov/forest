@@ -1,5 +1,6 @@
 // @import "./L.Control.gmxTimeLine.css"
-// @import "./fontello/css/fontello.css"
+// @import "./L.Control.gmxTimeLine.css"
+@import "./common.sass"
 
 html, body
     width: 100%
@@ -28,14 +29,6 @@ i
     width: 100%
     height: 100vh
     margin: 0
-
-.left-panel
-    width: 360px
-    height: 100%
-    float: left
-    text-align: center
-    overflow-y: scroll
-
 
 .content
     width: 100%
@@ -119,11 +112,6 @@ i
     margin-bottom: 27px
 
 
-.content
-    width: 100%
-    padding: 0 7% 0 7%
-
-
 a
     font-weight: 700
     color: rgba(27, 68, 97, 0.5)
@@ -160,9 +148,8 @@ h2
     width: 360px
     height: 100%
     float: left
-    text-align: center
     background: rgba(116, 194, 189, 0.2)
-    overflow-y: normal
+    overflow-y: scroll
     border-right: 1px dotted
 
 
@@ -211,14 +198,6 @@ option:not(:checked)
 
 option
     color: #49677d!important
-
-
-.forest-select-block
-    padding: 10px
-    width: auto
-    display: grid
-    text-align: left
-
 
 .checkbox label,
 .radio label

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
 import Button from './Button';
+import Label from './Label';
 import { InputContainer } from './containers';
 import { SelectContainer } from './containers';
 import SelectInput from './SelectInput/index';
-import LayerSelect from './LayerSelect';
+import LayerSelectPanel from './LayerSelectPanel';
 import DrawingButton from './DrawingButton';
 import SelectionBlock from './SelectionBlock';
 import { loadFeatures, getLayersList } from '../helpers';
@@ -78,9 +79,7 @@ class App extends Component {
 
         const inputs = layerId ? (
             <div className="collapser-block">
-                <div className="opening-panel" onClick={this.openInputsPanel}>
-                    {inputsPanelLabel}
-                </div>
+                <Label txt={inputsPanelLabel} size="medium" />
                 <div /*in={this.state.inputsCollapsed}*/>
                     <div>
                         <SelectContainer
@@ -162,13 +161,16 @@ class App extends Component {
         return (
             <div className="forest-plugin-container">
                 <div className="forest-plugin-header">
-                    <h2>{header}</h2>
+                    {header}
                 </div>
-                <div className="leftContent forest-plugin-content">
-                    <LayerSelect
+                <div className="forest-plugin-header">
+                    <LayerSelectPanel
                         values={layersValues}
                         mapValues={true}
                     />
+                </div>
+                <div className="leftContent forest-plugin-content">
+
                     {inputs}
                 </div>
             </div>
