@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import Root from './js/components/Root';
 import { initTimeline } from './js/mapHooks';
 import { addScreenObserver } from './js/helpers';
+import './css/main.sass';
 import './js/translations.js';
 import './js/translationsHash.js';
 
