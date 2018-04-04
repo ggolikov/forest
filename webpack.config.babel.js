@@ -1,34 +1,71 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import merge from 'webpack-merge';
 import path from 'path';
 import paths from './config';
+
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(paths.src, 'index.html'),
     name: 'index.html',
     inject: 'body'
 });
 
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css"
+});
+
+const common = {
+    devtool: "cheap-inline-module-source-map",
+    module: {
+        rules: [{
+                    test: /\.jsx?$/,
+                    use: [{
+                        loader: "babel-loader"
+                    }],
+                    exclude: /node_modules/
+                }, {
+                    test: /\.css$/,
+                    use: [{
+                        loader: "style-loader!css-loader"
+                    }],
+                    exclude: /node_modules/
+                }, {
+                    test: /\.sass$/,
+                    use: extractSass.extract({
+                        use: [{
+                            loader: "css-loader" // translates CSS into CommonJS
+                        }, {
+                            loader: "sass-loader" // compiles Sass to CSS
+                        }],
+                        fallback: "style-loader" // creates style nodes from JS strings
+                    }),
+                    exclude: /node_modules/
+                },  {
+                    test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+                    use: [{
+                        loader: "file-loader?name=[name].[ext]"
+                    }],
+                    exclude: /node_modules/
+                }
+        ]
+    },
+}
+
 module.exports = (env) => {
     if (env.plugin) {
-        return {
+        console.log('build plugin');
+        return merge({
             entry: {
                 'forestProjectPlugin': `${paths.src}/plugin.js`,
                 'preview': `${paths.src}/preview.js`
-            },
-            devtool: "cheap-inline-module-source-map",
-            module: {
-                loaders: [
-                    { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
-                    { test: /\.css$/, exclude: /node_modules/, loader: 'style-loader!css-loader' },
-                    { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, exclude: /node_modules/, loader: "file-loader?name=[name].[ext]" }
-                ]
             },
             output: {
                 path: paths.dist,
                 filename: '[name].js'
             },
             plugins: [
+                extractSass,
                 new HtmlWebpackPlugin({
                     template: path.join(paths.src, 'preview.html'),
                     filename: 'preview.html',
@@ -42,29 +79,23 @@ module.exports = (env) => {
                     { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.dist, 'css/fontello') }
                 ])
             ]
-        }
+        }, common);
     } else {
-        return {
+        console.log('build standalone');
+        return merge({
             entry: {
                 'index': `${paths.src}/index.js`,
                 'preview': `${paths.src}/preview.js`
             },
-            devtool: "cheap-inline-module-source-map",
             devServer: {
                 historyApiFallback: true,
-            },
-            module: {
-                loaders: [
-                    { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
-                    { test: /\.css$/, exclude: /node_modules/, loader: 'style-loader!css-loader' },
-                    { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/, exclude: /node_modules/, loader: "file-loader?name=[name].[ext]" }
-                ]
             },
             output: {
                 path: paths.public,
                 filename: '[name].js'
             },
             plugins: [
+                extractSass,
                 new HtmlWebpackPlugin({
                     template: path.join(paths.src, 'index.html'),
                     name: 'index.html',
@@ -85,6 +116,6 @@ module.exports = (env) => {
                     { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.public, 'css/fontello') }
                 ])
             ]
-        }
+        }, common);
     }
 }

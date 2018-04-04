@@ -1,4 +1,5 @@
 import React from 'react';
+import './select.sass';
 import { BLANK_SELECT_OPTION } from '../../constants';
 
 const Select = (props) => {

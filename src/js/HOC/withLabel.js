@@ -1,5 +1,4 @@
 import React from 'react';
-import { ControlLabel } from 'react-bootstrap';
 
 export const withLabel = InnerComponent => {
     return (props) => {
@@ -7,9 +6,9 @@ export const withLabel = InnerComponent => {
 
         const elem = label ? (
             <div className={"forest-select-block"}>
-                <ControlLabel>
+                <div>
                     {label}
-                </ControlLabel>
+                </div>
                 <InnerComponent {...props}/>
             </div>
         ) : <InnerComponent {...props}/>;
