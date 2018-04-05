@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
+import FeaturesTable from './FeaturesTable/index';
 import Button from './Button';
 import Label from './Label';
 import { InputContainer } from './containers';
@@ -133,7 +134,7 @@ class App extends Component {
                 <div /*in={this.state.listCollapsed}*/>
                     <div>
                         <DrawingButton layerId={layerId} lmap={lmap} idField={idField} />
-                        <FeaturesList
+                        <FeaturesTable
                             loading={loading}
                             idFieldIndex={idFieldIndex}
                             idField={idField}

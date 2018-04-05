@@ -32,9 +32,7 @@ const common = {
                     exclude: /node_modules/
                 }, {
                     test: /\.css$/,
-                    use: [{
-                        loader: "style-loader!css-loader"
-                    }],
+                    use: [ 'style-loader', 'css-loader' ],
                     exclude: /node_modules/
                 }, {
                     test: /\.sass$/,
