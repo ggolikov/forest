@@ -164,12 +164,10 @@ class App extends Component {
                 <div className="forest-plugin-header">
                     {header}
                 </div>
-                <div className="forest-plugin-header">
-                    <LayerSelectPanel
-                        values={layersValues}
-                        mapValues={true}
-                    />
-                </div>
+                <LayerSelectPanel
+                    values={layersValues}
+                    mapValues={true}
+                />
                 <div className="leftContent forest-plugin-content">
 
                     {inputs}

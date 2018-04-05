@@ -5,7 +5,7 @@ import { SelectCheckboxContainer } from '../containers';
 import { zoomToFeature, getFeatureProps, getFeatureProps2, preview } from '../../helpers';
 import { FEATURES_CHUNK_SIZE } from '../../constants';
 import Icon from './Icon';
-import "./react-table.sass";
+// import "./react-table.sass";
 import "./index.sass";
 
 class FeaturesTable extends Component {
@@ -49,7 +49,7 @@ class FeaturesTable extends Component {
 
         return (
             <Icon
-                action="zoomtoFeature"
+                action="zoomToFeature"
                 type={type}
                 layerId={layerId}
                 id={id}

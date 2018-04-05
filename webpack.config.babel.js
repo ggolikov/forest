@@ -46,7 +46,7 @@ const common = {
                 },  {
                     test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.woff2$|\.eot$|\.ttf$|\.wav$|\.mp3$/,
                     use: [{
-                        loader: "file-loader?name=./css/fontello/font/[name].[ext]"
+                        loader: "file-loader?name=./icons/[name].[ext]"
                     }],
                     exclude: /node_modules/
                 }
@@ -77,7 +77,7 @@ module.exports = (env) => {
                 new CopyWebpackPlugin([
                     { from: path.join(paths.src, 'css/preview.css'), to: path.join(paths.dist, 'css/preview.css') },
                     { from: path.join(paths.src, 'css/scanex_logo.jpg'), to: path.join(paths.dist, 'css/scanex_logo.jpg') },
-                    { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.dist, 'css/fontello') }
+                    { from: path.join(paths.src, 'css/icons'), to: path.join(paths.dist, 'css/icons') }
                 ])
             ]
         }, common);
@@ -113,7 +113,7 @@ module.exports = (env) => {
                     { from: path.join(paths.src, 'js/lib/GMXPluginTimeLine/L.Control.gmxTimeLine.css'), to: path.join(paths.public, 'css/L.Control.gmxTimeLine.css') },
                     { from: path.join(paths.src, 'css/preview.css'), to: path.join(paths.public, 'css/preview.css') },
                     { from: path.join(paths.src, 'css/scanex_logo.jpg'), to: path.join(paths.public, 'css/scanex_logo.jpg') },
-                    { from: path.join(paths.src, 'css/fontello'), to: path.join(paths.public, 'css/fontello') }
+                    { from: path.join(paths.src, 'css/icons'), to: path.join(paths.public, 'css/icons') }
                 ])
             ]
         }, common);
