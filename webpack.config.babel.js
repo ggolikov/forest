@@ -31,24 +31,22 @@ const common = {
                     }],
                     exclude: /node_modules/
                 }, {
-                    test: /\.css$/,
-                    use: [ 'style-loader', 'css-loader' ],
-                    exclude: /node_modules/
-                }, {
-                    test: /\.sass$/,
+                    test: /\.(scss|sass|css)$/i,
                     use: extractSass.extract({
                         use: [{
                             loader: "css-loader" // translates CSS into CommonJS
-                        }, {
+                        },
+                        'resolve-url-loader',
+                        {
                             loader: "sass-loader" // compiles Sass to CSS
                         }],
                         fallback: "style-loader" // creates style nodes from JS strings
                     }),
                     exclude: /node_modules/
                 },  {
-                    test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+                    test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.woff2$|\.eot$|\.ttf$|\.wav$|\.mp3$/,
                     use: [{
-                        loader: "file-loader?name=[name].[ext]"
+                        loader: "file-loader?name=./css/fontello/font/[name].[ext]"
                     }],
                     exclude: /node_modules/
                 }

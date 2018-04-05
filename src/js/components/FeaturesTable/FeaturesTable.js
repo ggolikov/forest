@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import ReactTable from "react-table";
 import { ReactTableDefaults } from 'react-table'
 import { SelectCheckboxContainer } from '../containers';
-import { loadFeatures } from '../../helpers';
+import { zoomToFeature, getFeatureProps, getFeatureProps2, preview } from '../../helpers';
 import { FEATURES_CHUNK_SIZE } from '../../constants';
+import Icon from './Icon';
 import "./react-table.sass";
 import "./index.sass";
 
@@ -43,7 +44,33 @@ class FeaturesTable extends Component {
     }
 
     drawZoomToFeatureIcon = (props) => {
+        const { layerId, type } = this.props;
+        const { id, geometry } = props.original;
 
+        return (
+            <Icon
+                action="zoomtoFeature"
+                type={type}
+                layerId={layerId}
+                id={id}
+                geometry={geometry}
+            />
+        )
+    }
+
+    drawShowPreviewIcon = (props) => {
+        const { layerId, type } = this.props;
+        const { id, geometry } = props.original;
+
+        return (
+            <Icon
+                action="showPreview"
+                type={type}
+                layerId={layerId}
+                id={id}
+                geometry={geometry}
+            />
+        )
     }
 
     render() {
@@ -61,6 +88,10 @@ class FeaturesTable extends Component {
                 Header: 'приблизить',
                 Cell: this.drawZoomToFeatureIcon,
                 accessor: 'id'
+            }, {
+                Header: 'превью',
+                Cell: this.drawShowPreviewIcon,
+                accessor: 'id'
             }/*, {
               id: 'friendName', // Required because our accessor is not a string
               Header: 'Friend Name',
@@ -69,6 +100,7 @@ class FeaturesTable extends Component {
               Header: props => <span>Friend Age</span>, // Custom header components!
               accessor: 'friend.age'
           }*/]
+
         return (
                 <ReactTable
                   data={list}

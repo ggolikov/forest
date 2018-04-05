@@ -12,11 +12,14 @@ const selectRasters = (gmxMap, geometry) => {
         const l = gmxMap.layersByID[layerId];
         const { beginDate, endDate } = l.getDateInterval && l.getDateInterval();
 
+        const timeQuery = (beginDate && endDate) ?
+                `AND ([acqdate] > '${beginDate.toLocaleDateString()}' OR [acqdate] < '${beginDate.toLocaleDateString()}')` : '';
+                
         const params = {
             layer: layerId,
             page: 0,
             pagesize: 500,
-            query: `STIntersects([gmx_geometry], GeometryFromGeoJson('${JSON.stringify(geometry)}', 3857)) AND ([acqdate] > '${beginDate.toLocaleDateString()}' OR [acqdate] < '${beginDate.toLocaleDateString()}')`
+            query: `STIntersects([gmx_geometry], GeometryFromGeoJson('${JSON.stringify(geometry)}', 3857))${timeQuery}`
         },
         url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
         options = {
