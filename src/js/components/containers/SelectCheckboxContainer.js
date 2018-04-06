@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Checkbox from '../Checkbox';
-import { changeFeatureSelection } from '../../AC';
+import { updateFeature } from '../../AC';
 
 const mapStateToProps = (state, ownProps) => {
     const { param } = ownProps;
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onChange: e => {
             const value = e.target.checked;
-            dispatch(changeFeatureSelection(id, value));
+            dispatch(updateFeature(id, value));
         }
     }
 }

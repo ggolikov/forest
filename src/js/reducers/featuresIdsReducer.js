@@ -1,7 +1,7 @@
 import {
     SET_FEATURES_IDS,
-    CHANGE_FEATURE_SELETION,
-    CHANGE_FEATURES_SELETION,
+    UPDATE_FEATURE,
+    UPDATE_FEATURES,
     REVERT_SELECTION,
     SELECT_ALL_FEATURES
  } from '../constants';
@@ -15,7 +15,7 @@ const featuresIdsReducer = (featuresIds = [], action) => {
         case SET_FEATURES_IDS:
             return payload.ids;
             break;
-        case CHANGE_FEATURE_SELETION:
+        case UPDATE_FEATURE:
             const { id, selected } = payload,
                 index = featuresIds.findIndex(item => item.id === id),
                 feature = featuresIds[index],
@@ -28,7 +28,7 @@ const featuresIdsReducer = (featuresIds = [], action) => {
             ]
             return updatedIds;
             break;
-        case CHANGE_FEATURES_SELETION:
+        case UPDATE_FEATURES:
             const { features } = payload;
             const updated = mergeArrays(featuresIds, features);
 

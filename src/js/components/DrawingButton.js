@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './Button';
-import { changeFeaturesSelection } from '../AC';
+import { updateFeatures } from '../AC';
 import { selectFeaturesWithDrawing, mapFeaturesToStore } from '../helpers';
 
 class DrawingButton extends Component {
@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 .then(json => {
                     const index = json.Result.fields.indexOf(idField);
                     const featuresIds = mapFeaturesToStore(json.Result, index, true);
-                    dispatch(changeFeaturesSelection(featuresIds));
+                    dispatch(updateFeatures(featuresIds));
                 });
         }
     }
