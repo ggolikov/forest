@@ -39,7 +39,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         ...ownProps,
         onClick: () => {
-            const FIELD = 'PLSVYD';
             const { layerId, code } = ownProps;
             const { state } = stateProps;
             const { featuresIds } = state;
@@ -50,7 +49,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
                         action: "update",
                         id: item.id,
                         properties: {
-                            [FIELD]: code
+                            [STATUS_COLUMN_NAME]: code
                         }
                     }
                 });
@@ -64,7 +63,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
                         return feature;
                     })
                     console.log(updatedFeatures);
-                    // updateFeatures
+                    dispatch(updateFeatures(updatedFeatures));
                     ownProps.toggleLoading(false);
                 });
 

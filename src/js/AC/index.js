@@ -7,6 +7,7 @@ import {
     UPDATE_FEATURE,
     UPDATE_FEATURES,
     REVERT_SELECTION,
+    CLEAR_SELECTION,
     SELECT_ALL_FEATURES,
     SET_FEATURES_COUNT,
     SET_ATTRIBUTES_LIST,
@@ -72,6 +73,12 @@ export function updateFeatures(features) {
 export function revertSelection() {
     return {
         type: REVERT_SELECTION
+    }
+}
+
+export function clearSelection() {
+    return {
+        type: CLEAR_SELECTION
     }
 }
 

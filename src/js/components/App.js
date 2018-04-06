@@ -64,6 +64,7 @@ class App extends Component {
         const quadrantLabel = window._gtxt("Квартал");
         const stratumLabel = window._gtxt("Выдел");
         const revertSelectionLabel = window._gtxt("Инвертировать выделение");
+        const clearSelectionLabel = window._gtxt("Снять выделение");
         const selectAllFeaturesLabel = window._gtxt("Выделить все");
         const createButtonLabel = window._gtxt("Создать отчеты");
 
@@ -117,9 +118,7 @@ class App extends Component {
                         />
                     </div>
                 </div>
-                <div className="opening-panel" >
-                    {listPanelLabel}
-                </div>
+                <Label txt={listPanelLabel} size="medium" />
                 <div /*in={this.state.listCollapsed}*/>
                     <div>
                         <DrawingButton layerId={layerId} lmap={lmap} idField={idField} />
@@ -137,6 +136,7 @@ class App extends Component {
                             totalCount={selectedFeaturesCount}
                             selectLabel={selectAllFeaturesLabel}
                             revertLabel={revertSelectionLabel}
+                            clearLabel={clearSelectionLabel}
                         />
                         <StatusChangePanel
                             layerId={layerId}
@@ -161,7 +161,6 @@ class App extends Component {
                     mapValues={true}
                 />
                 <div className="leftContent forest-plugin-content">
-
                     {inputs}
                 </div>
             </div>

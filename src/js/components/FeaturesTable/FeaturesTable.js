@@ -21,7 +21,7 @@ class FeaturesTable extends Component {
             showPaginationTop: false,
             showPaginationBottom: false,
             showPageSizeOptions: false,
-            defaultPageSize: 2
+            defaultPageSize: 15
             // defaultPageSize: props.featuresCount
         }
 
@@ -39,8 +39,34 @@ class FeaturesTable extends Component {
         return (
             <SelectCheckboxContainer
                 id={id}
-                selected={selected}
+                checked={selected}
             />
+        );
+    }
+
+    drawStatusIndicator = (props) => {
+        // const { layerId, type } = this.props;
+        const { status } = props.original;
+        let prefix;
+
+        switch (status) {
+            case 0:
+                prefix = '-bad';
+                break;
+            case 1:
+                prefix = '-mean';
+                break;
+            case 2:
+                prefix = '-good';
+                break;
+            default:
+                prefix = '-bad';
+        }
+
+        let indicatorClassName = `gmx-status-indicator${prefix}`
+
+        return (
+            <div className={indicatorClassName}></div>
         );
     }
 
@@ -86,18 +112,19 @@ class FeaturesTable extends Component {
                 Header: 'Id',
                 accessor: 'id' // String-based value accessors!
             }, {
-                Header: 'приблизить',
-                Cell: this.drawZoomToFeatureIcon,
-                accessor: 'id'
+                id: 'status',
+                Header: 'статус',
+                Cell: this.drawStatusIndicator,
+                accessor: d => (-d.status)
             }, {
                 Header: 'превью',
                 Cell: this.drawShowPreviewIcon,
                 accessor: 'id'
-            }/*, {
-              id: 'friendName', // Required because our accessor is not a string
-              Header: 'Friend Name',
-              accessor: d => d.friend.name // Custom value accessors!
             }, {
+                Header: 'приблизить',
+                Cell: this.drawZoomToFeatureIcon,
+                accessor: 'id'
+            }/*, {
               Header: props => <span>Friend Age</span>, // Custom header components!
               accessor: 'friend.age'
           }*/]

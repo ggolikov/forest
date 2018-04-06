@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const dispatchFunc = actionCreators[dispatchFuncName];
 
     return {
+        ...ownProps,
         onChange: e => {
             dispatch(dispatchFunc(e.target.value));
         }

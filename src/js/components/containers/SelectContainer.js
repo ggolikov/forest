@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     let value = state[param];
 
     size = size || 'large';
-    
+
     return { label, value, values, loading, loadAttributes, size };
 }
 
@@ -21,6 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const dispatchFunc = actionCreators[dispatchFuncName];
 
     return {
+        ownProps,
         onChange: e => {
             let { value } = e.target;
 

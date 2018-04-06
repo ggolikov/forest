@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const dispatchFunc = actionCreators[param];
 
     return {
+        ownProps,
         onChange: e => {
             const value = e.target.checked;
             dispatch(dispatchFunc(value));

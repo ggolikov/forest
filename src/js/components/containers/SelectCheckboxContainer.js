@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { id } = ownProps;
 
     return {
+        ...ownProps,
         onChange: e => {
             const value = e.target.checked;
             dispatch(updateFeature(id, value));

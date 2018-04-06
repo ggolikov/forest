@@ -1,4 +1,18 @@
 .gmx-table-icon-container
-    width: 100%
-    height: 24px
-    cursor: pointer
+    width: 20px
+    height: 20px
+
+.gmx-status-indicator
+    width: 14px
+    height: 14px
+    line-height: 24px
+    border-radius: 50%
+    &-bad
+        @extend .gmx-status-indicator
+        background-color: #F79F81
+    &-mean
+        @extend .gmx-status-indicator
+        background-color: #F4FA58
+    &-good
+        @extend .gmx-status-indicator
+        background-color: #9FF781

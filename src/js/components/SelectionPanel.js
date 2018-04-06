@@ -16,6 +16,7 @@ const SelectionPanel = (props) => {
                 label={props.revertLabel}
             />
             <ButtonContainer
+                className="gmx-sidebar-button"
                 param="clearSelection"
             >
                 {props.clearLabel}
