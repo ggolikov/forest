@@ -13,9 +13,6 @@ export default store => next => action => {
     const { layerId, idField } = state;
     const { type, payload } = action;
 
-
-
-
     const getFeaturesAndCount = json => {
         if (json.Status !== 'error') {
             const index = json.Result.fields.indexOf(idField);

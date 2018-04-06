@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Checkbox from './Checkbox';
 import { zoomToFeature, getFeatureProps, getFeatureProps2, preview } from '../helpers';
-import { changeFeatureSelection } from '../AC';
+import { updateFeature } from '../AC';
 
 class ListItem extends Component {
     constructor(props) {
@@ -81,7 +81,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     return {
         onItemSelect: (e) => {
-            dispatch(changeFeatureSelection(id, e.target.checked));
+            dispatch(updateFeature(id, e.target.checked));
         }
     }
 }
