@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Input from './Input';
+import Button from '../Button';
 import { withLabel } from '../../HOC';
 import * as actionCreators from '../../AC';
 import storeMapping from '../../storeMapping';
@@ -18,16 +18,16 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     const { param } = ownProps;
-    const dispatchFuncName = storeMapping[param];
-    const dispatchFunc = actionCreators[dispatchFuncName];
+    const dispatchFunc = actionCreators[param];
 
     return {
-        onChange: e => {
-            dispatch(dispatchFunc(e.target.value));
+        ownProps,
+        onClick: e => {
+            dispatch(dispatchFunc());
         }
     }
 }
 
-const InputContainer = connect(mapStateToProps, mapDispatchToProps)(withLabel(Input));
+const ButtonContainer = connect(mapStateToProps, mapDispatchToProps)(withLabel(Button));
 
-export default InputContainer;
+export default ButtonContainer;

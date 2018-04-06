@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckboxContainer } from './containers';
+import { ButtonContainer, CheckboxContainer } from './containers';
 
 const SelectionPanel = (props) => {
     return (
@@ -15,6 +15,11 @@ const SelectionPanel = (props) => {
                 defaultChecked={false}
                 label={props.revertLabel}
             />
+            <ButtonContainer
+                param="clearSelection"
+            >
+                {props.clearLabel}
+            </ButtonContainer>
         </div>
     );
 }
