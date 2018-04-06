@@ -50,7 +50,7 @@ class DrawingButton extends Component {
 
         return (
             <Button
-                active={active}
+                className= { active ? "gmx-sidebar-button-toggled" : "gmx-sidebar-button"}
                 onClick={this.onclick}
             >
                 {txt}

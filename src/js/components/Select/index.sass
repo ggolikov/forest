@@ -11,11 +11,14 @@
         width: 200px
     &-large
         @extend .gmx-sidebar-select
-        width: 297px
+        width: 100%
     &-with-addon
         @extend .gmx-sidebar-select
         display: table-cell
         float: left
-        width: 252px
+        width: 85%
         border-top-right-radius: 0
         border-bottom-right-radius: 0
+        &-small
+            @extend .gmx-sidebar-select-with-addon
+            width: 70%

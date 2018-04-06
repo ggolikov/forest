@@ -7,7 +7,7 @@ const Input = (props) => {
 
     return (
         <input
-            className={`gmx-sidebar-select${prefix}`}
+            className={`gmx-sidebar-input${prefix}`}
             type="text"
             size={size}
             placeholder={placeholder}

@@ -8,7 +8,8 @@ import { SelectContainer } from './containers';
 import SelectInput from './SelectInput/index';
 import LayerSelectPanel from './LayerSelectPanel';
 import DrawingButton from './DrawingButton';
-import SelectionBlock from './SelectionBlock';
+import SelectionPanel from './SelectionPanel';
+import StatusChangePanel from './StatusChangePanel';
 import { loadFeatures, getLayersList } from '../helpers';
 import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
 
@@ -30,18 +31,6 @@ class App extends Component {
         this.setState({
             loading: featuresIds.length === 0,
             allFeaturesChecked: featuresIds.every(item => item.selected)
-        });
-    }
-
-    openInputsPanel = (e) => {
-        this.setState({
-            inputsCollapsed: !this.state.inputsCollapsed
-        });
-    }
-
-    openListPanel = (e) => {
-        this.setState({
-            listCollapsed: !this.state.listCollapsed
         });
     }
 
@@ -128,7 +117,7 @@ class App extends Component {
                         />
                     </div>
                 </div>
-                <div className="opening-panel" onClick={this.openListPanel}>
+                <div className="opening-panel" >
                     {listPanelLabel}
                 </div>
                 <div /*in={this.state.listCollapsed}*/>
@@ -143,12 +132,13 @@ class App extends Component {
                             featuresCount={featuresCount}
                             type={type}
                         />
-                        <SelectionBlock
+                        <SelectionPanel
                             full={allFeaturesChecked}
                             totalCount={selectedFeaturesCount}
                             selectLabel={selectAllFeaturesLabel}
                             revertLabel={revertSelectionLabel}
                         />
+                        <StatusChangePanel />
                     </div>
                 </div>
                 <Button disabled>{createButtonLabel}</Button>

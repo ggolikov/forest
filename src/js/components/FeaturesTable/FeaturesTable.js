@@ -21,6 +21,7 @@ class FeaturesTable extends Component {
             showPaginationTop: false,
             showPaginationBottom: false,
             showPageSizeOptions: false,
+            defaultPageSize: 2
             // defaultPageSize: props.featuresCount
         }
 

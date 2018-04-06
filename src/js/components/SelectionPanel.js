@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckboxContainer } from './containers';
 
-const SelectionBlock = (props) => {
+const SelectionPanel = (props) => {
     return (
         <div>
             <div>{`Выделено: ${props.totalCount}`}</div>
@@ -19,4 +19,4 @@ const SelectionBlock = (props) => {
     );
 }
 
-export default SelectionBlock;
+export default SelectionPanel;

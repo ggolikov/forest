@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../Button';
-import InputContainer from '../Input';
-import SelectContainer from '../Select';
+import { InputContainer } from '../containers';
+import { SelectContainer } from '../containers';
 import { withLabel } from '../../HOC';
 
 class SelectInput extends Component {
