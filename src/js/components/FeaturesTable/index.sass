@@ -3,6 +3,7 @@
 .ReactTable
     position: relative
     border: 1px solid #d7e1e7
+    min-width: 100%
 
 .ReactTable *
     box-sizing: border-box
@@ -18,16 +19,17 @@
 
 .ReactTable .rt-thead
     cursor: pointer
-    width: 297px
-    height: 31px
+    width: 100%
+    height: 33px
     border-radius: 3px
     background-color: #f7fbff
-    border: 1px solid #d7e1e7
 
 .ReactTable .rt-th,
 .ReactTable .rt-td
     display: table-cell
 
+.ReactTable .rt-resizable-header-content
+    padding: 0 6px
 
 .ReactTable .rt-thead.-headerGroups
 

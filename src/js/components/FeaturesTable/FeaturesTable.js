@@ -34,6 +34,20 @@ class FeaturesTable extends Component {
         this.setState({list});
     }
 
+
+    showPreview = (e) => {
+        const state = window.store.getState();
+
+        getFeatureProps2({ id, geometry }, state)
+            .then(res => {
+                preview(res, id, type);
+            });
+    }
+
+    onZoomIconClick = (e) => {
+        zoomToFeature(layerId, id, geometry);
+    }
+
     drawCheckbox = (props) => {
         const { id, selected } = props.original;
         return (
@@ -76,7 +90,8 @@ class FeaturesTable extends Component {
 
         return (
             <Icon
-                action="zoomToFeature"
+                action='zoomToFeature'
+                onClick={this.onZoomIconClick}
                 type={type}
                 layerId={layerId}
                 id={id}
@@ -91,7 +106,8 @@ class FeaturesTable extends Component {
 
         return (
             <Icon
-                action="showPreview"
+                action='showPreview'
+                onClick={this.showPreview}
                 type={type}
                 layerId={layerId}
                 id={id}
@@ -106,7 +122,8 @@ class FeaturesTable extends Component {
             {
                 Header: 'выделение',
                 Cell: this.drawCheckbox,
-                accessor: 'id'
+                accessor: 'id',
+                minWidth: 50
             },
             {
                 Header: 'Id',
@@ -115,15 +132,18 @@ class FeaturesTable extends Component {
                 id: 'status',
                 Header: 'статус',
                 Cell: this.drawStatusIndicator,
-                accessor: d => (-d.status)
+                accessor: d => (-d.status),
+                minWidth: 50
             }, {
                 Header: 'превью',
                 Cell: this.drawShowPreviewIcon,
-                accessor: 'id'
+                accessor: 'id',
+                minWidth: 50
             }, {
                 Header: 'приблизить',
                 Cell: this.drawZoomToFeatureIcon,
-                accessor: 'id'
+                accessor: 'id',
+                minWidth: 50
             }/*, {
               Header: props => <span>Friend Age</span>, // Custom header components!
               accessor: 'friend.age'
