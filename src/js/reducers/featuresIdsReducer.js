@@ -18,14 +18,12 @@ const featuresIdsReducer = (featuresIds = [], action) => {
         case CHANGE_FEATURE_SELETION:
             const { id, selected } = payload,
                 index = featuresIds.findIndex(item => item.id === id),
-                feature = featuresIds[index];
+                feature = featuresIds[index],
+                updatedFeature = Object.assign({}, feature, {selected: selected});
 
             const updatedIds = [
                 ...featuresIds.slice(0, index),
-                {
-                    id: feature.id,
-                    selected: selected
-                },
+                updatedFeature,
                 ...featuresIds.slice(index + 1)
             ]
             return updatedIds;
@@ -38,20 +36,16 @@ const featuresIdsReducer = (featuresIds = [], action) => {
             break;
         case REVERT_SELECTION:
             return featuresIds.map(item => {
-                return {
-                    id: item.id,
-                    selected: !item.selected
-                }
+                item.selected = !item.selected;
+                return item;
             });
             break;
         case SELECT_ALL_FEATURES:
         const { selectAll } = payload;
 
         return featuresIds.map(item => {
-            return {
-                id: item.id,
-                selected: selectAll
-            }
+            item.selected = selectAll;
+            return item;
         });
             break;
         default:

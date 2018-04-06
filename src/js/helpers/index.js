@@ -5,6 +5,8 @@ import mapStateToRows from './mapStateToRows';
 import selectFeaturesWithDrawing from './selectFeaturesWithDrawing';
 import preview from './preview';
 import getAttribute from './getAttribute';
+import getFeatureAttribute from './getFeatureAttribute';
+import updateObjects from './updateObjects';
 import encodeParams from './encodeParams';
 import mergeArrays from './mergeArrays';
 import mapFeaturesToStore from './mapFeaturesToStore';
@@ -122,5 +124,7 @@ export {
         getAttribute,
         selectFeaturesWithDrawing,
         mergeArrays,
-        mapFeaturesToStore
+        mapFeaturesToStore,
+        updateObjects,
+        getFeatureAttribute
     };

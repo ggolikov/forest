@@ -138,7 +138,9 @@ class App extends Component {
                             selectLabel={selectAllFeaturesLabel}
                             revertLabel={revertSelectionLabel}
                         />
-                        <StatusChangePanel />
+                        <StatusChangePanel
+                            layerId={layerId}
+                        />
                     </div>
                 </div>
                 <Button disabled>{createButtonLabel}</Button>

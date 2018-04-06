@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BeatLoader } from 'react-spinners';
 import Button from '../Button';
 import Select from '../Select';
-// import { selectFeaturesWithDrawing, mapFeaturesToStore } from '../helpers';
+import { STATUS_COLUMN_NAME, BLANK_SELECT_OPTION } from '../../constants';
+import { updateObjects } from '../../helpers';
 
 class StatusChangePanel extends Component {
     constructor(props) {
@@ -17,6 +18,9 @@ class StatusChangePanel extends Component {
         const value = e.target.value;
         console.log(value);
         switch (value) {
+            case BLANK_SELECT_OPTION:
+                this.setState({code: null});
+                break;
             case window._gtxt("отчет создан"):
                 this.setState({code: 0});
                 break;
@@ -31,8 +35,37 @@ class StatusChangePanel extends Component {
     }
 
     onButtonClick = () => {
-        console.log(this.state.code);
+        const FIELD = 'PLSVYD';
+        const { layerId } = this.props;
+        const { code } = this.state;
+        const state = window.store.getState();
+        const { featuresIds } = state;
+        const selectedFeatures = featuresIds
+            .map(item => {
+                return {
+                    id: item.id,
+                    selected: item.selected
+                }
+            })
+            .filter(item => item.selected)
+            .map(item => {
+                return {
+                    action: "update",
+                    id: item.id,
+                    properties: {
+                        [FIELD]: code
+                    }
+                }
+            });
+
+        console.log(selectedFeatures);
+        console.log(code);
         this.setState({isLoading: true});
+
+        updateObjects(layerId, selectedFeatures)
+            .then(res => {
+                console.log(res);
+            });
 
         setTimeout(() => {
             this.setState({isLoading: false});
@@ -42,6 +75,7 @@ class StatusChangePanel extends Component {
     render() {
         const { isLoading } = this.state;
         const valuesList = [
+            BLANK_SELECT_OPTION,
             window._gtxt("отчет создан"),
             window._gtxt("имеются замечания"),
             window._gtxt("отчет не создан")
