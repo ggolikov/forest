@@ -96,7 +96,7 @@ export const addScreenObserver = (leafletMap, gmxMap) => {
 
     const layer = gmxMap.layersByID[SENTINEL_LAYER_ID];
 
-    window.layer = layer;
+    // window.layer = layer;
     const gmx = layer._gmx;
     const observerCallback = (data) => {};
 
@@ -115,6 +115,35 @@ export const addScreenObserver = (leafletMap, gmxMap) => {
 
     const currentSatObserver = gmx.dataManager.addObserver(observerOptions, 'currentSat');
     window.currentSatObserver = currentSatObserver;
+}
+
+export const setStyle = (layer, features)  => {
+    const idsHash = features.reduce((obj, currentItem, index, arr) => {
+        obj[currentItem.id] = true;
+            return obj;
+    }, {});
+
+    layer.setStyleHook((it) => {
+        if (it.id in idsHash) {
+            return {
+                strokeStyle: 'rgba(0, 255, 255, 0.9)',
+                lineWidth: 4
+            };
+        } else {
+            return {
+                strokeStyle: 'rgba(255, 255, 0, 0.9)',
+                lineWidth: 1
+            };
+        }
+    });
+}
+
+export const clearStyle = (layer, features)  => {
+    layer.setStyleHook((it) => {
+        return {
+            strokeStyle: 'rgba(255, 255, 0)'
+        };
+    });
 }
 
 export {

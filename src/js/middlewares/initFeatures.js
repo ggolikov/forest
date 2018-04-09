@@ -30,8 +30,7 @@ export default store => next => action => {
             loadFeatures(payload.layerId, 0, null, 'add')
                 .then(json => getFeaturesAndCount(json));
             next(actionCreators.changeLoaderStatus(true));
-        }
-        else {
+        } else {
             next(actionCreators.changeLoaderStatus(false));
             next({ type, payload });
         }

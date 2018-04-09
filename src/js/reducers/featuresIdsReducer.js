@@ -42,7 +42,6 @@ const featuresIdsReducer = (featuresIds = [], action) => {
             });
             break;
         case CLEAR_SELECTION:
-
             return featuresIds.map(item => {
                 item.selected = false;
                 return item;
