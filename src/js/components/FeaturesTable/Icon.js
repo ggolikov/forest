@@ -23,12 +23,12 @@ const Icon = ({ action, onClick, type, layerId, id, geometry }) => {
         case 'zoomToFeature':
             handler = onZoomIconClick;
             iconClassName = 'gmx-icon-zoom-to-feature';
-            path = './css/icons/zoom-to-feature.svg'
+            path = type === 'plugin' ? './plugins/forestproject/css/icons/zoom-to-feature.svg' : './css/icons/zoom-to-feature.svg';
             break;
         case 'showPreview':
             handler = showPreview;
             iconClassName = 'gmx-icon-show-preview';
-            path = './css/icons/show-preview.svg'
+            path = type === 'plugin' ? './plugins/forestproject/css/icons/show-preview.svg' : './css/icons/show-preview.svg';
             break;
         default:
 

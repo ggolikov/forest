@@ -147,6 +147,7 @@ class FeaturesTable extends Component {
                 Header: this.drawCheckboxHeader,
                 Cell: this.drawCheckbox,
                 accessor: 'id',
+                filterable: false,
                 minWidth: 30
             },
             {
@@ -158,27 +159,26 @@ class FeaturesTable extends Component {
                 Header: this.drawInvertCheckbox,
                 Cell: this.drawStatusIndicator,
                 accessor: d => (-d.status),
+                filterable: false,
                 minWidth: 30
             }, {
                 Header: '',
                 Cell: this.drawShowPreviewIcon,
                 accessor: 'id',
+                filterable: false,
                 minWidth: 30
             }, {
                 Header: '',
                 Cell: this.drawZoomToFeatureIcon,
                 accessor: 'id',
+                filterable: false,
                 minWidth: 30
-            }/*, {
-              Header: props => <span>Friend Age</span>, // Custom header components!
-              accessor: 'friend.age'
-          }*/]
+            }];
 
         return (
                 <ReactTable
                   data={list}
                   columns={columns}
-                  // className="-striped -highlight"
                 />
         )
     }

@@ -1,10 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14">
-	<defs>
-		<filter id="flt1"> <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.361   0 0 0 0 0.435   0 0 0 0 0.494   0 0 0 1 0" /> </filter>
-		<image width="24" height="24" id="img1" href="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGcgY2xhc3M9Im5jLWljb24td3JhcHBlciIgZmlsbD0iIzExMTExMSI+PHBhdGggZmlsbD0iIzExMTExMSIgZD0iTTE3LDE2VjhjMC0wLjU1My0wLjQ0Ny0xLTEtMUg4QzcuNDQ3LDcsNyw3LjQ0Nyw3LDh2OGMwLDAuNTUzLDAuNDQ3LDEsMSwxaDhDMTYuNTUzLDE3LDE3LDE2LjU1MywxNywxNnoiPjwvcGF0aD4gPHBhdGggZGF0YS1jb2xvcj0iY29sb3ItMiIgZmlsbD0iIzExMTExMSIgZD0iTTIsOEgwVjFjMC0wLjU1MywwLjQ0Ny0xLDEtMWg3djJIMlY4eiI+PC9wYXRoPiA8cGF0aCBkYXRhLWNvbG9yPSJjb2xvci0yIiBmaWxsPSIjMTExMTExIiBkPSJNMTYsMlYwaDdjMC41NTMsMCwxLDAuNDQ3LDEsMXY3aC0yVjJIMTZ6Ij48L3BhdGg+IDxwYXRoIGRhdGEtY29sb3I9ImNvbG9yLTIiIGZpbGw9IiMxMTExMTEiIGQ9Ik0yMiwxNmgydjdjMCwwLjU1My0wLjQ0NywxLTEsMWgtN3YtMmg2VjE2eiI+PC9wYXRoPiA8cGF0aCBkYXRhLWNvbG9yPSJjb2xvci0yIiBmaWxsPSIjMTExMTExIiBkPSJNOCwyMnYySDFjLTAuNTUzLDAtMS0wLjQ0Ny0xLTF2LTdoMnY2SDh6Ij48L3BhdGg+PC9nPjwvc3ZnPg=="/>
-	</defs>
-	<style>
-		tspan { white-space:pre }
-	</style>
-	<use id="zoom-88" style="filter: url(#flt1)" href="#img1" transform="matrix(0.583,0,0,0.583,0,0)"/>
+<svg id="zoom-to-feature" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24">
+    <g class="nc-icon-wrapper" fill="#111111">
+        <path d="M17,16V8c0-0.553-0.447-1-1-1H8C7.447,7,7,7.447,7,8v8c0,0.553,0.447,1,1,1h8C16.553,17,17,16.553,17,16z"></path>
+        <path data-color="color-2" d="M2,8H0V1c0-0.553,0.447-1,1-1h7v2H2V8z"></path>
+        <path data-color="color-2" d="M16,2V0h7c0.553,0,1,0.447,1,1v7h-2V2H16z"></path>
+        <path data-color="color-2" d="M22,16h2v7c0,0.553-0.447,1-1,1h-7v-2h6V16z"></path>
+        <path data-color="color-2" d="M8,22v2H1c-0.553,0-1-0.447-1-1v-7h2v6H8z"></path>
+    </g>
+    <style>
+        #zoom-to-feature {
+            cursor: pointer;
+        }
+
+        .nc-icon-wrapper:hover {
+            fill: #70cbe0;
+        }
+    </style>
 </svg>

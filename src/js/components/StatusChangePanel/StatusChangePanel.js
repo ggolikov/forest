@@ -34,6 +34,36 @@ class StatusChangePanel extends Component {
         }
     }
 
+    customMappingFunc = (value) => {
+        let key = value === BLANK_SELECT_OPTION ? 'blank' : value,
+            prefix;
+
+        switch (value) {
+            case BLANK_SELECT_OPTION:
+                break;
+            case window._gtxt("отчет создан"):
+                prefix = '-good';
+                break;
+            case window._gtxt("имеются замечания"):
+                prefix = '-mean';
+                break;
+            case window._gtxt("отчет не создан"):
+                prefix = '-bad';
+                break;
+            default:
+                prefix = '-bad';
+        }
+
+        let indicatorClassName = `gmx-status-indicator${prefix}`
+
+        return (
+            <option key={key} value={value}>
+                <div className={indicatorClassName}></div>
+                {value}
+            </option>
+        )
+    }
+
     toggleLoading = (bool) => {
         this.setState({isLoading: bool});
     }
@@ -54,6 +84,7 @@ class StatusChangePanel extends Component {
                     size={`with-addon-small`}
                     values={valuesList}
                     onChange={this.onChange}
+                    customMappingFunc={this.customMappingFunc}
                 />
                 <StatusChangeButton
                     layerId={layerId}

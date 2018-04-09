@@ -28,7 +28,7 @@ L.gmx.loadMap('C7764CA37ACF4137A9371717013A3353', {leafletMap})
         // temporary here
         // addScreenObserver(leafletMap, gmxMap);
 
-        // initTimeline(gmxMap, leafletMap);
+        initTimeline(gmxMap, leafletMap);
 
         render(
             <Root lmap={leafletMap} gmxMap={gmxMap} />,
