@@ -122,22 +122,23 @@ class App extends Component {
                 <div /*in={this.state.listCollapsed}*/>
                     <div>
                         <DrawingButton layerId={layerId} lmap={lmap} idField={idField} />
+                        <Label txt={`Объекты: ${featuresCount}`} size="medium" />
                         <FeaturesTable
+                            full={allFeaturesChecked}
                             loading={loading}
                             idFieldIndex={idFieldIndex}
                             idField={idField}
                             layerId={layerId}
                             list={firstChunkFeatures}
+                            revertLabel={revertSelectionLabel}
                             featuresCount={featuresCount}
+                            selectedFeaturesCount={selectedFeaturesCount}
                             type={type}
                         />
-                        <SelectionPanel
-                            full={allFeaturesChecked}
-                            totalCount={selectedFeaturesCount}
+                        {/*<SelectionPanel
                             selectLabel={selectAllFeaturesLabel}
-                            revertLabel={revertSelectionLabel}
                             clearLabel={clearSelectionLabel}
-                        />
+                        />*/}
                         <StatusChangePanel
                             layerId={layerId}
                         />

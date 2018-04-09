@@ -28,8 +28,34 @@
 .ReactTable .rt-td
     display: table-cell
 
-.ReactTable .rt-resizable-header-content
+.ReactTable .rt-resizable-header-content,
+.ReactTable .rt-td
     padding: 0 6px
+
+.ReactTable .-pagination
+    display: table
+
+.ReactTable .-previous,
+.ReactTable .-center,
+.ReactTable .-next
+    display: table-cell
+
+.ReactTable .-center
+    padding: 0 10px
+
+.ReactTable .-pageJump
+    width: 40%
+    display: inline-block
+
+.ReactTable .-pageJump input
+    width: 100%
+
+.ReactTable .-pagination button
+    height: 40px
+    border-radius: 3px
+    background-color: #d7e1e7
+    border: 1px solid #d7e1e7
+    cursor: pointer
 
 .ReactTable .rt-thead.-headerGroups
 

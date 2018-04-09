@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import { ReactTableDefaults } from 'react-table'
-import { SelectCheckboxContainer } from '../containers';
+import { SelectCheckboxContainer, CheckboxContainer } from '../containers';
 import { zoomToFeature, getFeatureProps, getFeatureProps2, preview } from '../../helpers';
 import { FEATURES_CHUNK_SIZE } from '../../constants';
 import Icon from './Icon';
@@ -17,11 +17,21 @@ class FeaturesTable extends Component {
         };
 
         const TableParams = {
-            showPagination: false,
+            showPagination: true,
             showPaginationTop: false,
-            showPaginationBottom: false,
+            showPaginationBottom: true,
             showPageSizeOptions: false,
-            defaultPageSize: 15
+            defaultPageSize: 15,
+            filterable: true,
+            previousText: 'назад',
+            nextText: 'вперед',
+            loading: false,
+            loadingText: '',
+            // noDataText: 'No rows found',
+            pageText: 'Стр.',
+            ofText: 'из',
+            // rowsText: 'rows',
+            // PaginationComponent: <div>lalala</div>
             // defaultPageSize: props.featuresCount
         }
 
@@ -34,18 +44,34 @@ class FeaturesTable extends Component {
         this.setState({list});
     }
 
-
-    showPreview = (e) => {
-        const state = window.store.getState();
-
-        getFeatureProps2({ id, geometry }, state)
-            .then(res => {
-                preview(res, id, type);
-            });
+    drawCheckboxHeader = (props) => {
+        const { full } = this.props;
+        return (
+            <CheckboxContainer
+                param="selectAllFeatures"
+                checked={props.full}
+            />
+        );
     }
 
-    onZoomIconClick = (e) => {
-        zoomToFeature(layerId, id, geometry);
+    drawCountHeader = (props) => {
+        const { selectedFeaturesCount } = this.props;
+        return (
+            <span>
+                {`Выделено: ${selectedFeaturesCount}`}
+            </span>
+        );
+    }
+
+    drawInvertCheckbox = (props) => {
+        const { full } = this.props;
+        return (
+            <CheckboxContainer
+                param="revertSelection"
+                defaultChecked={false}
+                label={props.revertLabel}
+            />
+        );
     }
 
     drawCheckbox = (props) => {
@@ -91,7 +117,6 @@ class FeaturesTable extends Component {
         return (
             <Icon
                 action='zoomToFeature'
-                onClick={this.onZoomIconClick}
                 type={type}
                 layerId={layerId}
                 id={id}
@@ -107,7 +132,6 @@ class FeaturesTable extends Component {
         return (
             <Icon
                 action='showPreview'
-                onClick={this.showPreview}
                 type={type}
                 layerId={layerId}
                 id={id}
@@ -120,30 +144,31 @@ class FeaturesTable extends Component {
         const { list } = this.state;
         const columns = [
             {
-                Header: 'выделение',
+                Header: this.drawCheckboxHeader,
                 Cell: this.drawCheckbox,
                 accessor: 'id',
-                minWidth: 50
+                minWidth: 30
             },
             {
-                Header: 'Id',
-                accessor: 'id' // String-based value accessors!
+                Header: this.drawCountHeader,
+                accessor: 'id',
+                minWidth: 200
             }, {
                 id: 'status',
-                Header: 'статус',
+                Header: this.drawInvertCheckbox,
                 Cell: this.drawStatusIndicator,
                 accessor: d => (-d.status),
-                minWidth: 50
+                minWidth: 30
             }, {
-                Header: 'превью',
+                Header: '',
                 Cell: this.drawShowPreviewIcon,
                 accessor: 'id',
-                minWidth: 50
+                minWidth: 30
             }, {
-                Header: 'приблизить',
+                Header: '',
                 Cell: this.drawZoomToFeatureIcon,
                 accessor: 'id',
-                minWidth: 50
+                minWidth: 30
             }/*, {
               Header: props => <span>Friend Age</span>, // Custom header components!
               accessor: 'friend.age'
