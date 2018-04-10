@@ -22,18 +22,14 @@ class FeaturesTable extends Component {
             showPaginationBottom: true,
             showPageSizeOptions: false,
             defaultPageSize: 15,
-            filterable: true,
+            filterable: false,
             previousText: 'назад',
             nextText: 'вперед',
             loading: false,
             loadingText: '',
-            // noDataText: 'No rows found',
             pageText: 'Стр.',
-            ofText: 'из',
-            // rowsText: 'rows',
-            // PaginationComponent: <div>lalala</div>
-            // defaultPageSize: props.featuresCount
-        }
+            ofText: 'из'
+        };
 
         Object.assign(ReactTableDefaults, TableParams);
     }

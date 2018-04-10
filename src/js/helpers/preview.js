@@ -34,7 +34,8 @@ const preview = (params, id, type) => {
                 [layerId]: [{'filterById': id}]
             },
             controls: {
-                'location': true
+                'location': true,
+                'gridTool': true
             },
             exportMode: true,
             isFullScreen: true,
