@@ -16,7 +16,7 @@ const selectFeaturesWithDrawing = (layerId, geometry) => {
             'Accept': 'application/json'
         }
     };
-    console.log(url);
+    
     return fetch(url, options)
             .then(res => {
                 return res.text();

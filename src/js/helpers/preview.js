@@ -44,7 +44,8 @@ const preview = (params, id, type) => {
                 x: center[0],
                 y: center[1],
                 z: 17 - zoom
-            }
+            },
+            grid: true
         };
 
         window._mapHelper.createExportPermalink(permalinkPrams, function (id) {

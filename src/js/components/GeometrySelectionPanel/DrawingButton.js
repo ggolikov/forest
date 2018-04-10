@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from './Button';
-import { updateFeatures } from '../AC';
-import { selectFeaturesWithDrawing, mapFeaturesToStore } from '../helpers';
+import Button from '../Button';
+import { updateFeatures } from '../../AC';
+import { selectFeaturesWithDrawing, mapFeaturesToStore } from '../../helpers';
 
 class DrawingButton extends Component {
     constructor(props) {

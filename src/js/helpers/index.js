@@ -11,6 +11,7 @@ import updateObjects from './updateObjects';
 import encodeParams from './encodeParams';
 import mergeArrays from './mergeArrays';
 import mapFeaturesToStore from './mapFeaturesToStore';
+import makeReport from './makeReport';
 
 /**
  * Запрос за объектами слоя
@@ -49,22 +50,22 @@ export const zoomToFeature = (layerId, id, geometry) => {
         geom = L.gmxUtil.geometryToGeoJSON(geometry, true),
         bounds = L.gmxUtil.getGeometryBounds(geom);
 
-    layer.setStyleHook((it) => {
-        if (it.id === id) {
-            return {
-                strokeStyle: 'rgba(0, 255, 255)',
-                lineWidth: 2
-            };
-        } else {
-            return {
-                strokeStyle: 'rgba(255, 255, 0)'
-            };
-        }
-    });
-
-    setTimeout(() => {
-        layer.removeStyleHook();
-    }, 2000);
+    // layer.setStyleHook((it) => {
+    //     if (it.id === id) {
+    //         return {
+    //             strokeStyle: 'rgba(0, 255, 255)',
+    //             lineWidth: 2
+    //         };
+    //     } else {
+    //         return {
+    //             strokeStyle: 'rgba(255, 255, 0)'
+    //         };
+    //     }
+    // });
+    //
+    // setTimeout(() => {
+    //     layer.removeStyleHook();
+    // }, 2000);
 
     nsGmx.leafletMap.fitBounds([
         [bounds.min.y, bounds.min.x],
@@ -130,12 +131,11 @@ export const setStyle = (layer, features)  => {
                 lineWidth: 4
             };
         } else {
-            return {
-                strokeStyle: 'rgba(255, 255, 0, 0.9)',
-                lineWidth: 1
-            };
+            return {};
         }
     });
+
+    layer.repaint();
 }
 
 export const clearStyle = (layer, features)  => {
@@ -157,5 +157,6 @@ export {
         mapFeaturesToStore,
         updateObjects,
         getFeatureAttribute,
-        sortFeatures
+        sortFeatures,
+        makeReport
     };

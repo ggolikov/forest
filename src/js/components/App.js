@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
-import FeaturesTable from './FeaturesTable/index';
 import Button from './Button';
 import Label from './Label';
 import { InputContainer } from './containers';
 import { SelectContainer } from './containers';
 import SelectInput from './SelectInput/index';
+import GeometrySelectionPanel from './GeometrySelectionPanel';
+import FeaturesTable from './FeaturesTable/index';
 import LayerSelectPanel from './LayerSelectPanel';
-import DrawingButton from './DrawingButton';
 import SelectionPanel from './SelectionPanel';
 import StatusChangePanel from './StatusChangePanel';
+import MakeReportButton from './MakeReportButton';
 import { loadFeatures, getLayersList } from '../helpers';
 import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
 
@@ -38,7 +39,8 @@ class App extends Component {
         const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap, type } = this.props;
         const { loading, allFeaturesChecked } = this.state;
 
-        const selectedFeaturesCount = featuresIds.filter(item => item.selected).length;
+        const selectedFeatures = featuresIds.filter(item => item.selected);
+        const selectedFeaturesCount = selectedFeatures.length;
         // lazy load list
         const firstChunkFeatures = featuresIds.filter((v, i, a) => {
             return (i <= /*FEATURES_CHUNK_SIZE*/featuresCount)
@@ -121,7 +123,7 @@ class App extends Component {
                 <Label txt={listPanelLabel} size="medium" />
                 <div /*in={this.state.listCollapsed}*/>
                     <div>
-                        <DrawingButton layerId={layerId} lmap={lmap} idField={idField} />
+                        <GeometrySelectionPanel layerId={layerId} lmap={lmap} idField={idField} />
                         <Label txt={`Объекты: ${featuresCount}`} size="medium" />
                         <FeaturesTable
                             full={allFeaturesChecked}
@@ -135,16 +137,14 @@ class App extends Component {
                             selectedFeaturesCount={selectedFeaturesCount}
                             type={type}
                         />
-                        {/*<SelectionPanel
-                            selectLabel={selectAllFeaturesLabel}
-                            clearLabel={clearSelectionLabel}
-                        />*/}
                         <StatusChangePanel
                             layerId={layerId}
                         />
                     </div>
                 </div>
-                <Button disabled>{createButtonLabel}</Button>
+                <MakeReportButton features={selectedFeatures}>
+                    {createButtonLabel}
+                </MakeReportButton>
             </div>
         ) : loader ? (
             <div className="forest-loader-holder">

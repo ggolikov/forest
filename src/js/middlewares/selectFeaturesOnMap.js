@@ -15,7 +15,6 @@ export default store => next => action => {
     const layer = window.nsGmx.gmxMap.layersByID[layerId];
 
     if (type === UPDATE_FEATURE) {
-        clearStyle(layer, featuresIds);
         setStyle(layer, [payload]);
         next({ type, payload });
     } else if (type === UPDATE_FEATURES) {
@@ -23,9 +22,9 @@ export default store => next => action => {
     } else if (type === REVERT_SELECTION) {
         next({ type, payload });
     } else if (type === CLEAR_SELECTION) {
+        setStyle(layer, []);
         next({ type, payload });
     } else if (type === SELECT_ALL_FEATURES) {
-        clearStyle(layer, featuresIds);
         setStyle(layer, featuresIds);
         next({ type, payload });
     } else {
