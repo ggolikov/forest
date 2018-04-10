@@ -55,7 +55,8 @@ class SelectInput extends Component {
                 <div>
                     { useSelect ? selectElement : inputElement}
                     <Button
-                        className= { useSelect ? "gmx-addon-button-toggled" : "gmx-addon-button"}
+                        className={ useSelect ? "gmx-addon-button-toggled" : "gmx-addon-button"}
+                        title={window._gtxt("выбрать из таблицы атрибутов")}
                         onClick={this.onButtonClick}
                     >
                     </Button>

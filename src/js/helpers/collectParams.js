@@ -8,15 +8,12 @@ const collectParams = (features) => {
         const l = window.nsGmx.gmxMap.layersByID[SENTINEL_LAYER_ID];
         const { beginDate, endDate } = l.getDateInterval && l.getDateInterval();
 
-        console.log(
-            beginDate, endDate
-        );
+        console.log(beginDate, endDate);
 
         let mappedParams = EXPORT_PARAMS.reduce((obj, currentItem, index, arr) => {
             let value = state[currentItem] || "";
 
             if (typeof value === 'object') {
-                    params = Object.assign({}, params, {[param]: attrs[value.value]});
                     obj[currentItem] = attrs[value.value];
                 } else {
                     obj[currentItem] = value;
