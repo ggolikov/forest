@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import StatusChangeButton from './StatusChangeButton';
 import Select from '../Select';
 import { BLANK_SELECT_OPTION } from '../../constants';
-
+import './index.sass';
 
 class StatusChangePanel extends Component {
     constructor(props) {
@@ -79,7 +79,7 @@ class StatusChangePanel extends Component {
         ];
 
         return (
-            <div>
+            <div className="gmx-sidebar-container">
                 <Select
                     size={`with-addon-small`}
                     values={valuesList}

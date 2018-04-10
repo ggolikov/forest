@@ -163,13 +163,13 @@ class FeaturesTable extends Component {
                 minWidth: 30
             }, {
                 Header: '',
-                Cell: this.drawShowPreviewIcon,
+                Cell: this.drawZoomToFeatureIcon,
                 accessor: 'id',
                 filterable: false,
                 minWidth: 30
             }, {
                 Header: '',
-                Cell: this.drawZoomToFeatureIcon,
+                Cell: this.drawShowPreviewIcon,
                 accessor: 'id',
                 filterable: false,
                 minWidth: 30

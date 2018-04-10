@@ -12,6 +12,8 @@ import encodeParams from './encodeParams';
 import mergeArrays from './mergeArrays';
 import mapFeaturesToStore from './mapFeaturesToStore';
 import makeReport from './makeReport';
+import collectParams from './collectParams';
+import downloadFile from './downloadFile';
 
 /**
  * Запрос за объектами слоя
@@ -158,5 +160,7 @@ export {
         updateObjects,
         getFeatureAttribute,
         sortFeatures,
-        makeReport
+        makeReport,
+        collectParams,
+        downloadFile
     };

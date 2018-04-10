@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../Button';
-import { makeReport } from '../../helpers';
+import { collectParams, makeReport } from '../../helpers';
 import './index.sass';
 
 class MakeReportButton extends Component {
@@ -9,11 +9,15 @@ class MakeReportButton extends Component {
     }
 
     onClick = () => {
-
+        const { features } = this.props;
+        let reportParams = collectParams(features);
+        console.log(reportParams);
+        // DEBUG
+        // reportParams.push({url: true});
+        makeReport(reportParams);
     }
 
     render() {
-        const { features } = this.props;
         return (
             <div className="gmx-button-container">
                 <Button
