@@ -15,6 +15,7 @@ import mapFeaturesToStore from './mapFeaturesToStore';
 import makeReport from './makeReport';
 import collectParams from './collectParams';
 import downloadFile from './downloadFile';
+import getScreenRasters from './getScreenRasters';
 
 /**
  * Запрос за объектами слоя
@@ -47,28 +48,56 @@ export const loadFeatures = (layerId, page, pagesize, count) => {
         .catch(err => console.log(err));
 }
 
-export const zoomToFeature = (layerId, id, geometry) => {
-    let layer = nsGmx.gmxMap.layersByID[layerId],
-        fitBoundsOptions = layer ? {maxZoom: layer.options.maxZoom} : {},
-        geom = L.gmxUtil.geometryToGeoJSON(geometry, true),
-        bounds = L.gmxUtil.getGeometryBounds(geom);
+export const highlightFeature = (layerId, id) => {
+    const layer = nsGmx.gmxMap.layersByID[layerId];
+    const { featuresIds } = window.store.getState();
+    const selectedFeatures = featuresIds.filter(f => {
+            return f.selected;
+    });
+    const index = selectedFeatures.findIndex(item => item.id === id);
+    const isSelected = index !== -1;
+    console.log(isSelected);
+    let currentStyle = {
+        strokeStyle: isSelected ? 'rgba(0, 255, 255, 1)' : 'rgba(255, 255, 0, 1)',
+        lineWidth: 2
+    }
 
-    // layer.setStyleHook((it) => {
-    //     if (it.id === id) {
-    //         return {
-    //             strokeStyle: 'rgba(0, 255, 255)',
-    //             lineWidth: 2
-    //         };
-    //     } else {
-    //         return {
-    //             strokeStyle: 'rgba(255, 255, 0)'
-    //         };
-    //     }
-    // });
-    //
-    // setTimeout(() => {
-    //     layer.removeStyleHook();
-    // }, 2000);
+
+    layer.setStyleHook((it) => {
+        if (it.id === id) {
+            return {
+                strokeStyle: 'rgba(255, 0, 0, 1)',
+                lineWidth: 4
+            };
+        } else {
+            return {};
+        }
+    });
+
+    let timeout = window.setTimeout(() => {
+        layer.setStyleHook((it) => {
+            if (it.id === id) {
+                console.log(currentStyle);
+                return currentStyle;
+            } else {
+                return {};
+            }
+        });
+    }, 2000);
+
+    window.setTimeout(() => {
+        window.clearTimeout(timeout);
+    }, 2100);
+
+}
+
+export const zoomToFeature = (layerId, id, geometry) => {
+    const layer = nsGmx.gmxMap.layersByID[layerId];
+    const fitBoundsOptions = layer ? {maxZoom: layer.options.maxZoom} : {};
+    const geom = L.gmxUtil.geometryToGeoJSON(geometry, true);
+    const bounds = L.gmxUtil.getGeometryBounds(geom);
+
+    highlightFeature(layerId, id);
 
     nsGmx.leafletMap.fitBounds([
         [bounds.min.y, bounds.min.x],
@@ -164,5 +193,6 @@ export {
         makeReport,
         collectParams,
         downloadFile,
-        addStatusColumn
+        addStatusColumn,
+        getScreenRasters
     };

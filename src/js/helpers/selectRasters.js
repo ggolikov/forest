@@ -14,7 +14,7 @@ const selectRasters = (gmxMap, geometry) => {
 
         const timeQuery = (beginDate && endDate) ?
                 `AND ([acqdate] > '${beginDate.toLocaleDateString()}' OR [acqdate] < '${beginDate.toLocaleDateString()}')` : '';
-                
+
         const params = {
             layer: layerId,
             page: 0,

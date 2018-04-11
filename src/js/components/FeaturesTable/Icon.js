@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { zoomToFeature, getFeatureProps, getFeatureProps2, preview } from '../../helpers';
+import { zoomToFeature, getScreenRasters, getFeatureProps, getFeatureProps2, preview } from '../../helpers';
 import "./icon.sass";
 
 const Icon = ({ action, onClick, type, layerId, id, geometry }) => {
@@ -7,11 +7,12 @@ const Icon = ({ action, onClick, type, layerId, id, geometry }) => {
 
     const showPreview = (e) => {
         const state = window.store.getState();
+        getScreenRasters();
 
-        getFeatureProps2({ id, geometry }, state)
-            .then(res => {
-                preview(res, id, type);
-            });
+        // getFeatureProps2({ id, geometry }, state)
+        //     .then(res => {
+        //         preview(res, id, type);
+        //     });
     }
 
     const onZoomIconClick = (e) => {
