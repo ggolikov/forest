@@ -59,7 +59,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
             ownProps.toggleLoading(true);
 
-            if (!hasStatusAttribute) {
+            if (hasStatusAttribute) {
                 updateObjects(layerId, objectsToUpdate)
                     .then(res => {
                         const updatedFeatures = selectedFeatures.map(feature => {

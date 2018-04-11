@@ -1,14 +1,18 @@
 import encodeParams from './encodeParams';
 
 const getAttribute = (layerId, idField, featureId, param, value) => {
+    // const params = {
+    //     layer: layerId,
+    //     page: 0,
+    //     pagesize: 500,
+    //     count: false,
+    //     query: `[${idField}]='${featureId}'`
+    // },
+    // url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
     const params = {
-        layer: layerId,
-        page: 0,
-        pagesize: 500,
-        count: false,
-        query: `[${idField}]='${featureId}'`
+        LayerName: layerId
     },
-    url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
+    url = `${window.serverBase}VectorLayer/GetLayerInfo.ashx?${encodeParams(params)}`,
     options = {
         mode: 'cors',
         credentials: 'include',
