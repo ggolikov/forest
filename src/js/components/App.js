@@ -11,8 +11,8 @@ import LayerSelectPanel from './LayerSelectPanel';
 import SelectionPanel from './SelectionPanel';
 import StatusChangePanel from './StatusChangePanel';
 import MakeReportButton from './MakeReportButton';
-import { loadFeatures, getLayersList } from '../helpers';
-import { DEMO_LAYER_ID, FEATURES_CHUNK_SIZE } from '../constants';
+import { getLayersList } from '../helpers';
+import { FEATURES_CHUNK_SIZE } from '../constants';
 
 class App extends Component {
     constructor(props) {
@@ -27,7 +27,18 @@ class App extends Component {
     }
 
     componentWillReceiveProps(nextPtops) {
-        const { featuresIds } = nextPtops;
+        const { layerId, featuresIds } = nextPtops;
+        const selectFeature = this.props.selectFeature.bind(this);
+
+        if (layerId) {
+            const layer = window.nsGmx.gmxMap.layersByID[layerId];
+
+            layer.on('click', function (e) {
+                if (e.originalEvent.altKey) {
+                    selectFeature(e);
+                }
+            });
+        }
 
         this.setState({
             loading: featuresIds.length === 0,

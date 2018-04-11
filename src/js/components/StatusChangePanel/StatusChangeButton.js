@@ -62,7 +62,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
                         feature.status = code;
                         return feature;
                     })
-                    console.log(updatedFeatures);
                     dispatch(updateFeatures(updatedFeatures));
                     ownProps.toggleLoading(false);
                 });

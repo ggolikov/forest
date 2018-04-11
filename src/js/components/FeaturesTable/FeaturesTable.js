@@ -140,9 +140,10 @@ class FeaturesTable extends Component {
         const { list } = this.state;
         const columns = [
             {
+                id: 'selected',
                 Header: this.drawCheckboxHeader,
                 Cell: this.drawCheckbox,
-                accessor: 'id',
+                accessor: d => (d.selected),
                 filterable: false,
                 minWidth: 30
             },

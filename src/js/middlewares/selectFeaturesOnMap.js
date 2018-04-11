@@ -27,13 +27,20 @@ export default store => next => action => {
         selectedFeatures = mappedFeatures.filter(f => {
             return f.selected;
         });
-        let index = selectedFeatures.findIndex(item => item.id === payload.id);
 
-        selectedFeatures = [
-            ...selectedFeatures.slice(0, index),
-            payload,
-            ...selectedFeatures.slice(index + 1)
-        ]
+        if (payload.selected) {
+            selectedFeatures = [
+                ...selectedFeatures,
+                payload
+            ]
+        } else {
+            let index = selectedFeatures.findIndex(item => item.id === payload.id);
+
+            selectedFeatures = [
+                ...selectedFeatures.slice(0, index),
+                ...selectedFeatures.slice(index + 1)
+            ]
+        };
         setStyle(layer, selectedFeatures);
         next({ type, payload });
     } else if (type === UPDATE_FEATURES) {
