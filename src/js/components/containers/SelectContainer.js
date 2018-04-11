@@ -26,11 +26,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             let { value } = e.target;
 
             if (mapValues) {
-                value = values.reduce((previousValue, currentValue, index, array) => {
-                            if (currentValue.title === value) {
-                                return currentValue.layerId;
-                            }
-                        });
+                let mappedValues = values.filter(v => {
+                    return v.title === value
+                });
+
+                value = mappedValues[0].layerId;
             }
 
             if (loadAttributes) {
