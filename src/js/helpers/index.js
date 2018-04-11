@@ -7,6 +7,7 @@ import preview from './preview';
 import getAttribute from './getAttribute';
 import sortFeatures from './sortFeatures';
 import getFeatureAttribute from './getFeatureAttribute';
+import addStatusColumn from './addStatusColumn';
 import updateObjects from './updateObjects';
 import encodeParams from './encodeParams';
 import mergeArrays from './mergeArrays';
@@ -162,5 +163,6 @@ export {
         sortFeatures,
         makeReport,
         collectParams,
-        downloadFile
+        downloadFile,
+        addStatusColumn
     };

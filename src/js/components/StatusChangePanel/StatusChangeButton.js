@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BeatLoader } from 'react-spinners';
 import Button from '../Button';
-import { STATUS_COLUMN_NAME } from '../../constants';
-import { updateObjects } from '../../helpers';
+import { TRUE_STATUS_COLUMN_NAME, STATUS_COLUMN_NAME } from '../../constants';
+import { addStatusColumn, updateObjects } from '../../helpers';
 import { updateFeatures } from '../../AC';
 
 const StatusChangeButton = (props) => {
@@ -41,6 +41,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         onClick: () => {
             const { layerId, code } = ownProps;
             const { state } = stateProps;
+            const { attributesList } = state;
             const { featuresIds } = state;
             const selectedFeatures = featuresIds.filter(item => item.selected);
             const objectsToUpdate = selectedFeatures
@@ -54,20 +55,25 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
                     }
                 });
 
+            const hasStatusAttribute = attributesList.find(v => v === TRUE_STATUS_COLUMN_NAME);
+
             ownProps.toggleLoading(true);
 
-            updateObjects(layerId, objectsToUpdate)
-                .then(res => {
-                    const updatedFeatures = selectedFeatures.map(feature => {
-                        feature.status = code;
-                        return feature;
-                    })
-                    dispatch(updateFeatures(updatedFeatures));
-                    ownProps.toggleLoading(false);
-                });
-
-            setTimeout(() => {
-            }, 2000)
+            if (hasStatusAttribute) {
+                updateObjects(layerId, objectsToUpdate)
+                    .then(res => {
+                        const updatedFeatures = selectedFeatures.map(feature => {
+                            feature.status = code;
+                            return feature;
+                        })
+                        dispatch(updateFeatures(updatedFeatures));
+                        ownProps.toggleLoading(false);
+                    });
+            } else {
+                addStatusColumn(layerId);
+                console.log('no such attribute!');
+                ownProps.toggleLoading(false);
+            }
         }
     }
 }
