@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                     return v.title === value
                 });
 
-                value = mappedValues[0].layerId;
+                value = mappedValues[0] ? mappedValues[0].layerId : '';
             }
 
             if (loadAttributes) {

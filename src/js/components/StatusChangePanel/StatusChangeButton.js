@@ -4,7 +4,7 @@ import { BeatLoader } from 'react-spinners';
 import Button from '../Button';
 import { TRUE_STATUS_COLUMN_NAME, STATUS_COLUMN_NAME } from '../../constants';
 import { addStatusColumn, updateObjects } from '../../helpers';
-import { updateFeatures } from '../../AC';
+import { setAttributesList, updateFeatures } from '../../AC';
 
 const StatusChangeButton = (props) => {
      let buttonLabel = !props.isLoading ?
@@ -50,7 +50,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
                         action: "update",
                         id: item.id,
                         properties: {
-                            [STATUS_COLUMN_NAME]: code
+                            [TRUE_STATUS_COLUMN_NAME]: code
                         }
                     }
                 });
@@ -65,14 +65,26 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
                         const updatedFeatures = selectedFeatures.map(feature => {
                             feature.status = code;
                             return feature;
-                        })
+                        });
                         dispatch(updateFeatures(updatedFeatures));
                         ownProps.toggleLoading(false);
                     });
             } else {
-                addStatusColumn(layerId);
-                console.log('no such attribute!');
-                ownProps.toggleLoading(false);
+                addStatusColumn(layerId)
+                    .then(res => {
+                        const updatedAttributesList = attributesList.slice();
+                        updatedAttributesList.push(TRUE_STATUS_COLUMN_NAME);
+                        dispatch(setAttributesList(updatedAttributesList));
+                        updateObjects(layerId, objectsToUpdate)
+                            .then(res => {
+                                const updatedFeatures = selectedFeatures.map(feature => {
+                                    feature.status = code;
+                                    return feature;
+                                });
+                                dispatch(updateFeatures(updatedFeatures));
+                                ownProps.toggleLoading(false);
+                            });
+                    });
             }
         }
     }
