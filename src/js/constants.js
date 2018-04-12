@@ -4,6 +4,7 @@ export const TRUE_STATUS_COLUMN_NAME = 'FRSTAT';
 export const DEMO_LAYER_ID = '367623F7D88F47759E7CAF246C1D5936';
 export const SENTINEL_LAYER_ID = '636CBFF5155F4F299254EAF54079040C';
 export const DEMO_ID_FIELD = 'gmx_id';
+export const ALTERNATIVE_ID_FIELD = 'ogc_fid';
 export const DEMO_GEOMETRY_FIELD = 'geomixergeojson';
 export const FEATURES_CHUNK_SIZE = 500;
 export const CHANGE_LOADER_STATUS = 'CHANGE_LOADER_STATUS';

@@ -1,6 +1,6 @@
 import { SET_ID_FIELD_INDEX } from '../constants';
 
-const idFieldIndexReducer = (idFieldIndex = 0, action) => {
+const idFieldIndexReducer = (idFieldIndex = -1, action) => {
     const {type, payload} = action;
 
     switch (action.type) {

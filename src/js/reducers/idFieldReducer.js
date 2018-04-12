@@ -1,6 +1,6 @@
-import { SET_ID_FIELD, DEMO_ID_FIELD } from '../constants';
+import { SET_ID_FIELD } from '../constants';
 
-const idFieldReducer = (idField = DEMO_ID_FIELD, action) => {
+const idFieldReducer = (idField = null, action) => {
     const {type, payload} = action;
 
     switch (action.type) {
