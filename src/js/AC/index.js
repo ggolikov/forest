@@ -38,7 +38,7 @@ export function setLayerId(layerId) {
 export function setIdField(field) {
     return {
         type: SET_ID_FIELD,
-        payload: { layerId }
+        payload: { field }
     }
 }
 

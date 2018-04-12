@@ -20,6 +20,7 @@ export default store => next => action => {
             next(actionCreators.setFeaturesCount(json.Result.Count));
             next(actionCreators.setAttributesList(json.Result.fields));
             next(actionCreators.setIdFieldIndex(index));
+            next(actionCreators.setIdField(json.Result.fields[index]));
             next(actionCreators.changeLoaderStatus(false));
         }
         next({ type, payload });

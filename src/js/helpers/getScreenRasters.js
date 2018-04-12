@@ -13,9 +13,13 @@ const getScreenRasters = (gmxMap, geometry) => {
             const { Temporal, IsRasterCatalog, visible } = props;
             return Temporal && IsRasterCatalog && visible;
         }
-    });
-
-    console.log(rasters);
+    }).sort((a, b) => {
+            let oa = a.options, ob = b.options,
+                za = (oa.zIndexOffset || 0) + (oa.zIndex || 0),
+                zb = (ob.zIndexOffset || 0) + (ob.zIndex || 0);
+            return za - zb;
+        });
+    // console.log(rasters);
 }
 
 export default getScreenRasters;

@@ -7,12 +7,12 @@ const Icon = ({ action, onClick, type, layerId, id, geometry }) => {
 
     const showPreview = (e) => {
         const state = window.store.getState();
-        getScreenRasters();
+        // getScreenRasters();
 
-        // getFeatureProps2({ id, geometry }, state)
-        //     .then(res => {
-        //         preview(res, id, type);
-        //     });
+        getFeatureProps2({ id, geometry }, state)
+            .then(res => {
+                preview(res, id, type);
+            });
     }
 
     const onZoomIconClick = (e) => {
