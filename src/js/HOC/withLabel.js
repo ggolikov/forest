@@ -7,7 +7,9 @@ export const withLabel = InnerComponent => {
 
         const elem = label ? (
             <div className={"gmx-sidebar-labeled-block"}>
-                <Label txt={label} size={labelSize} />
+                <Label size={labelSize}>
+                    {label}
+                </Label>
                 <InnerComponent {...props}/>
             </div>
         ) : <InnerComponent {...props}/>;

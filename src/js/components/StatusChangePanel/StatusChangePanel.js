@@ -69,7 +69,7 @@ class StatusChangePanel extends Component {
     }
 
     render() {
-        const { layerId } = this.props;
+        const { layerId, disabled } = this.props;
         const { isLoading, code } = this.state;
         const valuesList = [
             BLANK_SELECT_OPTION,
@@ -81,12 +81,14 @@ class StatusChangePanel extends Component {
         return (
             <div className="gmx-sidebar-container">
                 <Select
+                    disabled={disabled}
                     size={`with-addon-small`}
                     values={valuesList}
                     onChange={this.onChange}
                     customMappingFunc={this.customMappingFunc}
                 />
                 <StatusChangeButton
+                    disabled={disabled}
                     layerId={layerId}
                     isLoading={isLoading}
                     code={code}

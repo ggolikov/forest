@@ -16,7 +16,7 @@ const StatusChangeButton = (props) => {
 
     return (
         <Button
-            disabled={props.isLoading}
+            disabled={props.disabled || props.isLoading}
             className="gmx-addon-button-medium"
             onClick={props.onClick}
         >

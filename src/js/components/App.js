@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
 import Button from './Button';
 import Label from './Label';
-import { InputContainer } from './containers';
-import { SelectContainer } from './containers';
+import { InputContainer, SelectContainer, CheckboxContainer } from './containers';
 import SelectInput from './SelectInput/index';
 import GeometrySelectionPanel from './GeometrySelectionPanel';
 import FeaturesTable from './FeaturesTable/index';
@@ -83,7 +82,9 @@ class App extends Component {
 
         const inputs = layerId ? (
             <div className="collapser-block">
-                <Label txt={inputsPanelLabel} size="medium" />
+                <Label  size="medium">
+                    {inputsPanelLabel}
+                </Label>
                 <div /*in={this.state.inputsCollapsed}*/>
                     <div>
                         <SelectContainer
@@ -131,11 +132,22 @@ class App extends Component {
                         />
                     </div>
                 </div>
-                <Label txt={listPanelLabel} size="medium" />
+                <Label  size="medium">
+                    {listPanelLabel}
+                </Label>
                 <div /*in={this.state.listCollapsed}*/>
                     <div>
                         <GeometrySelectionPanel layerId={layerId} lmap={lmap} idField={idField} />
-                        <Label txt={`Объекты: ${featuresCount}`} size="medium" />
+                        <Label  size="medium">
+                            {`Выделено: ${selectedFeaturesCount} / ${featuresCount}`}
+                        </Label>
+                        <Label  size="small">
+                            <CheckboxContainer
+                                param="revertSelection"
+                                defaultChecked={false}
+                                label={revertSelectionLabel}
+                            />
+                        </Label>
                         <FeaturesTable
                             full={allFeaturesChecked}
                             loading={loading}
@@ -143,12 +155,12 @@ class App extends Component {
                             idField={idField}
                             layerId={layerId}
                             list={firstChunkFeatures}
-                            revertLabel={revertSelectionLabel}
                             featuresCount={featuresCount}
                             selectedFeaturesCount={selectedFeaturesCount}
                             type={type}
                         />
                         <StatusChangePanel
+                            disabled={selectedFeaturesCount === 0}
                             layerId={layerId}
                         />
                     </div>

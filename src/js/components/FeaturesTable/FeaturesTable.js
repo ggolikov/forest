@@ -54,7 +54,7 @@ class FeaturesTable extends Component {
         const { selectedFeaturesCount } = this.props;
         return (
             <span>
-                {`Выделено: ${selectedFeaturesCount}`}
+                {'Id'}
             </span>
         );
     }
@@ -62,11 +62,9 @@ class FeaturesTable extends Component {
     drawInvertCheckbox = (props) => {
         const { full } = this.props;
         return (
-            <CheckboxContainer
-                param="revertSelection"
-                defaultChecked={false}
-                label={props.revertLabel}
-            />
+            <span>
+                {'Статус'}
+            </span>
         );
     }
 

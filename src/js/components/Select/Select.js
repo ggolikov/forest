@@ -3,7 +3,7 @@ import { BLANK_SELECT_OPTION } from '../../constants';
 import './index.sass';
 
 const Select = (props) => {
-    const { loading, values, placeholder, onChange, size, customMappingFunc } = props;
+    const { loading, values, placeholder, onChange, size, customMappingFunc, disabled } = props;
     const loadMessage = window._gtxt("Загрузка...");
     const prefix = size ? `-${size}` : '';
 
@@ -32,7 +32,7 @@ const Select = (props) => {
             className={`gmx-sidebar-select${prefix}`}
             placeholder={placeholder}
             onChange={onChange}
-            disabled={loading}
+            disabled={disabled || loading}
         >
             {children}
         </select>
