@@ -3,7 +3,7 @@ import { zoomToFeature, getScreenRasters, getFeatureProps, getFeatureProps2, pre
 import "./icon.sass";
 
 const Icon = ({ action, onClick, type, layerId, id, geometry }) => {
-    let handler, iconClassName, path, placeHolder;
+    let handler, iconClassName, iconId, path, placeHolder;
 
     const showPreview = (e) => {
         const state = window.store.getState();
@@ -23,12 +23,14 @@ const Icon = ({ action, onClick, type, layerId, id, geometry }) => {
         case 'zoomToFeature':
             handler = onZoomIconClick;
             iconClassName = 'gmx-icon-zoom-to-feature';
+            iconId = 'zoom-to-feature',
             path = type === 'plugin' ? './plugins/forestproject/css/icons/zoom-to-feature.svg' : './css/icons/zoom-to-feature.svg';
             placeHolder = "Z";
             break;
         case 'showPreview':
             handler = showPreview;
             iconClassName = 'gmx-icon-show-preview';
+            iconId = 'show-preview',
             path = type === 'plugin' ? './plugins/forestproject/css/icons/show-preview.svg' : './css/icons/show-preview.svg';
             placeHolder = "P";
             break;
@@ -38,9 +40,12 @@ const Icon = ({ action, onClick, type, layerId, id, geometry }) => {
 
     return (
         <div className="gmx-table-icon-container" onClick={handler} >
-            {placeHolder}
+            {/*placeHolder*/}
             {/*<object className="gmx-icon" type="image/svg+xml" data={path} onClick={handler} >
             </object>*/}
+            <svg className="gmx-table-icon">
+                <use xlinkHref={`#${iconId}`} />
+            </svg>
         </div>
     )
 }
