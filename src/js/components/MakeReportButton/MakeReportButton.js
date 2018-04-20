@@ -12,8 +12,6 @@ class MakeReportButton extends Component {
         const { features } = this.props;
         let reportParams = collectParams(features);
         console.log(reportParams);
-        // DEBUG
-        // reportParams.push({url: true});
         makeReport(reportParams);
     }
 

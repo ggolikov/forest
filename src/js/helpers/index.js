@@ -16,6 +16,7 @@ import makeReport from './makeReport';
 import collectParams from './collectParams';
 import downloadFile from './downloadFile';
 import getScreenRasters from './getScreenRasters';
+import sendAsyncRequest from './sendAsyncRequest';
 
 /**
  * Запрос за объектами слоя
@@ -194,5 +195,6 @@ export {
         collectParams,
         downloadFile,
         addStatusColumn,
-        getScreenRasters
+        getScreenRasters,
+        sendAsyncRequest
     };
