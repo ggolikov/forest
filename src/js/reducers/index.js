@@ -16,6 +16,7 @@ import forestryReducer from './forestryReducer';
 import sectionForestryReducer from './sectionForestryReducer';
 import quadrantReducer from './quadrantReducer';
 import stratumReducer from './stratumReducer';
+import satelliteLayerIdReducer from './satelliteLayerIdReducer';
 
 export default combineReducers({
     loader: loaderReducer,
@@ -32,5 +33,6 @@ export default combineReducers({
     forestry: forestryReducer,
     sectionForestry: sectionForestryReducer,
     quadrant: quadrantReducer,
-    stratum: stratumReducer
+    stratum: stratumReducer,
+    satelliteLayerId: satelliteLayerIdReducer
 });

@@ -11,6 +11,7 @@ import {
     SELECT_ALL_FEATURES,
     SET_FEATURES_COUNT,
     SET_ATTRIBUTES_LIST,
+    SET_SATELLITE_LAYER,
     CHANGE_REPORT_TYPE,
     CHANGE_ORGANIZATION_NAME,
     CHANGE_INN,
@@ -53,6 +54,13 @@ export function setFeaturesIds(ids) {
     return {
         type: SET_FEATURES_IDS,
         payload: { ids }
+    }
+}
+
+export function setSatelliteLayer(satelliteLayerId) {
+    return {
+        type: SET_SATELLITE_LAYER,
+        payload: { satelliteLayerId }
     }
 }
 

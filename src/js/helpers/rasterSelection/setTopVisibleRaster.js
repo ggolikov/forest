@@ -1,4 +1,5 @@
 import getTopRaster from './getTopRaster';
+import { setSatelliteLayer } from '../../AC';
 
 const setTopVisibleRaster = (/*gmxMap*/) => {
     let layers = nsGmx.gmxMap.layers,
@@ -23,11 +24,13 @@ const setTopVisibleRaster = (/*gmxMap*/) => {
         let layer = event.layer,
             props = layer.getGmxProperties && layer.getGmxProperties();
 
+
         if (props) {
             let layerID = props.name;
 
             if (layerID in rastersHash) {
                 topRaster = getTopRaster(layers);
+                window.store.dispatch(setSatelliteLayer(topRaster.getGmxProperties().name))
             }
         }
         console.log(topRaster && topRaster.getGmxProperties().title);
