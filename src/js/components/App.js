@@ -81,7 +81,7 @@ class App extends Component {
         const createButtonLabel = window._gtxt("Создать отчеты");
 
         const inputs = layerId ? (
-            <div className="collapser-block">
+            <div>
                 <Label  size="medium">
                     {inputsPanelLabel}
                 </Label>
@@ -135,7 +135,7 @@ class App extends Component {
                 <Label  size="medium">
                     {listPanelLabel}
                 </Label>
-                <div /*in={this.state.listCollapsed}*/>
+                <div className="forest-features-block">
                     <div>
                         <GeometrySelectionPanel layerId={layerId} lmap={lmap} idField={idField} />
                         <Label  size="medium">

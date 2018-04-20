@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import Root from './js/components/Root';
 import { addScreenObserver } from './js/helpers';
 import './css/forestProjectPlugin.sass';
+import './css/icons/sprite.svg';
 
 (function () {
     'use strict';
