@@ -1,11 +1,16 @@
 {
     "reportType": "об использовании лесов",
-    "layerID": "4BD64872924B48D9876EFB9E9A1B7C71",
+    "layerId": "4BD64872924B48D9876EFB9E9A1B7C71",
     "featureID": 1,
     "beginDate": 1523059200000,
     "endDate": 1523059201000,
     "satLayers": [
-        "636CBFF5155F4F299254EAF54079040C"
+        {
+            "layerId": "636CBFF5155F4F299254EAF54079040C",
+            "type": "оптическая",
+            "system": "Sentinel-2",
+            "resolution": "10 м"
+        }
     ],
     "organizationName": "ООО 'Березниковское лесничество'",
     "inn": "3328455371",

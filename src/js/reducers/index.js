@@ -34,5 +34,5 @@ export default combineReducers({
     sectionForestry: sectionForestryReducer,
     quadrant: quadrantReducer,
     stratum: stratumReducer,
-    satelliteLayerId: satelliteLayerIdReducer
+    satLayers: satelliteLayerIdReducer
 });

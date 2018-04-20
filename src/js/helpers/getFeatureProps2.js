@@ -6,7 +6,7 @@ import getAttribute from './getAttribute';
 const getFeatureProps2 = (feature, state) => {
     const { id, geometry } = feature;
 
-    return selectRasters(nsGmx.gmxMap, geometry)
+    return selectRasters(nsGmx.gmxMap, geometry, state)
         .then(res => getSatelliteParams(res))
         .then(res => {
             const satParams = res[0];

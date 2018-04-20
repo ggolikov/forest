@@ -1,7 +1,7 @@
-import getTopRaster from './getTopRaster';
+import sortRasters from './sortRasters';
 import setTopVisibleRaster from './setTopVisibleRaster';
 
 export {
-    getTopRaster,
+    sortRasters,
     setTopVisibleRaster
 }
