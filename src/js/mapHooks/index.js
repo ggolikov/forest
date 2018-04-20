@@ -1,5 +1,8 @@
 import { SENTINEL_LAYER_ID, DEMO_LAYER_ID } from '../constants';
 import '../lib/GMXPluginTimeLine/L.Control.gmxTimeLine.js';
+import '../lib/GMXPluginTimeLine/L.Control.gmxTimeLine.js';
+import addObservers from './addObservers';
+
 
 export const initTimeline = (gmxMap, leafletMap) => {
     const sentinelLayer = gmxMap.layersByID[SENTINEL_LAYER_ID];

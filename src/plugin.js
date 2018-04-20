@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import Root from './js/components/Root';
 import { addScreenObserver } from './js/helpers';
+import { setTopVisibleRaster } from './js/helpers/rasterSelection';
 import './css/forestProjectPlugin.sass';
 import './css/icons/sprite.svg';
 
@@ -27,6 +28,8 @@ import './css/icons/sprite.svg';
                         })
                     }
                 );
+
+                setTopVisibleRaster();
 
                 render(
                     <Root lmap={window.nsGmx.leafletMap} gmxMap={window.nsGmx.gmxMap} type="plugin" />,

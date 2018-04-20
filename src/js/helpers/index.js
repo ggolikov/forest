@@ -15,7 +15,7 @@ import mapFeaturesToStore from './mapFeaturesToStore';
 import makeReport from './makeReport';
 import collectParams from './collectParams';
 import downloadFile from './downloadFile';
-import getScreenRasters from './getScreenRasters';
+// import getScreenRasters from './getScreenRasters';
 import sendAsyncRequest from './sendAsyncRequest';
 
 /**
@@ -195,6 +195,6 @@ export {
         collectParams,
         downloadFile,
         addStatusColumn,
-        getScreenRasters,
+        // getScreenRasters,
         sendAsyncRequest
     };
