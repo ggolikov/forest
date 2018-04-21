@@ -1,21 +1,30 @@
+const getRawSatParams = (res) => {
+    const { fields, values } = res;
+    const sceneIdFieldIndex = fields.indexOf('SCENEID') !== -1 ? fields.indexOf('SCENEID') : fields.indexOf('sceneid');
+    const timeFieldIndex = fields.indexOf('ACQDATE') !== -1 ? fields.indexOf('ACQDATE') : fields.indexOf('acqdate');
+
+    return {
+        imageId: values[0][sceneIdFieldIndex],
+        imageDate: values[0][timeFieldIndex]
+    };
+}
+
 const getSatelliteParams = (res) => {
-    let promiseArr = [];
+    let promiseArr = [],
+        foundLayer = {},
+        rawSatParams = {};
 
-    res.forEach(r => {
-        const sceneIdField = "sceneid";
-        const dateIdField = "acqdate";
-        const { fields, values } = r.Result;
-        const satelliteParams = {
-            type: "оптическая",
-            system: "Sentinel-2",
-            resolution: "",
-            imageId: values[0][fields.indexOf(sceneIdField)],
-            imageDate: new Date(values[0][fields.indexOf(dateIdField)]*1000).toLocaleDateString()
-        };
-        promiseArr.push(Promise.resolve(satelliteParams))
-    });
+    for (var i = 0; i < res.length; i++) {
+        if (res[i].result.values.length) {
+            foundLayer = res[i].layer;
+            rawSatParams = getRawSatParams(res[i].result);
+            break;
+        }
+    }
 
-    return Promise.all(promiseArr);
+    const satelliteParams = Object.assign({}, foundLayer, rawSatParams);
+
+    return Promise.resolve(satelliteParams);
 }
 
 export default getSatelliteParams;

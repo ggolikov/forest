@@ -9,8 +9,12 @@ const selectRasters = (gmxMap, geometry, state) => {
         const l = gmxMap.layersByID[layer.layerId];
         const { beginDate, endDate } = l.getDateInterval && l.getDateInterval();
 
+        // BUG
+        // const timeQuery = (beginDate && endDate) ?
+        //         `AND ([acqdate] > '${beginDate.toLocaleDateString()}' OR [acqdate] < '${beginDate.toLocaleDateString()}')` : '';
+
         const timeQuery = (beginDate && endDate) ?
-                `AND ([acqdate] > '${beginDate.toLocaleDateString()}' OR [acqdate] < '${beginDate.toLocaleDateString()}')` : '';
+                `AND ([acqdate] = '${beginDate.toLocaleDateString()}')` : '';
 
         const params = {
             layer: layer.layerId,
@@ -33,8 +37,9 @@ const selectRasters = (gmxMap, geometry, state) => {
                 return res.text();
             })
             .then(str => {
-                let features = JSON.parse(str.substring(1, str.length-1));
-                return Promise.resolve(features);
+                let res = JSON.parse(str.substring(1, str.length-1));
+
+                return Promise.resolve({ layer: layer, result: res.Result });
             })
             .catch(err => console.log(err))
         );

@@ -9,7 +9,7 @@ const getFeatureProps2 = (feature, state) => {
     return selectRasters(nsGmx.gmxMap, geometry, state)
         .then(res => getSatelliteParams(res))
         .then(res => {
-            const satParams = res[0];
+            const satParams = res;
             let params = {};
             const { featuresIds } = state;
             const { attrs } = (featuresIds.filter(f => f.id === id))[0];
