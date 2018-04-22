@@ -5,7 +5,7 @@ const getRawSatParams = (res) => {
 
     return {
         imageId: values[0][sceneIdFieldIndex],
-        imageDate: values[0][timeFieldIndex]
+        imageDate: values[0][timeFieldIndex] ? new Date(values[0][timeFieldIndex]).toLocaleDateString() : ''
     };
 }
 

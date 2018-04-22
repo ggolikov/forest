@@ -7,18 +7,18 @@ import { addStatusColumn, updateObjects } from '../../helpers';
 import { setAttributesList, updateFeatures } from '../../AC';
 
 const StatusChangeButton = (props) => {
-     let buttonLabel = !props.isLoading ?
-        window._gtxt("установить статус") :
+    const { isLoading, disabled, onClick } = props;
+    let buttonLabel = isLoading ?
         <BeatLoader
             color={'#70cbe0'}
-            loading={props.isLoading}
-        />;
+            loading={isLoading}
+        /> : window._gtxt("установить статус");
 
     return (
         <Button
-            disabled={props.disabled || props.isLoading}
+            disabled={disabled || isLoading}
             className="gmx-addon-button-medium"
-            onClick={props.onClick}
+            onClick={onClick}
         >
             {buttonLabel}
         </Button>

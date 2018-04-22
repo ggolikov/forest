@@ -36,6 +36,7 @@ const makeReport = (reportParamsArray) => {
         .then(res => {
             let url = window.serverBase + res.Result.Result.downloadFile;
             downloadFile(url);
+            return Promise.resolve(url);
         })
         .catch(err => console.log(err));
 }
