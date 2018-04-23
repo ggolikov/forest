@@ -5,10 +5,6 @@ const collectParams = (features) => {
     return features.map(feature => {
         const { id, attrs } = feature;
         const state = window.store.getState();
-        const l = window.nsGmx.gmxMap.layersByID[SENTINEL_LAYER_ID];
-        const { beginDate, endDate } = l.getDateInterval && l.getDateInterval();
-
-        console.log(beginDate, endDate);
 
         let mappedParams = EXPORT_PARAMS.reduce((obj, currentItem, index, arr) => {
             let value = state[currentItem] || "";
@@ -21,11 +17,21 @@ const collectParams = (features) => {
                 return obj;
         }, {});
 
+        const satLayersWithDates = state.satLayers.map(layer => {
+            const l = nsGmx.gmxMap.layersByID[layer.layerId];
+            const { beginDate, endDate } = l.getDateInterval && l.getDateInterval();
+            const dateInterval = {
+                beginDate: beginDate / 1000,
+                endDate: endDate / 1000
+            };
+
+            return Object.assign({}, layer, dateInterval);
+        });
+
+
         mappedParams = Object.assign({}, mappedParams, {
-            beginDate: beginDate / 1000,
-            endDate: endDate / 1000,
             featureID: id,
-            satLayers: state.satLayers
+            satLayers: satLayersWithDates
         });
 
         console.log(mappedParams);

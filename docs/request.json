@@ -2,11 +2,11 @@
     "reportType": "об использовании лесов",
     "layerId": "4BD64872924B48D9876EFB9E9A1B7C71",
     "featureID": 1,
-    "beginDate": 1523059200000,
-    "endDate": 1523059201000,
     "satLayers": [
         {
             "layerId": "636CBFF5155F4F299254EAF54079040C",
+            "beginDate": 1523059200000,
+            "endDate": 1523059201000,
             "type": "оптическая",
             "system": "Sentinel-2",
             "resolution": "10 м"
