@@ -7,10 +7,10 @@
     </head>
 
     <body>
-        <div class="preview-header">{{reportType}}</div>
+        <div class="preview-header">Отчет {{reportType}}</div>
         <div class="preview-map-container"><img src="Image?width=600&height=500&request={{jsonUrlCoded}}"/></div>
 
-        <div id="preview-params-container">
+        <div class="preview-params-container">
             <div>
                 <div class="preview-row-header">Организация</div>
                 <div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="preview-row">
                         <div class="preview-row-part preview-row-label">Лесничество</div>
-                        <div class="preview-row-part preview-row-value">Лесничество</div>
+                        <div class="preview-row-part preview-row-value">{{forestry}}</div>
                     </div>
                     <div class="preview-row">
                         <div class="preview-row-part preview-row-label">Участковое лесничество</div>
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div id="preview-footer">
+        <div class="preview-footer">
             <img class="scanex-logo" src="./scanex_logo.jpg">
             <div class="scanex-description">
                 <b>Группа компаний «СКАНЭКС»</b>

@@ -44,6 +44,58 @@
 
 .gmx-sidebar-select-with-addon-small {
   width: 60%;
+}.gmx-select-layer-container {
+  width: 100%;
+  height: 40px;
+  background-color: #ebf1f5;
+  border-bottom: 1px solid #bbb;
+}
+
+.gmx-select-layer-container__label {
+  width: 30%;
+  height: 22px;
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 31px;
+  color: #5b7284;
+}.gmx-table-icon-container {
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  cursor: pointer;
+}
+
+.gmx-status-indicator,
+.gmx-status-indicator-bad,
+.gmx-status-indicator-mean,
+.gmx-status-indicator-good {
+  width: 8px;
+  height: 8px;
+  line-height: 24px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.gmx-status-indicator-bad {
+  background-color: #f96060;
+}
+
+.gmx-status-indicator-mean {
+  background-color: #f9de60;
+}
+
+.gmx-status-indicator-good {
+  background-color: #4de371;
+}
+
+.gmx-table-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.gmx-table-icon:hover {
+  fill: #70cbe0;
 }.gmx-icon {
   width: 20px;
   height: 20px;
@@ -113,6 +165,7 @@ div[data-pane-id="forest-project"] {
 }
 
 .forest-plugin-content {
+  width: 100%;
   height: 90%;
   background-color: #f5f8fa;
   overflow-y: auto;
@@ -399,66 +452,6 @@ div[data-pane-id="forest-project"] {
 .ReactVirtualized__Grid__innerScrollContainer {
   width: 100%;
   max-width: 100%;
-}.gmx-select-layer-container {
-  width: 100%;
-  height: 40px;
-  background-color: #ebf1f5;
-  border-bottom: 1px solid #bbb;
-}
-
-.gmx-select-layer-container__label {
-  width: 30%;
-  height: 22px;
-  padding: 0 10px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 31px;
-  color: #5b7284;
-}.gmx-table-icon-container {
-  width: 16px;
-  height: 16px;
-  margin: auto;
-  cursor: pointer;
-}
-
-.gmx-status-indicator,
-.gmx-status-indicator-bad,
-.gmx-status-indicator-mean,
-.gmx-status-indicator-good {
-  width: 8px;
-  height: 8px;
-  line-height: 24px;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
-.gmx-status-indicator-bad {
-  background-color: #f96060;
-}
-
-.gmx-status-indicator-mean {
-  background-color: #f9de60;
-}
-
-.gmx-status-indicator-good {
-  background-color: #4de371;
-}
-
-.gmx-table-icon {
-  width: 100%;
-  height: 100%;
-}
-
-.gmx-table-icon:hover {
-  fill: #70cbe0;
-}.gmx-geometry-select-container {
-  width: 100%;
-  height: 40px;
-}
-
-.gmx-geometry-select-container button {
-  display: block;
-  margin: 0 auto;
 }.gmx-table-icon-container {
   width: 16px;
   height: 16px;
@@ -579,6 +572,14 @@ div[data-pane-id="forest-project"] {
   background-color: #d7e1e7;
   border: 1px solid #d7e1e7;
   cursor: pointer;
+}.gmx-geometry-select-container {
+  width: 100%;
+  height: 40px;
+}
+
+.gmx-geometry-select-container button {
+  display: block;
+  margin: 0 auto;
 }.gmx-checkbox-container {
   margin: auto;
 }.gmx-sidebar-input,
@@ -703,4 +704,4 @@ div[data-pane-id="forest-project"] {
 .gmx-sidebar-button-error {
   color: red;
 }
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jc3MvZm9yZXN0UHJvamVjdFBsdWdpbi5jc3MiLCJzb3VyY2VzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBOzs7O0E7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0E7Ozs7Ozs7Ozs7Ozs7OztBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0E7Ozs7Ozs7O0E7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBOztBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QTs7Ozs7Ozs7Ozs7Ozs7OztBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QSIsInNvdXJjZVJvb3QiOiIifQ==*/
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jc3MvZm9yZXN0UHJvamVjdFBsdWdpbi5jc3MiLCJzb3VyY2VzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBOzs7O0E7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBOzs7Ozs7Ozs7Ozs7Ozs7QTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QTs7Ozs7Ozs7QTs7QTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0E7Ozs7Ozs7Ozs7Ozs7Ozs7QTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0EiLCJzb3VyY2VSb290IjoiIn0=*/
