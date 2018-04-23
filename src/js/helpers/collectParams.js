@@ -24,7 +24,8 @@ const collectParams = (features) => {
         mappedParams = Object.assign({}, mappedParams, {
             beginDate: beginDate / 1000,
             endDate: endDate / 1000,
-            featureID: id
+            featureID: id,
+            satLayers: state.satLayers
         });
 
         console.log(mappedParams);

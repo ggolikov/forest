@@ -38,7 +38,6 @@ const makeReport = (reportParamsArray) => {
             downloadFile(url);
             return Promise.resolve(url);
         })
-        .catch(err => console.log(err));
 }
 
 export default makeReport;

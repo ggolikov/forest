@@ -9,42 +9,60 @@ class MakeReportButton extends Component {
         super(props);
 
         this.state = {
-            isLoading: false
+            isLoading: false,
+            error: false
         }
     }
 
-    toggleLoading = (bool) => {
-        this.toggleLoading(true);
-        this.setState({isLoading: bool});
-    }
-
     onClick = () => {
+        this.setState({
+            isLoading: true,
+            error: false
+        });
+
         const { features } = this.props;
         let reportParams = collectParams(features);
         console.log(reportParams);
         makeReport(reportParams)
             .then(res => {
-                this.toggleLoading(false);
+                this.setState({
+                    isLoading: false,
+                    error: false
+                });
+            })
+            .catch(res => {
+                this.setState({
+                    isLoading: false,
+                    error: true
+                });
             });
     }
 
     render() {
-        const { isLoading } = this.state;
+        const { isLoading, error } = this.state;
 
-        let buttonLabel = isLoading ?
-           <BeatLoader
-               color={'#70cbe0'}
-               loading={isLoading}
-           /> : this.props.children;
+        let buttonLabel;
+
+        if (isLoading) {
+            buttonLabel =
+                (<BeatLoader
+                    color={'#70cbe0'}
+                    loading={isLoading}
+                 />)
+        } else if (error) {
+            buttonLabel = 'ошибка';
+        } else {
+            buttonLabel = this.props.children;
+        }
 
         return (
             <div className="gmx-button-container">
                 <Button
                     disabled={isLoading}
-                    className="gmx-sidebar-button"
+                    className={`gmx-sidebar-button${error ? '-error' : ''}`}
                     onClick={this.onClick}
                 >
-                    {this.props.children}
+                    {buttonLabel}
                 </Button>
             </div>
         );

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Предпросмотр</title>
+        <link rel="stylesheet" href="preview.css" charset="utf-8">
+    </head>
+
+    <body>
+        <div class="preview-header">{{reportType}}</div>
+        <div class="preview-map-container"><img src="Image?width=600&height=500&request={{jsonUrlCoded}}"/></div>
+
+        <div id="preview-params-container">
+            <div>
+                <div class="preview-row-header">Организация</div>
+                <div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Наименование организации</div>
+                        <div class="preview-row-part preview-row-value">{{organizationName}}</div>
+                    </div>
+
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">ИНН</div>
+                        <div class="preview-row-part preview-row-value">{{inn}}</div>
+                        </div>
+                </div>
+
+                <div class="preview-row-header">Лесной участок</div>
+                <div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Субъект Российской Федерации</div>
+                        <div class="preview-row-part preview-row-value">{{region}}</div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Лесничество</div>
+                        <div class="preview-row-part preview-row-value">Лесничество</div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Участковое лесничество</div>
+                        <div class="preview-row-part preview-row-value">{{sectionForestry}}</div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Квартал</div>
+                        <div class="preview-row-part preview-row-value">{{quadrant}}</div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Выдел</div>
+                        <div class="preview-row-part preview-row-value">{{stratum}}</div>
+                    </div>
+                </div>
+
+                <div class="preview-row-header">Космический снимок</div>
+                <div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Тип съемки</div>
+                        <div class="preview-row-part preview-row-value">{{type}}</div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Съемочная система</div>
+                        <div class="preview-row-part preview-row-value">{{system}}</div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">ID снимка</div>
+                        <div class="preview-row-part preview-row-value">{{sceneid}}</div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Разрешение снимка</div>
+                        <div class="preview-row-part preview-row-value">{{resolution}}</div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-row-part preview-row-label">Дата съемки</div>
+                        <div class="preview-row-part preview-row-value">{{date}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="preview-footer">
+            <img class="scanex-logo" src="./scanex_logo.jpg">
+            <div class="scanex-description">
+                <b>Группа компаний «СКАНЭКС»</b>
+                <br>
+                108811, г. Москва, пос. Румянцево, стр. 1, Бизнес-парк «Румянцево», корп. А, 819А
+                <br>
+                Телефон: +7 (495) 739-73-85
+                <br>E-mail: info@scanex.ru
+            </div>
+        </div>
+    </body>
+</html>
