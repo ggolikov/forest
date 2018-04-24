@@ -21,8 +21,8 @@ const collectParams = (features) => {
             const l = nsGmx.gmxMap.layersByID[layer.layerId];
             const { beginDate, endDate } = l.getDateInterval && l.getDateInterval();
             const dateInterval = {
-                beginDate: beginDate / 1000,
-                endDate: endDate / 1000
+                beginDate: Number(beginDate) / 1000,
+                endDate: Number(endDate) / 1000
             };
 
             return Object.assign({}, layer, dateInterval);
