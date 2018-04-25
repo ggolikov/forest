@@ -24,7 +24,7 @@ const preview = (params, id, type) => {
     const bounds = L.gmxUtil.getGeometryBounds(feature.geometry);
     const lBounds = bounds.toLatLngBounds();
     const center = bounds.getCenter();
-    const zoom = nsGmx.leafletMap.getBoundsZoom(lBounds) - 1;
+    const zoom = nsGmx.leafletMap.getBoundsZoom(lBounds) - 2;
     const width = '550px';
     const height = '386px';
 
