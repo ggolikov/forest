@@ -6,11 +6,6 @@
   "main": "index.js",
   "author": "Grigory Golikov gr.golikov@gmail.com",
   "license": "MIT",
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "scripts": {
     "start": "webpack-dev-server --env --inline --hot --content-base demo --history-api-fallback",
     "build": "webpack --env",
@@ -73,6 +68,7 @@
     "react-spin": "^0.6.2",
     "react-spinners": "^0.3.1",
     "react-table": "^6.8.0",
+    "react-trigger-change": "^1.0.2",
     "reactify": "^1.1.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",

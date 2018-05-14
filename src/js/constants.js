@@ -9,6 +9,7 @@ export const DEMO_GEOMETRY_FIELD = 'geomixergeojson';
 export const FEATURES_CHUNK_SIZE = 500;
 export const CHANGE_LOADER_STATUS = 'CHANGE_LOADER_STATUS';
 export const SET_LAYER_ID = 'SET_LAYER_ID';
+export const SET_QUADRANT_LAYER_ID = 'SET_QUADRANT_LAYER_ID';
 export const SET_ID_FIELD_INDEX = 'SET_ID_FIELD_INDEX';
 export const SET_ID_FIELD = 'SET_ID_FIELD';
 export const SET_FEATURES_IDS = 'SET_FEATURES_IDS';
@@ -30,6 +31,7 @@ export const CHANGE_QUADRANT = 'CHANGE_QUADRANT';
 export const CHANGE_STRATUM = 'CHANGE_STRATUM';
 export const EXPORT_PARAMS = [
     'layerId',
+    'quadrantLayerId',
     'reportType',
     'organizationName',
     'inn',

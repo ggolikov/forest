@@ -1,4 +1,5 @@
 const storeMapping = {
+    quadrantLayerId: "setQuadrantLayerId",
     layerId: "setLayerId",
     reportType: "changeReportType",
     organizationName: "changeOrganizationName",

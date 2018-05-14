@@ -6,54 +6,51 @@ import { withLabel } from '../../HOC';
 
 class SelectInput extends Component {
     constructor(props) {
+        const { param, selectValues, loading } = props;
+
         super(props);
 
         this.state = {
             useSelect: false
         }
-    }
 
-    onButtonClick = () => {
-        const { useSelect } = this.state;
-        this.setState({
-            useSelect: !useSelect
-        });
-    }
-
-    onInputChosen: () => {
-        // return this.input.value;
-    }
-
-    onSelectChosen: () => {
-        // return this.select.value;
-    }
-
-    render() {
-        const { param, selectValues, loading } = this.props;
-        const { useSelect } = this.state;
-        const inputElement =
+        this.inputElement =
             <InputContainer
                 size='with-addon'
-                // ref={(input) => {this.input = input}}
-                onInputChosen={this.onInputChosen}
                 param={param}
 
             />
-        const selectElement =
+
+        this.selectElement =
             <SelectContainer
-                // ref={(input) => {this.select = select}}
                 size='with-addon'
-                onSelectChosen={this.onSelectChosen}
                 param={param}
                 values={selectValues}
                 loading={loading}
                 loadAttributes={true}
             />
+    }
+
+    onButtonClick = () => {
+        const { useSelect } = this.state;
+
+        console.log(this.selectElement);
+        console.log(this.inputElement);
+
+        useSelect ? this.inputElement.change() : this.selectElement.change();
+
+        this.setState({
+            useSelect: !useSelect
+        });
+    }
+
+    render() {
+        const { useSelect } = this.state;
 
         return (
             <div>
                 <div>
-                    { useSelect ? selectElement : inputElement}
+                    { useSelect ? this.selectElement : this.inputElement}
                     <Button
                         className={ useSelect ? "gmx-addon-button-toggled" : "gmx-addon-button"}
                         title={window._gtxt("выбрать из таблицы атрибутов")}

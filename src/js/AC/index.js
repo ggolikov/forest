@@ -1,6 +1,7 @@
 import {
     CHANGE_LOADER_STATUS,
     SET_LAYER_ID,
+    SET_QUADRANT_LAYER_ID,
     SET_ID_FIELD,
     SET_ID_FIELD_INDEX,
     SET_FEATURES_IDS,
@@ -32,6 +33,13 @@ export function changeLoaderStatus(loader) {
 export function setLayerId(layerId) {
     return {
         type: SET_LAYER_ID,
+        payload: { layerId }
+    }
+}
+
+export function setQuadrantLayerId(layerId) {
+    return {
+        type: SET_QUADRANT_LAYER_ID,
         payload: { layerId }
     }
 }

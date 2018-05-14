@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import reportTypeReducer from './reportTypeReducer';
 import loaderReducer from './loaderReducer';
 import layerIdReducer from './layerIdReducer';
+import quadrantLayerIdReducer from './quadrantLayerIdReducer';
 import idFieldReducer from './idFieldReducer';
 import idFieldIndexReducer from './idFieldIndexReducer';
 import featuresIdsReducer from './featuresIdsReducer';
@@ -21,6 +22,7 @@ import satelliteLayerIdReducer from './satelliteLayerIdReducer';
 export default combineReducers({
     loader: loaderReducer,
     layerId: layerIdReducer,
+    quadrantLayerId: quadrantLayerIdReducer,
     idField: idFieldReducer,
     idFieldIndex: idFieldIndexReducer,
     featuresIds: featuresIdsReducer,

@@ -60,10 +60,16 @@ class App extends Component {
         const listPanelLabel = window._gtxt("Список объектов");
 
         const layersValues = getLayersList(gmxMap);
+        const layer = window.nsGmx.gmxMap.layersByID[layerId];
+        const layerName = layer && layer.getGmxProperties && layer.getGmxProperties().name;
+        const layersWithoutMain = layersValues.filter(name => {
+            return name !== layerName;
+        });
         const loaderHolder = window._gtxt("Загрузка данных...");
 
         const header = window._gtxt("Отчет об использовании лесов");
         const reportTypeSelectLabel = window._gtxt("Тип отчета");
+        const quadrantLayerSelectLabel = window._gtxt("Слой квартальной сети");
         const reportTypeSelectValues = [
             window._gtxt("об использовании лесов"),
             window._gtxt("о восстановлении лесов")
@@ -85,7 +91,7 @@ class App extends Component {
                 <Label  size="medium">
                     {inputsPanelLabel}
                 </Label>
-                <div /*in={this.state.inputsCollapsed}*/>
+                <div>
                     <div>
                         <SelectContainer
                             label={reportTypeSelectLabel}
@@ -129,6 +135,12 @@ class App extends Component {
                             param="stratum"
                             selectValues={attributesList}
                             loading={loading}
+                        />
+                        <SelectContainer
+                            label={quadrantLayerSelectLabel}
+                            param="quadrantLayerId"
+                            values={layersWithoutMain}
+                            mapValues={true}
                         />
                     </div>
                 </div>
