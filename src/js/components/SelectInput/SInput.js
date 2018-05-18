@@ -34,10 +34,10 @@ class SelectInput extends Component {
     onButtonClick = () => {
         const { useSelect } = this.state;
 
-        console.log(this.selectElement);
-        console.log(this.inputElement);
+        // console.log(this.selectElement);
+        // console.log(this.inputElement);
 
-        useSelect ? this.inputElement.change() : this.selectElement.change();
+        // useSelect ? this.inputElement.change() : this.selectElement.change();
 
         this.setState({
             useSelect: !useSelect
