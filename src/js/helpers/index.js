@@ -1,4 +1,6 @@
 import { SENTINEL_LAYER_ID, BLANK_SELECT_OPTION } from '../constants';
+import loadFeatures from './loadFeatures';
+import highlightFeature from './highlightFeature';
 import getFeatureProps from './getFeatureProps';
 import getFeatureProps2 from './getFeatureProps2';
 import mapStateToRows from './mapStateToRows';
@@ -17,80 +19,6 @@ import collectParams from './collectParams';
 import downloadFile from './downloadFile';
 // import getScreenRasters from './getScreenRasters';
 import sendAsyncRequest from './sendAsyncRequest';
-
-/**
- * Запрос за объектами слоя
- * VectorLayer/Search.ashx
- * https://docs.google.com/document/d/1Dky3Lg8WIiHREYln0zVgUqfpHFptlolCZ_i8aB0Iljw/edit#heading=h.t355wryw7p1x
- */
-export const loadFeatures = (layerId, page, pagesize, count) => {
-    const params = {
-        layer: layerId,
-        page: page,
-        pagesize: pagesize,
-        count: count,
-        geometry: true
-    },
-    url = `${window.serverBase}VectorLayer/Search.ashx?${encodeParams(params)}`,
-    options = {
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-            'Accept': 'application/json'
-        }
-    };
-
-    return fetch(url, options)
-        .then(res => res.text())
-        .then(str => {
-            let res = JSON.parse(str.substring(1, str.length-1));
-            return Promise.resolve(res);
-        })
-        .catch(err => console.log(err));
-}
-
-export const highlightFeature = (layerId, id) => {
-    const layer = nsGmx.gmxMap.layersByID[layerId];
-    const { featuresIds } = window.store.getState();
-    const selectedFeatures = featuresIds.filter(f => {
-            return f.selected;
-    });
-    const index = selectedFeatures.findIndex(item => item.id === id);
-    const isSelected = index !== -1;
-    console.log(isSelected);
-    let currentStyle = {
-        strokeStyle: isSelected ? 'rgba(0, 255, 255, 1)' : 'rgba(255, 255, 0, 1)',
-        lineWidth: 2
-    }
-
-
-    layer.setStyleHook((it) => {
-        if (it.id === id) {
-            return {
-                strokeStyle: 'rgba(255, 0, 0, 1)',
-                lineWidth: 4
-            };
-        } else {
-            return {};
-        }
-    });
-
-    let timeout = window.setTimeout(() => {
-        layer.setStyleHook((it) => {
-            if (it.id === id) {
-                console.log(currentStyle);
-                return currentStyle;
-            } else {
-                return {};
-            }
-        });
-    }, 2000);
-
-    window.setTimeout(() => {
-        window.clearTimeout(timeout);
-    }, 2100);
-
-}
 
 export const zoomToFeature = (layerId, id, geometry) => {
     const layer = nsGmx.gmxMap.layersByID[layerId];
@@ -180,21 +108,14 @@ export const clearStyle = (layer, features)  => {
 }
 
 export {
-        getFeatureProps,
-        getFeatureProps2,
-        mapStateToRows,
-        preview,
-        getAttribute,
-        selectFeaturesWithDrawing,
-        mergeArrays,
-        mapFeaturesToStore,
-        updateObjects,
-        getFeatureAttribute,
-        sortFeatures,
-        makeReport,
-        collectParams,
-        downloadFile,
-        addStatusColumn,
-        // getScreenRasters,
+        loadFeatures,    highlightFeature,
+        getFeatureProps, getFeatureProps2,
+        mapStateToRows,  preview,
+        getAttribute,    selectFeaturesWithDrawing,
+        mergeArrays,     mapFeaturesToStore,
+        updateObjects,   getFeatureAttribute,
+        sortFeatures,    makeReport,
+        collectParams,   downloadFile,
+        addStatusColumn,        // getScreenRasters,
         sendAsyncRequest
     };

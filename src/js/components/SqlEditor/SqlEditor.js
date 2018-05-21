@@ -6,17 +6,12 @@ class SqlEditor extends Component {
         super(props);
     }
 
-    onChange = () => {
-        reactTriggerChange(this.input);
-    }
-
     render() {
-        const { size, placeholder, value, onChange } = this.props;
-        const prefix = size ? `-${size}` : '';
+        const { onChange } = this.props;
 
         return (
             <textarea
-                onChange={this.onChange}
+                onChange={onChange}
             >
             </textarea>
         );

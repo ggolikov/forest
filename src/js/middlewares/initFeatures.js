@@ -28,7 +28,7 @@ export default store => next => action => {
 
     if (type === SET_LAYER_ID) {
         if (payload.layerId) {
-            loadFeatures(payload.layerId, 0, null, 'add')
+            loadFeatures(payload.layerId, 0, null, 'add', payload.query)
                 .then(json => getFeaturesAndCount(json));
             next(actionCreators.changeLoaderStatus(true));
         } else {

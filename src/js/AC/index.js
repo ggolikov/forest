@@ -33,10 +33,10 @@ export function changeLoaderStatus(loader) {
     }
 }
 
-export function setLayerId(layerId) {
+export function setLayerId(layerId, query) {
     return {
         type: SET_LAYER_ID,
-        payload: { layerId }
+        payload: { layerId, query }
     }
 }
 
