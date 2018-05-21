@@ -8,7 +8,10 @@ const storeMapping = {
     forestry: "changeForestry",
     sectionForestry: "changeSectionForestry",
     quadrant: "changeQuadrant",
-    stratum: "changeStratum"
+    stratum: "changeStratum",
+    fellingForm: "changeFellingForm",
+    fellingType: "changeFellingType",
+    recoveryEventType: "changeRecoveryEventType"
 }
 
 export default storeMapping;

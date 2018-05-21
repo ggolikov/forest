@@ -18,6 +18,9 @@ import sectionForestryReducer from './sectionForestryReducer';
 import quadrantReducer from './quadrantReducer';
 import stratumReducer from './stratumReducer';
 import satelliteLayerIdReducer from './satelliteLayerIdReducer';
+import fellingFormReducer from './fellingFormReducer';
+import fellingTypeReducer from './fellingTypeReducer';
+import recoveryEventTypeReducer from './recoveryEventTypeReducer';
 
 export default combineReducers({
     loader: loaderReducer,
@@ -36,5 +39,8 @@ export default combineReducers({
     sectionForestry: sectionForestryReducer,
     quadrant: quadrantReducer,
     stratum: stratumReducer,
-    satLayers: satelliteLayerIdReducer
+    satLayers: satelliteLayerIdReducer,
+    fellingForm: fellingFormReducer,
+    fellingType: fellingTypeReducer,
+    recoveryEventType: recoveryEventTypeReducer
 });

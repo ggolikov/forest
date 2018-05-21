@@ -20,7 +20,10 @@ import {
     CHANGE_FORESTRY,
     CHANGE_SECTION_FORESTRY,
     CHANGE_QUADRANT,
-    CHANGE_STRATUM
+    CHANGE_STRATUM,
+    CHANGE_FELLING_FORM,
+    CHANGE_FELLING_TYPE,
+    CHANGE_RECOVERY_EVENT_TYPE
 } from '../constants';
 
 export function changeLoaderStatus(loader) {
@@ -172,5 +175,26 @@ export function changeStratum(stratum) {
     return {
         type: CHANGE_STRATUM,
         payload: { stratum }
+    }
+}
+
+export function changeFellingForm(fellingForm) {
+    return {
+        type: CHANGE_FELLING_FORM,
+        payload: { fellingForm }
+    }
+}
+
+export function changeFellingType(fellingType) {
+    return {
+        type: CHANGE_FELLING_TYPE,
+        payload: { fellingType }
+    }
+}
+
+export function changeRecoveryEventType(recoveryEventType) {
+    return {
+        type: CHANGE_RECOVERY_EVENT_TYPE,
+        payload: { recoveryEventType }
     }
 }

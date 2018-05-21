@@ -29,6 +29,10 @@ export const CHANGE_FORESTRY = 'CHANGE_FORESTRY';
 export const CHANGE_SECTION_FORESTRY = 'CHANGE_SECTION_FORESTRY';
 export const CHANGE_QUADRANT = 'CHANGE_QUADRANT';
 export const CHANGE_STRATUM = 'CHANGE_STRATUM';
+export const CHANGE_FELLING_FORM = 'CHANGE_FELLING_FORM';
+export const CHANGE_FELLING_TYPE = 'CHANGE_FELLING_TYPE';
+export const CHANGE_RECOVERY_EVENT_TYPE = 'CHANGE_RECOVERY_EVENT_TYPE';
+
 export const EXPORT_PARAMS = [
     'layerId',
     'quadrantLayerId',
@@ -39,5 +43,8 @@ export const EXPORT_PARAMS = [
     'forestry',
     'sectionForestry',
     'quadrant',
-    'stratum'
+    'stratum',
+    'fellingForm',
+    'fellingType',
+    'recoveryEventType'
 ];
