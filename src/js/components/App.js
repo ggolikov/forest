@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FeaturesList from './FeaturesList';
 import Button from './Button';
 import Label from './Label';
+import SqlEditor from './SqlEditor';
 import { InputContainer, SelectContainer, CheckboxContainer } from './containers';
 import SelectInput from './SelectInput/index';
 import GeometrySelectionPanel from './GeometrySelectionPanel';
@@ -95,6 +96,8 @@ class App extends Component {
                 </Label>
                 <div>
                     <div>
+                        <SqlEditor>
+                        </SqlEditor>
                         <SelectContainer
                             label={labels.reportTypeSelectLabel}
                             param="reportType"
