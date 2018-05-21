@@ -12,6 +12,8 @@ import StatusChangePanel from './StatusChangePanel';
 import MakeReportButton from './MakeReportButton';
 import { getLayersList } from '../helpers';
 import { FEATURES_CHUNK_SIZE } from '../constants';
+import labels from '../labels';
+import values from '../values';
 
 class App extends Component {
     constructor(props) {
@@ -46,7 +48,7 @@ class App extends Component {
     }
 
     render() {
-        const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap, type } = this.props;
+        const { reportType, loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap, type } = this.props;
         const { loading, allFeaturesChecked } = this.state;
 
         const selectedFeatures = featuresIds.filter(item => item.selected);
@@ -56,9 +58,6 @@ class App extends Component {
             return (i <= /*FEATURES_CHUNK_SIZE*/featuresCount)
         })
 
-        const inputsPanelLabel = window._gtxt("Ввод информации");
-        const listPanelLabel = window._gtxt("Список объектов");
-
         const layersValues = getLayersList(gmxMap);
         const layer = window.nsGmx.gmxMap.layersByID[layerId];
         const layerName = layer && layer.getGmxProperties && layer.getGmxProperties().name;
@@ -67,77 +66,81 @@ class App extends Component {
         });
         const loaderHolder = window._gtxt("Загрузка данных...");
 
-        const header = window._gtxt("Отчет об использовании лесов");
-        const reportTypeSelectLabel = window._gtxt("Тип отчета");
-        const quadrantLayerSelectLabel = window._gtxt("Слой квартальной сети");
-        const reportTypeSelectValues = [
-            window._gtxt("об использовании лесов"),
-            window._gtxt("о восстановлении лесов")
-        ];
-        const organizationNameLabel = window._gtxt("Наименование организации");
-        const innLabel = window._gtxt("ИНН");
-        const regionLabel = window._gtxt("Субъект Российской Федерации");
-        const forestryLabel = window._gtxt("Лесничество");
-        const sectionForestryLabel = window._gtxt("Участковое лесничество");
-        const quadrantLabel = window._gtxt("Квартал");
-        const stratumLabel = window._gtxt("Выдел");
-        const revertSelectionLabel = window._gtxt("Инвертировать выделение");
-        const clearSelectionLabel = window._gtxt("Снять выделение");
-        const selectAllFeaturesLabel = window._gtxt("Выделить все");
-        const createButtonLabel = window._gtxt("Создать отчеты");
+        const reportTypeAdditionParams = reportType === window._gtxt("об использовании лесов") ?
+        (
+            <div>
+                <SelectContainer
+                    label={labels.fellingFormLabel}
+                    param="fellingForm"
+                    values={values.fellingFormValues}
+                />
+                <SelectContainer
+                    label={labels.fellingTypeLabel}
+                    param="fellingType"
+                    values={values.fellingTypeValues}
+                />
+            </div>
+        ) : (
+            <SelectContainer
+                label={labels.recoveryEventTypeLabel}
+                param="recoveryEventType"
+                values={values.recoveryEventTypes}
+            />
+        )
 
         const inputs = layerId ? (
             <div>
                 <Label  size="medium">
-                    {inputsPanelLabel}
+                    {labels.inputsPanelLabel}
                 </Label>
                 <div>
                     <div>
                         <SelectContainer
-                            label={reportTypeSelectLabel}
+                            label={labels.reportTypeSelectLabel}
                             param="reportType"
-                            values={reportTypeSelectValues}
+                            values={values.reportTypeSelectValues}
                         />
+                        {reportTypeAdditionParams}
                         <InputContainer
-                            label={organizationNameLabel}
+                            label={labels.organizationNameLabel}
                             param="organizationName"
                         />
                         <InputContainer
-                            label={innLabel}
+                            label={labels.innLabel}
                             param="inn"
                         />
                         <SelectInput
-                            label={regionLabel}
+                            label={labels.regionLabel}
                             param="region"
                             selectValues={attributesList}
                             loading={loading}
                         />
                         <SelectInput
-                            label={forestryLabel}
+                            label={labels.forestryLabel}
                             param="forestry"
                             selectValues={attributesList}
                             loading={loading}
                         />
                         <SelectInput
-                            label={sectionForestryLabel}
+                            label={labels.sectionForestryLabel}
                             param="sectionForestry"
                             selectValues={attributesList}
                             loading={loading}
                         />
                         <SelectInput
-                            label={quadrantLabel}
+                            label={labels.quadrantLabel}
                             param="quadrant"
                             selectValues={attributesList}
                             loading={loading}
                         />
                         <SelectInput
-                            label={stratumLabel}
+                            label={labels.stratumLabel}
                             param="stratum"
                             selectValues={attributesList}
                             loading={loading}
                         />
                         <SelectContainer
-                            label={quadrantLayerSelectLabel}
+                            label={labels.quadrantLayerSelectLabel}
                             param="quadrantLayerId"
                             values={layersWithoutMain}
                             mapValues={true}
@@ -145,7 +148,7 @@ class App extends Component {
                     </div>
                 </div>
                 <Label  size="medium">
-                    {listPanelLabel}
+                    {labels.listPanelLabel}
                 </Label>
                 <div className="forest-features-block">
                     <div>
