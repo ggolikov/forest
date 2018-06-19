@@ -2,7 +2,10 @@ import React from 'react';
 import './index.sass';
 
 const Button = (props) => {
-    const { className, onClick, disabled, title, children } = props;
+    let { className, onClick, disabled, title, children } = props;
+
+    className = disabled ? `${className}-disabled` : className;
+
     return (
         <button
             className={className}

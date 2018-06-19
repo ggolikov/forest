@@ -5,7 +5,7 @@ const fellingFormReducer = (fellingForm = "", action) => {
 
     switch (action.type) {
         case CHANGE_FELLING_FORM:
-            inn = payload.fellingForm;
+            fellingForm = payload.fellingForm;
             break;
         default:
     }

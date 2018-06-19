@@ -16,14 +16,13 @@ class CountPanel extends Component {
     }
 
     render() {
-        const label = `Ваш баланс: ${this.props.reportsCount}`
+        const label = `Лимит отчетов: ${this.props.reportsCount}`
         return (
             <div className="forest-plugin-header">
                 {label}
             </div>
         )
     }
-
 }
 
 const mapStateToProps = (state, ownProps) => {

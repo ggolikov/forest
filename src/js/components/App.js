@@ -50,7 +50,8 @@ class App extends Component {
     }
 
     render() {
-        const { reportType, loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap, type } = this.props;
+        console.log(this.props);
+        const { reportType, loader, layerId, reportsCount, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap, type } = this.props;
         const { loading, allFeaturesChecked } = this.state;
 
         const selectedFeatures = featuresIds.filter(item => item.selected);
@@ -68,6 +69,8 @@ class App extends Component {
         });
         const loaderHolder = window._gtxt("Загрузка данных...");
 
+        const canCreateReports = reportsCount > 0;
+        console.log(reportType);
         const reportTypeAdditionParams = reportType === window._gtxt("об использовании лесов") ?
         (
             <div>
@@ -82,13 +85,12 @@ class App extends Component {
                     values={values.fellingTypeValues}
                 />
             </div>
-        ) : (
-            <SelectContainer
-                label={labels.recoveryEventTypeLabel}
-                param="recoveryEventType"
-                values={values.recoveryEventTypes}
-            />
-        )
+        ) : null;
+            // {/*<SelectContainer
+            //     label={labels.recoveryEventTypeLabel}
+            //     param="recoveryEventType"
+            //     values={values.recoveryEventTypes}
+            // />*/}
 
         const inputs = layerId ? (
             <div>
@@ -184,13 +186,13 @@ class App extends Component {
                             selectedFeaturesCount={selectedFeaturesCount}
                             type={type}
                         />
-                        <StatusChangePanel
+                        {/*<StatusChangePanel
                             disabled={selectedFeaturesCount === 0}
                             layerId={layerId}
-                        />
+                        />*/}
                     </div>
                 </div>
-                <MakeReportButton features={selectedFeatures}>
+                <MakeReportButton disabled={!canCreateReports} features={selectedFeatures}>
                     {labels.createButtonLabel}
                 </MakeReportButton>
             </div>

@@ -4,12 +4,14 @@ import { updateFeature } from '../AC';
 import App from './App';
 
 const mapStateToProps = (state, ownProps) => {
-    const { loader, layerId, idField, idFieldIndex, featuresIds, featuresCount, attributesList } = state;
+    const { reportType, loader, layerId, reportsCount, idField, idFieldIndex, featuresIds, featuresCount, attributesList } = state;
     const { lmap, gmxMap, type } = ownProps;
 
     return {
+        reportType,
         loader,
         layerId,
+        reportsCount,
         idFieldIndex,
         idField,
         featuresIds,
@@ -22,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    const { layerId, idField, featuresCount, attributesList } = stateProps;
+    const { reportType, layerId, idField, featuresCount, attributesList } = stateProps;
     const { dispatch } = dispatchProps;
 
     return {

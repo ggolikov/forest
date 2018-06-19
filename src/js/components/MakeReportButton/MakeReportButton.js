@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BeatLoader } from 'react-spinners';
 import Button from '../Button';
-import { collectParams, makeReport, addStatusColumn, updateObjects } from '../../helpers';
+import { collectParams, makeReport, addStatusColumn, updateObjects, getReportsCount } from '../../helpers';
 import { TRUE_STATUS_COLUMN_NAME } from '../../constants';
-import { setAttributesList, updateFeatures } from '../../AC';
+import { setAttributesList, updateFeatures, setReportsCount } from '../../AC';
 import './index.sass';
 
 class MakeReportButton extends Component {
@@ -42,6 +42,13 @@ class MakeReportButton extends Component {
                         return feature;
                     });
                     window.store.dispatch(updateFeatures(updatedFeatures));
+
+                    getReportsCount()
+                        .then((res) => {
+                            const { registered, limit, used } = res.Result;
+
+                            window.store.dispatch(setReportsCount(limit - used));
+                        });
                 });
         } else {
             addStatusColumn(layerId)
@@ -56,6 +63,13 @@ class MakeReportButton extends Component {
                                 return feature;
                             });
                             window.store.dispatch(updateFeatures(updatedFeatures));
+
+                            getReportsCount()
+                                .then((res) => {
+                                    const { registered, limit, used } = res.Result;
+
+                                    window.store.dispatch(setReportsCount(limit - used));
+                                });
                         });
                 });
         }
@@ -69,7 +83,7 @@ class MakeReportButton extends Component {
 
         const { features } = this.props;
         let reportParams = collectParams(features);
-        console.log(reportParams);
+        // console.log(reportParams);
         makeReport(reportParams)
             .then(res => {
                 this.changeFeaturesStatus(features);
@@ -87,8 +101,8 @@ class MakeReportButton extends Component {
     }
 
     render() {
+        const { disabled } = this.props;
         const { isLoading, error } = this.state;
-
         let buttonLabel;
 
         if (isLoading) {
@@ -106,7 +120,7 @@ class MakeReportButton extends Component {
         return (
             <div className="gmx-button-container">
                 <Button
-                    disabled={isLoading}
+                    disabled={disabled || isLoading}
                     className={`gmx-sidebar-button${error ? '-error' : ''}`}
                     onClick={this.onClick}
                 >

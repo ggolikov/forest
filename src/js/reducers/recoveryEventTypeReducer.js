@@ -5,7 +5,7 @@ const recoveryEventTypeReducer = (recoveryEventType = "", action) => {
 
     switch (action.type) {
         case CHANGE_RECOVERY_EVENT_TYPE:
-            inn = payload.recoveryEventType;
+            recoveryEventType = payload.recoveryEventType;
             break;
         default:
     }

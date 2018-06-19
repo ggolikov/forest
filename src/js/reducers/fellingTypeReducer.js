@@ -5,7 +5,7 @@ const fellingTypeReducer = (fellingType = "", action) => {
 
     switch (action.type) {
         case CHANGE_FELLING_TYPE:
-            inn = payload.fellingType;
+            fellingType = payload.fellingType;
             break;
         default:
     }
