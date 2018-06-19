@@ -5,7 +5,7 @@ const reportsCountReducer = (count = 0, action) => {
 
     switch (action.type) {
         case SET_REPORTS_COUNT:
-            inn = payload.count;
+            count = payload.count;
             break;
         default:
     }

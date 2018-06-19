@@ -1,5 +1,6 @@
 import { SENTINEL_LAYER_ID, BLANK_SELECT_OPTION } from '../constants';
 import loadFeatures from './loadFeatures';
+import getReportsCount from './getReportsCount';
 import highlightFeature from './highlightFeature';
 import getFeatureProps from './getFeatureProps';
 import getFeatureProps2 from './getFeatureProps2';
@@ -117,5 +118,5 @@ export {
         sortFeatures,    makeReport,
         collectParams,   downloadFile,
         addStatusColumn,        // getScreenRasters,
-        sendAsyncRequest
+        sendAsyncRequest, getReportsCount
     };

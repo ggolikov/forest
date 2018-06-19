@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import reportTypeReducer from './reportTypeReducer';
 import loaderReducer from './loaderReducer';
 import layerIdReducer from './layerIdReducer';
+import reportsCountReducer from './reportsCountReducer';
 import quadrantLayerIdReducer from './quadrantLayerIdReducer';
 import idFieldReducer from './idFieldReducer';
 import idFieldIndexReducer from './idFieldIndexReducer';

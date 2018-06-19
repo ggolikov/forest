@@ -3,6 +3,7 @@ import FeaturesList from './FeaturesList';
 import Button from './Button';
 import Label from './Label';
 import SqlEditor from './SqlEditor';
+import CountPanel from './CountPanel';
 import { InputContainer, SelectContainer, CheckboxContainer } from './containers';
 import SelectInput from './SelectInput/index';
 import GeometrySelectionPanel from './GeometrySelectionPanel';
@@ -204,6 +205,7 @@ class App extends Component {
                 <div className="forest-plugin-header">
                     {labels.header}
                 </div>
+                <CountPanel />
                 <LayerSelectPanel
                     values={layersValues}
                     mapValues={true}
