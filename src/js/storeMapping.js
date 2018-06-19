@@ -1,6 +1,7 @@
 const storeMapping = {
     quadrantLayerId: "setQuadrantLayerId",
     layerId: "setLayerId",
+    reportsCount: "setReportsCount",
     reportType: "changeReportType",
     organizationName: "changeOrganizationName",
     inn: "changeInn",
@@ -9,6 +10,7 @@ const storeMapping = {
     sectionForestry: "changeSectionForestry",
     quadrant: "changeQuadrant",
     stratum: "changeStratum",
+    site: "changeSite",
     fellingForm: "changeFellingForm",
     fellingType: "changeFellingType",
     recoveryEventType: "changeRecoveryEventType"

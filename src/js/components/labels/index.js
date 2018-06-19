@@ -17,7 +17,8 @@ const labels = {
     listPanelLabel:             window._gtxt("Список объектов"),
     fellingFormLabel:           window._gtxt("Форма рубки"),
     fellingTypeLabel:           window._gtxt("Тип рубки"),
-    recoveryEventTypeLabel:     window._gtxt("Тип мероприятия")
+    recoveryEventTypeLabel:     window._gtxt("Тип мероприятия"),
+    siteLabel:                  window._gtxt("Делянка")
 }
 
 export default labels;

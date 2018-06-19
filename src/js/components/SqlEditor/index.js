@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SqlEditor from './Input';
+import SqlEditor from './SqlEditor';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../AC';
 import storeMapping from '../../storeMapping';

@@ -1,3 +1,4 @@
+import encodeParams from './encodeParams';
 /**
  * Запрос за объектами слоя
  * VectorLayer/Search.ashx

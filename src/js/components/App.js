@@ -13,8 +13,8 @@ import StatusChangePanel from './StatusChangePanel';
 import MakeReportButton from './MakeReportButton';
 import { getLayersList } from '../helpers';
 import { FEATURES_CHUNK_SIZE } from '../constants';
-import labels from '../labels';
-import values from '../values';
+import labels from './labels';
+import values from './values';
 
 class App extends Component {
     constructor(props) {
@@ -96,8 +96,8 @@ class App extends Component {
                 </Label>
                 <div>
                     <div>
-                        <SqlEditor>
-                        </SqlEditor>
+                        {/*<SqlEditor>
+                        </SqlEditor>*/}
                         <SelectContainer
                             label={labels.reportTypeSelectLabel}
                             param="reportType"
@@ -142,6 +142,12 @@ class App extends Component {
                             selectValues={attributesList}
                             loading={loading}
                         />
+                        <SelectInput
+                            label={labels.siteLabel}
+                            param="site"
+                            selectValues={attributesList}
+                            loading={loading}
+                        />
                         <SelectContainer
                             label={labels.quadrantLayerSelectLabel}
                             param="quadrantLayerId"
@@ -163,7 +169,7 @@ class App extends Component {
                             <CheckboxContainer
                                 param="revertSelection"
                                 defaultChecked={false}
-                                label={revertSelectionLabel}
+                                label={labels.revertSelectionLabel}
                             />
                         </Label>
                         <FeaturesTable
@@ -184,7 +190,7 @@ class App extends Component {
                     </div>
                 </div>
                 <MakeReportButton features={selectedFeatures}>
-                    {createButtonLabel}
+                    {labels.createButtonLabel}
                 </MakeReportButton>
             </div>
         ) : loader ? (
@@ -196,7 +202,7 @@ class App extends Component {
         return (
             <div className="forest-plugin-container">
                 <div className="forest-plugin-header">
-                    {header}
+                    {labels.header}
                 </div>
                 <LayerSelectPanel
                     values={layersValues}

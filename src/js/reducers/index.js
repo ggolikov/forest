@@ -21,10 +21,12 @@ import satelliteLayerIdReducer from './satelliteLayerIdReducer';
 import fellingFormReducer from './fellingFormReducer';
 import fellingTypeReducer from './fellingTypeReducer';
 import recoveryEventTypeReducer from './recoveryEventTypeReducer';
+import siteReducer from './siteReducer';
 
 export default combineReducers({
     loader: loaderReducer,
     layerId: layerIdReducer,
+    reportsCount: reportsCountReducer,
     quadrantLayerId: quadrantLayerIdReducer,
     idField: idFieldReducer,
     idFieldIndex: idFieldIndexReducer,
@@ -42,5 +44,6 @@ export default combineReducers({
     satLayers: satelliteLayerIdReducer,
     fellingForm: fellingFormReducer,
     fellingType: fellingTypeReducer,
-    recoveryEventType: recoveryEventTypeReducer
+    recoveryEventType: recoveryEventTypeReducer,
+    site: siteReducer
 });

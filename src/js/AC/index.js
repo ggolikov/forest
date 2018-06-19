@@ -1,6 +1,7 @@
 import {
     CHANGE_LOADER_STATUS,
     SET_LAYER_ID,
+    SET_REPORTS_COUNT,
     SET_QUADRANT_LAYER_ID,
     SET_ID_FIELD,
     SET_ID_FIELD_INDEX,
@@ -21,6 +22,7 @@ import {
     CHANGE_SECTION_FORESTRY,
     CHANGE_QUADRANT,
     CHANGE_STRATUM,
+    CHANGE_SITE,
     CHANGE_FELLING_FORM,
     CHANGE_FELLING_TYPE,
     CHANGE_RECOVERY_EVENT_TYPE
@@ -37,6 +39,13 @@ export function setLayerId(layerId, query) {
     return {
         type: SET_LAYER_ID,
         payload: { layerId, query }
+    }
+}
+
+export function setReportsCount(count) {
+    return {
+        type: SET_REPORTS_COUNT,
+        payload: { count }
     }
 }
 
@@ -175,6 +184,13 @@ export function changeStratum(stratum) {
     return {
         type: CHANGE_STRATUM,
         payload: { stratum }
+    }
+}
+
+export function changeSite(site) {
+    return {
+        type: CHANGE_SITE,
+        payload: { site }
     }
 }
 

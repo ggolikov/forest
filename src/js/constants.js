@@ -9,6 +9,7 @@ export const DEMO_GEOMETRY_FIELD = 'geomixergeojson';
 export const FEATURES_CHUNK_SIZE = 500;
 export const CHANGE_LOADER_STATUS = 'CHANGE_LOADER_STATUS';
 export const SET_LAYER_ID = 'SET_LAYER_ID';
+export const SET_REPORTS_COUNT = 'SET_REPORTS_COUNT';
 export const SET_QUADRANT_LAYER_ID = 'SET_QUADRANT_LAYER_ID';
 export const SET_ID_FIELD_INDEX = 'SET_ID_FIELD_INDEX';
 export const SET_ID_FIELD = 'SET_ID_FIELD';
@@ -29,6 +30,7 @@ export const CHANGE_FORESTRY = 'CHANGE_FORESTRY';
 export const CHANGE_SECTION_FORESTRY = 'CHANGE_SECTION_FORESTRY';
 export const CHANGE_QUADRANT = 'CHANGE_QUADRANT';
 export const CHANGE_STRATUM = 'CHANGE_STRATUM';
+export const CHANGE_SITE = 'CHANGE_SITE';
 export const CHANGE_FELLING_FORM = 'CHANGE_FELLING_FORM';
 export const CHANGE_FELLING_TYPE = 'CHANGE_FELLING_TYPE';
 export const CHANGE_RECOVERY_EVENT_TYPE = 'CHANGE_RECOVERY_EVENT_TYPE';
@@ -46,5 +48,6 @@ export const EXPORT_PARAMS = [
     'stratum',
     'fellingForm',
     'fellingType',
-    'recoveryEventType'
+    'recoveryEventType',
+    'site'
 ];
