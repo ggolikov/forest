@@ -1,4 +1,5 @@
 import { EXPORT_PARAMS, SENTINEL_LAYER_ID } from '../constants';
+import objectAssign from 'object-assign';
 
 const collectParams = (features) => {
 
@@ -25,16 +26,15 @@ const collectParams = (features) => {
                 endDate: Number(endDate) / 1000
             };
 
-            return Object.assign({}, layer, dateInterval);
+            return objectAssign({}, layer, dateInterval);
         });
 
 
-        mappedParams = Object.assign({}, mappedParams, {
+        mappedParams = objectAssign({}, mappedParams, {
             featureID: id,
             satLayers: satLayersWithDates
         });
 
-        console.log(mappedParams);
         return mappedParams;
     });
 

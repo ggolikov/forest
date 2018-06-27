@@ -2,6 +2,7 @@ import { EXPORT_PARAMS } from '../constants';
 import selectRasters from './selectRasters';
 import getSatelliteParams from './getSatelliteParams';
 import getAttribute from './getAttribute';
+import objectAssign from 'object-assign';
 
 const getFeatureProps = (feature, state) => {
     const { id, geometry } = feature;
@@ -27,7 +28,7 @@ const getFeatureProps = (feature, state) => {
         })
         .then(res => {
             return new Promise((resolve, reject) => {
-                resolve(Object.assign({}, ...res));
+                resolve(objectAssign({}, ...res));
             })
         });
 }

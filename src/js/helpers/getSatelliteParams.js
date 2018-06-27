@@ -1,3 +1,5 @@
+import objectAssign from 'object-assign';
+
 const getRawSatParams = (res) => {
     const { fields, values } = res;
     const sceneIdFieldIndex = fields.indexOf('SCENEID') !== -1 ? fields.indexOf('SCENEID') : fields.indexOf('sceneid');
@@ -22,7 +24,7 @@ const getSatelliteParams = (res) => {
         }
     }
 
-    const satelliteParams = Object.assign({}, foundLayer, rawSatParams);
+    const satelliteParams = objectAssign({}, foundLayer, rawSatParams);
 
     return Promise.resolve(satelliteParams);
 }
