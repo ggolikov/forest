@@ -1,3 +1,5 @@
+import objectAssign from 'object-assign';
+
 import {
     SET_FEATURES_IDS,
     UPDATE_FEATURE,
@@ -20,7 +22,7 @@ const featuresIdsReducer = (featuresIds = [], action) => {
             const { id, selected } = payload,
                 index = featuresIds.findIndex(item => item.id === id),
                 feature = featuresIds[index],
-                updatedFeature = Object.assign({}, feature, {selected: selected});
+                updatedFeature = objectAssign({}, feature, {selected: selected});
 
             const updatedIds = [
                 ...featuresIds.slice(0, index),

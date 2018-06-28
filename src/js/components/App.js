@@ -50,7 +50,6 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.props);
         const { reportType, loader, layerId, reportsCount, idField, idFieldIndex, featuresIds, featuresCount, attributesList, gmxMap, lmap, type } = this.props;
         const { loading, allFeaturesChecked } = this.state;
 
@@ -70,11 +69,24 @@ class App extends Component {
         const loaderHolder = window._gtxt("Загрузка данных...");
 
         const canCreateReports = reportsCount > 0;
-        console.log(reportType);
+        
         const reportTypeAdditionParams = reportType === window._gtxt("об использовании лесов") ?
         (
             <div>
-                <SelectContainer
+                <SelectInput
+                    label={labels.fellingFormLabel}
+                    param="fellingForm"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+                <SelectInput
+                    label={labels.fellingTypeLabel}
+                    param="fellingType"
+                    selectValues={attributesList}
+                    loading={loading}
+                />
+
+                {/*<SelectContainer
                     label={labels.fellingFormLabel}
                     param="fellingForm"
                     values={values.fellingFormValues}
@@ -83,14 +95,9 @@ class App extends Component {
                     label={labels.fellingTypeLabel}
                     param="fellingType"
                     values={values.fellingTypeValues}
-                />
+                />*/}
             </div>
         ) : null;
-            // {/*<SelectContainer
-            //     label={labels.recoveryEventTypeLabel}
-            //     param="recoveryEventType"
-            //     values={values.recoveryEventTypes}
-            // />*/}
 
         const inputs = layerId ? (
             <div>
@@ -192,7 +199,7 @@ class App extends Component {
                         />*/}
                     </div>
                 </div>
-                <MakeReportButton disabled={!canCreateReports} features={selectedFeatures}>
+                <MakeReportButton disabled={!canCreateReports || selectedFeaturesCount === 0} features={selectedFeatures}>
                     {labels.createButtonLabel}
                 </MakeReportButton>
             </div>

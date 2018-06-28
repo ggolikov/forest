@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
+import objectAssign from 'object-assign';
 import { ReactTableDefaults } from 'react-table'
 import { SelectCheckboxContainer, CheckboxContainer } from '../containers';
 import { zoomToFeature, getFeatureProps, getFeatureProps2, preview } from '../../helpers';
@@ -31,7 +32,7 @@ class FeaturesTable extends Component {
             ofText: 'из'
         };
 
-        Object.assign(ReactTableDefaults, TableParams);
+        objectAssign(ReactTableDefaults, TableParams);
     }
 
     componentWillReceiveProps(nextPtops) {
@@ -162,13 +163,13 @@ class FeaturesTable extends Component {
                 accessor: 'id',
                 filterable: false,
                 minWidth: 30
-            }, {
+            }/*, {
                 Header: '',
                 Cell: this.drawShowPreviewIcon,
                 accessor: 'id',
                 filterable: false,
                 minWidth: 30
-            }];
+            }*/];
 
         return (
                 <ReactTable
